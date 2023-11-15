@@ -44,10 +44,10 @@ import {
   WeakMapPrototype,
   WeakRefPrototype,
   WeakSetPrototype, AggregateErrorPrototype, InternalErrorPrototype,
-} from './builtin-prototype';
-import isArguments from './is-arguments';
-import hasToStringTag from './has-to-string-tag';
-import fixSubtypeCompatibility from './fix-subtype-compatibility';
+} from './impl/builtin-prototype';
+import isArguments from './impl/is-arguments';
+import hasToStringTag from './impl/has-to-string-tag';
+import fixSubtypeCompatibility from './impl/fix-subtype-compatibility';
 
 /**
  * Gets the detail types of a non-null object.

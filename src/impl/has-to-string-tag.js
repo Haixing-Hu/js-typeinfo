@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { SYMBOL_TO_STRING_TAG_EXISTS } from './feature-detect';
+import { SYMBOL_TO_STRING_TAG_EXISTS } from '../feature-detect';
 
 /**
  * Tests whether an object has `Symbol.toStringTag` property.

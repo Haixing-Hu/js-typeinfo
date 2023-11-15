@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import GLOBAL_OBJECT from './global-object';
+import GLOBAL_OBJECT from './impl/global-object';
 import getObjectTypeInfo from './get-object-type-info';
 
 /**

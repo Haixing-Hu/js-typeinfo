@@ -47,7 +47,7 @@ import {
   WEAKMAP_EXISTS,
   WEAKREF_EXISTS,
   WEAKSET_EXISTS,
-} from './feature-detect';
+} from '../feature-detect';
 
 // Define prototypes for various ES5+ built-in objects
 
