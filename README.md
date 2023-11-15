@@ -7,10 +7,10 @@
 [![Coverage Status](https://coveralls.io/repos/github/Haixing-Hu/js-type-info/badge.svg?branch=master)](https://coveralls.io/github/Haixing-Hu/js-type-info?branch=master)
 
 
-[type-info] is a lightweight JavaScript library that extends the functionality 
+[type-info] is a lightweight JavaScript library that extends the functionality
 of the `typeof` operator, allowing for getting more precise and reliable type
-information of JavaScript variables. It provides enhanced support for the latest 
-ECMAScript standards and offers a comprehensive solution for type identification 
+information of JavaScript variables. It provides enhanced support for the latest
+ECMAScript standards and offers a comprehensive solution for type identification
 in your projects.
 
 ## Table of Contents
@@ -63,12 +63,12 @@ function clone(value) {
         case 'Boolean':    // drop down
         case 'Number':     // drop down
         case 'String':     // drop down
-          return value;    // don't need to clone immutable objects      
+          return value;    // don't need to clone immutable objects
         case 'Date':
           return new Date(value);
         case 'RegExp':
           return new RegExp(value);
-        ...  
+        ...
       }
   }
 }
@@ -90,7 +90,8 @@ This function returns the information about the precise type of the specified
 value. The returned information is an object with the following properties:
 - `'type'`: the name of the type of the specified value. This is the same as
   the value returned by the built-in `typeof` operator, except that the type
-  of `null` is `'null'` instead of `'object'`.
+  of `null` is `'null'` instead of `'object'`, and we add `'global'` for type of
+  the [global object].
 - `'subtype'`: the name of the subtype of the specified value. This property
   is only present when the type of the specified value is `'object'` or
   `'function'`.
@@ -114,7 +115,7 @@ The possible `type` values are:
 - `'object'`: if the value is a plain object.
 
 If the value is of the type `function` or `object`, the returned type information
-object will have the `subtype` property, which is the name of the detailed 
+object will have the `subtype` property, which is the name of the detailed
 subtype of the specified value.
 
 The possible `subtype` names of the `'function'` type are:
@@ -213,7 +214,7 @@ The possible `subtype` names of the `'object'` type are:
   and removes any inner spaces in the name. For example, if the `value.toString()`
   result is `'[object My Class ]'`, the `subtype` is `'MyClass'`.
 
-The detailed list of supported JavaScript built-in objects can be found 
+The detailed list of supported JavaScript built-in objects can be found
 at [Standard built-in objects].
 
 ## <span id="contributing">Contributing</span>
@@ -223,7 +224,7 @@ to open an issue or submit a pull request to the [GitHub repository].
 
 ## <span id="license">License</span>
 
-[type-info] is distributed under the Apache 2.0 license. 
+[type-info] is distributed under the Apache 2.0 license.
 See the [LICENSE](LICENSE) file for more details.
 
 
