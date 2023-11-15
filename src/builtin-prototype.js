@@ -86,7 +86,7 @@ export const PromisePrototype = (PROMISE_EXISTS ? Promise.prototype : undefined)
 export const MapIteratorPrototype = (MAP_ENTRIES_EXISTS ? Object.getPrototypeOf(new Map().entries()) : undefined);
 export const SetIteratorPrototype = (SET_ENTRIES_EXISTS ? Object.getPrototypeOf(new Set().entries()) : undefined);
 export const ArrayIteratorPrototype = (ARRAY_ITERATOR_EXISTS && Object.getPrototypeOf([][Symbol.iterator]()));
-export const StringIteratorPrototype = (STRING_ITERATOR_EXISTS && Object.getPrototypeOf(""[Symbol.iterator]()));
+export const StringIteratorPrototype = (STRING_ITERATOR_EXISTS && Object.getPrototypeOf(''[Symbol.iterator]()));
 export const RegExpIteratorPrototype = (REGEXP_ITERATOR_EXISTS && Object.getPrototypeOf(/^[a-z]/[Symbol.matchAll]()));
 
 export const IntlCollatorPrototype = (INTL_COLLATOR_EXISTS ? Intl.Collator.prototype : undefined);
@@ -100,6 +100,5 @@ export const IntlPluralRulesPrototype = (INTL_PLURALRULES_EXISTS ? Intl.PluralRu
 export const IntlRelativeTimeFormatPrototype = (INTL_RELATIVETIMEFORMAT_EXISTS ? Intl.RelativeTimeFormat.prototype : undefined);
 export const IntlSegmenterPrototype = (INTL_SEGMENTER_EXISTS ? Intl.Segmenter.prototype : undefined);
 export const IntelSegmentIteratorPrototype = (INTL_SEGMENTER_EXISTS && SYMBOL_ITERATOR_EXISTS
-      ? Object.getPrototypeOf(new Intl.Segmenter('en', { granularity: 'grapheme' })
-                                 .segment('')[Symbol.iterator]())
-      : undefined);
+  ? Object.getPrototypeOf(new Intl.Segmenter('en', { granularity: 'grapheme' }).segment('')[Symbol.iterator]())
+  : undefined);

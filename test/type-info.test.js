@@ -22,6 +22,8 @@ import {
   INTL_SEGMENTER_EXISTS, SYMBOL_TO_STRING_TAG_EXISTS,
 } from '../src';
 
+/* eslint-disable no-undef, func-names, no-empty-function, prefer-regex-literals, max-classes-per-file */
+
 const ASYNC_FUNCTION_EXISTS = ((async function () {}).constructor.name === 'AsyncFunction');
 const globalObject = globalThis;
 
@@ -86,8 +88,11 @@ describe('Test the `typeInfo()` function', () => {
       isPrimitive: true,
       isBuiltIn: true,
     };
-    expect(typeInfo(Symbol('x'))).toEqual(expected);
-    expect(typeInfo(Symbol.toStringTag)).toEqual(expected);
+    expect(typeInfo(Symbol(''))).toEqual(expected);
+    expect(typeInfo(Symbol('xyz'))).toEqual(expected);
+    if (SYMBOL_TO_STRING_TAG_EXISTS) {
+      expect(typeInfo(Symbol.toStringTag)).toEqual(expected);
+    }
   });
   test('primitive bigint', () => {
     const expected = {
@@ -97,18 +102,6 @@ describe('Test the `typeInfo()` function', () => {
     };
     expect(typeInfo(1n)).toEqual(expected);
     expect(typeInfo(BigInt(1))).toEqual(expected);
-  });
-  test('primitive symbol', () => {
-    const expected = {
-      type: 'symbol',
-      isPrimitive: true,
-      isBuiltIn: true,
-    };
-    expect(typeInfo(Symbol())).toEqual(expected);
-    expect(typeInfo(Symbol('xyz'))).toEqual(expected);
-    if (SYMBOL_TO_STRING_TAG_EXISTS) {
-      expect(typeInfo(Symbol.toStringTag)).toEqual(expected);
-    }
   });
   test('global object', () => {
     const expected = {
@@ -152,7 +145,7 @@ describe('Test the `typeInfo()` function', () => {
       async function myFunc() {
         new Promise((resolve) => {
           setTimeout(() => {
-            resolve("foo");
+            resolve('foo');
           }, 300);
         });
       }
@@ -451,7 +444,7 @@ describe('Test the `typeInfo()` function', () => {
     };
     const myPromise = new Promise((resolve) => {
       setTimeout(() => {
-        resolve("foo");
+        resolve('foo');
       }, 300);
     });
     expect(typeInfo(myPromise)).toEqual(expected);
@@ -511,7 +504,7 @@ describe('Test the `typeInfo()` function', () => {
       isBuiltIn: true,
       constructor: ''[Symbol.iterator]().constructor,
     };
-    const str = "hello world";
+    const str = 'hello world';
     expect(typeInfo(str[Symbol.iterator]())).toEqual(expected);
   });
   test('RegExpStringIterator', () => {
@@ -558,7 +551,7 @@ describe('Test the `typeInfo()` function', () => {
       isBuiltIn: true,
       constructor: EvalError,
     };
-    expect(typeInfo(new EvalError("Hello"))).toEqual(expected);
+    expect(typeInfo(new EvalError('Hello'))).toEqual(expected);
   });
   test('RangeError', () => {
     const expected = {
@@ -568,7 +561,7 @@ describe('Test the `typeInfo()` function', () => {
       isBuiltIn: true,
       constructor: RangeError,
     };
-    expect(typeInfo(new RangeError("Hello"))).toEqual(expected);
+    expect(typeInfo(new RangeError('Hello'))).toEqual(expected);
   });
   test('ReferenceError', () => {
     const expected = {
@@ -578,7 +571,7 @@ describe('Test the `typeInfo()` function', () => {
       isBuiltIn: true,
       constructor: ReferenceError,
     };
-    expect(typeInfo(new ReferenceError("Hello"))).toEqual(expected);
+    expect(typeInfo(new ReferenceError('Hello'))).toEqual(expected);
   });
   test('SyntaxError', () => {
     const expected = {
@@ -588,7 +581,7 @@ describe('Test the `typeInfo()` function', () => {
       isBuiltIn: true,
       constructor: SyntaxError,
     };
-    expect(typeInfo(new SyntaxError("Hello"))).toEqual(expected);
+    expect(typeInfo(new SyntaxError('Hello'))).toEqual(expected);
   });
   test('TypeError', () => {
     const expected = {
@@ -598,7 +591,7 @@ describe('Test the `typeInfo()` function', () => {
       isBuiltIn: true,
       constructor: TypeError,
     };
-    expect(typeInfo(new TypeError("Hello"))).toEqual(expected);
+    expect(typeInfo(new TypeError('Hello'))).toEqual(expected);
   });
   test('URIError', () => {
     const expected = {
@@ -608,7 +601,7 @@ describe('Test the `typeInfo()` function', () => {
       isBuiltIn: true,
       constructor: URIError,
     };
-    expect(typeInfo(new URIError("Hello"))).toEqual(expected);
+    expect(typeInfo(new URIError('Hello'))).toEqual(expected);
   });
   if (AGGREGATEERROR_EXIST) {
     test('AggregateError', () => {
@@ -619,8 +612,8 @@ describe('Test the `typeInfo()` function', () => {
         isBuiltIn: true,
         constructor: AggregateError,
       };
-      expect(typeInfo(new AggregateError([new Error("some error")], "Hello")))
-          .toEqual(expected);
+      expect(typeInfo(new AggregateError([new Error('some error')], 'Hello')))
+        .toEqual(expected);
     });
   }
   if (INTERNALERROR_EXIST) {
@@ -632,7 +625,7 @@ describe('Test the `typeInfo()` function', () => {
         isBuiltIn: true,
         constructor: InternalError,
       };
-      expect(typeInfo(new InternalError("Hello"))).toEqual(expected);
+      expect(typeInfo(new InternalError('Hello'))).toEqual(expected);
     });
   }
   test('User customized Error', () => {
@@ -719,7 +712,7 @@ describe('Test the `typeInfo()` function', () => {
       isBuiltIn: false,
       constructor: Object,
     };
-    expect(typeInfo({ x : 1 })).toEqual(expected);
+    expect(typeInfo({ x: 1 })).toEqual(expected);
   });
   test('object with toStringTag', () => {
     class Foo {
@@ -786,7 +779,7 @@ describe('Test the `typeInfo()` function', () => {
         constructor: Intl.DisplayNames,
       };
       expect(typeInfo(new Intl.DisplayNames('zh', { type: 'region' })))
-          .toEqual(expected);
+        .toEqual(expected);
     });
   }
   if (INTL_DURATIONFORMAT_EXISTS) {
@@ -798,8 +791,8 @@ describe('Test the `typeInfo()` function', () => {
         isBuiltIn: true,
         constructor: Intl.DurationFormat,
       };
-      expect(typeInfo(new Intl.DurationFormat('zh', { style: "long" })))
-          .toEqual(expected);
+      expect(typeInfo(new Intl.DurationFormat('zh', { style: 'long' })))
+        .toEqual(expected);
     });
   }
   if (INTL_LISTFORMAT_EXISTS) {

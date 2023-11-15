@@ -181,7 +181,7 @@ function typeInfo(value) {
       // including `undefined`, `boolean`, `string`, `number`, `symbol`,
       // `bigint`, which are all primitive values
       return {
-        type: type,
+        type,
         isPrimitive: true,
         isBuiltIn: true,
       };

@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import typeInfo from "./type-info";
+import typeInfo from './type-info';
 import {
   SYMBOL_EXISTS,
   SYMBOL_ITERATOR_EXISTS,

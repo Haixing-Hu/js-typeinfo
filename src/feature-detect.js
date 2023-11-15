@@ -7,6 +7,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+/* eslint-disable no-undef */
+
 export const SYMBOL_EXISTS = (typeof Symbol !== 'undefined');
 export const SYMBOL_ITERATOR_EXISTS = (SYMBOL_EXISTS && (typeof Symbol.iterator !== 'undefined'));
 export const SYMBOL_MATCH_ALL_EXISTS = (SYMBOL_EXISTS && (typeof Symbol.matchAll !== 'undefined'));

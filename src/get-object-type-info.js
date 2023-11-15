@@ -66,22 +66,17 @@ function getObjectTypeInfo(value) {
   };
   const proto = Object.getPrototypeOf(value);
   switch (proto) {
-    // primitive wrappers
     // NOTE that BigInt.prototype is not a primitive wrapper, instead, BigInt is
     // a built-in primitive type.
     case Boolean.prototype:                 // drop down
     case Number.prototype:                  // drop down
     case String.prototype:                  // drop down
-    // regular expressions
     case RegExpPrototype:                   // drop down
-    // Date
     case Date.prototype:                    // drop down
-    // collections
     case MapPrototype:                      // drop down
     case SetPrototype:                      // drop down
     case WeakMapPrototype:                  // drop down
     case WeakSetPrototype:                  // drop down
-    // arrays
     case Array.prototype:                   // drop down
     case Int8ArrayPrototype:                // drop down
     case Uint8ArrayPrototype:               // drop down
@@ -94,17 +89,13 @@ function getObjectTypeInfo(value) {
     case BigUint64ArrayPrototype:           // drop down
     case Float32ArrayPrototype:             // drop down
     case Float64ArrayPrototype:             // drop down
-    // buffers
     case ArrayBufferPrototype:              // drop down
     case SharedArrayBufferPrototype:        // drop down
     case DataViewPrototype:                 // drop down
-    // references
     case WeakRefPrototype:                  // drop down
-    // promise
     case PromisePrototype:                  // drop down
       result.subtype = value.constructor.name;
       return result;
-    // built-in errors
     case Error.prototype:                   // drop down
     case EvalError.prototype:               // drop down
     case RangeError.prototype:              // drop down
@@ -116,7 +107,6 @@ function getObjectTypeInfo(value) {
     case InternalErrorPrototype:            // drop down
       result.subtype = 'Error';
       return result;
-    // Intl APIs
     case IntlCollatorPrototype:             // drop down
     case IntlDateTimeFormatPrototype:       // drop down
     case IntlDisplayNamesPrototype:         // drop down
@@ -128,9 +118,8 @@ function getObjectTypeInfo(value) {
     case IntlRelativeTimeFormatPrototype:   // drop down
     case IntlSegmenterPrototype:            // drop down
       // add 'Intl.' prefix to the constructor name of the object
-      result.subtype = 'Intl.' + value.constructor.name;
+      result.subtype = `Intl.${value.constructor.name}`;
       return result;
-    // iterators
     case MapIteratorPrototype:              // drop down
     case SetIteratorPrototype:              // drop down
     case ArrayIteratorPrototype:            // drop down
@@ -142,6 +131,7 @@ function getObjectTypeInfo(value) {
       result.subtype = value[Symbol.toStringTag].replace(/\s/g, '');
       return result;
     default:                                 // drop down
+      break;
   }
   if (isArguments(value)) {                  // arguments
     result.subtype = 'Arguments';
