@@ -1488,9 +1488,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@haixing_hu/typeinfo@workspace:.":
+"@haixing_hu/type-info@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@haixing_hu/typeinfo@workspace:."
+  resolution: "@haixing_hu/type-info@workspace:."
   dependencies:
     "@babel/cli": "npm:^7.23.0"
     "@babel/core": "npm:^7.23.2"
