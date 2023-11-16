@@ -9,7 +9,7 @@
 import rollupBuilder from '@haixing_hu/rollup-builder';
 import { fileURLToPath } from 'node:url';
 
-export default rollupBuilder('Typeof', import.meta.url, {
+export default rollupBuilder('type-info', import.meta.url, {
   useCommonjsPlugin: false,
   babelPluginOptions: {
     configFile: fileURLToPath(new URL('babel.config.js', import.meta.url)),

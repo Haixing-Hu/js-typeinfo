@@ -1,23 +1,23 @@
 {
   "name": "@haixing_hu/type-info",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A JavaScript library provides a type information detection function",
   "author": "Haixing Hu",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Haixing-Hu/js-typeinfo.git"
+    "url": "git+https://github.com/Haixing-Hu/js-type-info.git"
   },
   "bugs": {
-    "url": "https://github.com/Haixing-Hu/js-typeinfo/issues"
+    "url": "https://github.com/Haixing-Hu/js-type-info/issues"
   },
-  "homepage": "https://github.com/Haixing-Hu/js-typeinfo",
-  "main": "dist/typeinfo.cjs.js",
-  "module": "dist/typeinfo.esm.min.mjs",
+  "homepage": "https://github.com/Haixing-Hu/js-type-info",
+  "main": "dist/type-info.cjs.min.js",
+  "module": "dist/type-info.esm.min.mjs",
   "exports": {
     ".": {
-      "require": "./dist/typeinfo.cjs.min.js",
-      "import": "./dist/typeinfo.esm.min.mjs"
+      "require": "./dist/type-info.cjs.min.js",
+      "import": "./dist/type-info.esm.min.mjs"
     }
   },
   "sideEffects": false,
