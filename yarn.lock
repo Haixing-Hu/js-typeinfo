@@ -1138,6 +1138,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-runtime@npm:^7.23.3":
+  version: 7.23.3
+  resolution: "@babel/plugin-transform-runtime@npm:7.23.3"
+  dependencies:
+    "@babel/helper-module-imports": "npm:^7.22.15"
+    "@babel/helper-plugin-utils": "npm:^7.22.5"
+    babel-plugin-polyfill-corejs2: "npm:^0.4.6"
+    babel-plugin-polyfill-corejs3: "npm:^0.8.5"
+    babel-plugin-polyfill-regenerator: "npm:^0.5.3"
+    semver: "npm:^6.3.1"
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 111fc412cc3968402183086879e1625ad4b869309f2e5aa33498a71ba700d3196c151d506977b5b535e8ff2c42c0731d59bfbfcb158ecddeeb3c49d5d4a58c0a
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-shorthand-properties@npm:^7.23.3":
   version: 7.23.3
   resolution: "@babel/plugin-transform-shorthand-properties@npm:7.23.3"
@@ -1488,13 +1504,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@haixing_hu/type-info@workspace:.":
+"@haixing_hu/typeinfo@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@haixing_hu/type-info@workspace:."
+  resolution: "@haixing_hu/typeinfo@workspace:."
   dependencies:
     "@babel/cli": "npm:^7.23.0"
     "@babel/core": "npm:^7.23.2"
     "@babel/eslint-parser": "npm:^7.17.0"
+    "@babel/plugin-transform-runtime": "npm:^7.23.3"
     "@babel/preset-env": "npm:^7.23.3"
     "@haixing_hu/eslint-config": "npm:^1.3.0"
     "@haixing_hu/jsdoc-minami": "npm:^1.5.0"

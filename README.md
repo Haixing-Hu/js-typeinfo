@@ -1,13 +1,13 @@
-# type-info
+# typeinfo
 
-[![npm package](https://img.shields.io/npm/v/@haixing_hu/type-info.svg)](https://npmjs.com/package/@haixing_hu/type-info)
+[![npm package](https://img.shields.io/npm/v/@haixing_hu/typeinfo.svg)](https://npmjs.com/package/@haixing_hu/typeinfo)
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![中文文档](https://img.shields.io/badge/文档-中文版-blue.svg)](README.zh_CN.md)
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Haixing-Hu/js-type-info/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Haixing-Hu/js-type-info/tree/master)
-[![Coverage Status](https://coveralls.io/repos/github/Haixing-Hu/js-type-info/badge.svg?branch=master)](https://coveralls.io/github/Haixing-Hu/js-type-info?branch=master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Haixing-Hu/js-typeinfo/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Haixing-Hu/js-typeinfo/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/Haixing-Hu/js-typeinfo/badge.svg?branch=master)](https://coveralls.io/github/Haixing-Hu/js-typeinfo?branch=master)
 
 
-[type-info] is a lightweight JavaScript library that extends the functionality
+[typeinfo] is a lightweight JavaScript library that extends the functionality
 of the `typeof` operator, allowing for getting more precise and reliable type
 information of JavaScript variables. It provides enhanced support for the latest
 ECMAScript standards and offers a comprehensive solution for type identification
@@ -30,20 +30,20 @@ in your projects.
 
 ## <span id="installation">Installation</span>
 
-You can install [type-info] via `npm`:
+You can install [typeinfo] via `npm`:
 ```sh
-npm install @haixing_hu/type-info
+npm install @haixing_hu/typeinfo
 ```
 or via `yarn`:
 ```bash
-yarn add @haixing_hu/type-info
+yarn add @haixing_hu/typeinfo
 ```
 
 ## <span id="example">Example</span>
 
 The following is a usage example:
 ```js
-import typeInfo from '@haixing_hu/type-info';
+import typeInfo from '@haixing_hu/typeinfo';
 
 function clone(value) {
   const info = typeInfo(value);
@@ -224,11 +224,11 @@ to open an issue or submit a pull request to the [GitHub repository].
 
 ## <span id="license">License</span>
 
-[type-info] is distributed under the Apache 2.0 license.
+[typeinfo] is distributed under the Apache 2.0 license.
 See the [LICENSE](LICENSE) file for more details.
 
 
-[type-info]: https://npmjs.com/package/@haixing_hu/type-info
+[typeinfo]: https://npmjs.com/package/@haixing_hu/typeinfo
 [global object]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
 [Standard built-in objects]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
-[GitHub repository]: https://github.com/Haixing-Hu/js-type-info
+[GitHub repository]: https://github.com/Haixing-Hu/js-typeinfo
