@@ -1,13 +1,13 @@
-# type-info
+# typeinfo
 
-[![npm package](https://img.shields.io/npm/v/@haixing_hu/type-info.svg)](https://npmjs.com/package/@haixing_hu/type-info)
+[![npm package](https://img.shields.io/npm/v/@haixing_hu/typeinfo.svg)](https://npmjs.com/package/@haixing_hu/typeinfo)
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![English Document](https://img.shields.io/badge/文档-中文版-blue.svg)](README.md)
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Haixing-Hu/js-type-info/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Haixing-Hu/js-type-info/tree/master)
-[![Coverage Status](https://coveralls.io/repos/github/Haixing-Hu/js-type-info/badge.svg?branch=master)](https://coveralls.io/github/Haixing-Hu/js-type-info?branch=master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Haixing-Hu/js-typeinfo/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Haixing-Hu/js-typeinfo/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/Haixing-Hu/js-typeinfo/badge.svg?branch=master)](https://coveralls.io/github/Haixing-Hu/js-typeinfo?branch=master)
 
 
-[type-info] 是一个轻量级的JavaScript库，它扩展了`typeof`操作符的功能，允许获取
+[typeinfo] 是一个轻量级的JavaScript库，它扩展了`typeof`操作符的功能，允许获取
 JavaScript 变量更精确可靠的类型信息。它为最新的 ECMAScript 标准提供了增强支持，并为您的项目
 中的类型识别提供了全面的解决方案。
 
@@ -29,20 +29,20 @@ JavaScript 变量更精确可靠的类型信息。它为最新的 ECMAScript 标
 
 ## <span id="installation">安装</span>
 
-您可以通过 `npm` 安装 [type-info]:
+您可以通过 `npm` 安装 [typeinfo]:
 ```sh
-npm install @haixing_hu/type-info
+npm install @haixing_hu/typeinfo
 ```
 或者通过 `yarn` 安装:
 ```bash
-yarn add @haixing_hu/type-info
+yarn add @haixing_hu/typeinfo
 ```
 
 ## <span id="example">例子</span>
 
 下面是一个使用示例：
 ```js
-import typeInfo from '@haixing_hu/type-info';
+import typeInfo from '@haixing_hu/typeinfo';
 
 function clone(value) {
   const info = typeInfo(value);
@@ -197,10 +197,10 @@ function typeInfo(value)
 
 ## <span id="license">许可证</span>
 
-[type-info] 在 Apache 2.0 许可下分发。有关更多详情，请参阅[LICENSE](LICENSE)文件。
+[typeinfo] 在 Apache 2.0 许可下分发。有关更多详情，请参阅[LICENSE](LICENSE)文件。
 
 
-[type-info]: https://npmjs.com/package/@haixing_hu/type-info
+[typeinfo]: https://npmjs.com/package/@haixing_hu/typeinfo
 [global object]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
 [Standard built-in objects]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
-[GitHub repository]: https://github.com/Haixing-Hu/js-type-info
+[GitHub repository]: https://github.com/Haixing-Hu/js-typeinfo
