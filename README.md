@@ -166,12 +166,12 @@ The possible `subtype` names of the `'object'` type are:
 - `'Intl.PluralRules'`: if the value is a JavaScript built-in `Intl.PluralRules` object.
 - `'Intl.RelativeTimeFormat'`: if the value is a JavaScript built-in `Intl.RelativeTimeFormat` object.
 - `'Intl.Segmenter'`: if the value is a JavaScript built-in `Intl.Segmenter` object.
-- `'MapIterator'`: if the value is a Map Iterator returned by
+- `'MapIterator'`: if the value is a `Map` Iterator returned by
     - `Map.prototype.values()`,
     - `Map.prototype.keys()`,
     - `Map.prototype.entries()`, and
     - `Map.prototype[@@iterator]()`.
-- `'SetIterator'`: if the value is a Set Iterator returned by
+- `'SetIterator'`: if the value is a `Set` Iterator returned by
     - `Set.prototype.values()`,
     - `Set.prototype.keys()`,
     - `Set.prototype.entries()`, and
@@ -184,7 +184,7 @@ The possible `subtype` names of the `'object'` type are:
     - `TypedArray.prototype.values()`,
     - `TypedArray.prototype.keys()`, and
     - `TypedArray.prototype.entries()`.
-- `'StringIterator'`: if the value is a String Iterator returned by
+- `'StringIterator'`: if the value is a `String` Iterator returned by
     - `String.prototype[@@iterator]()`.
 - `'RegExpStringIterator'`: if the value is a RegExp String Iterator returned by
     - `RegExp.prototype[@@matchAll]()`, and

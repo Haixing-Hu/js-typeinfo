@@ -149,7 +149,45 @@ function typeInfo(value)
 - `'Intl.PluralRules'`: 如果值为JavaScript内置的`Intl.PluralRules`对象。
 - `'Intl.RelativeTimeFormat'`: 如果值为JavaScript内置的`Intl.RelativeTimeFormat`对象。
 - `'Intl.Segmenter'`: 如果值为JavaScript内置的`Intl.Segmenter`对象。
-- ...其他可能的subtype...
+- `'MapIterator'`: 如果值为由以下函数返回的映射对象 `Map` 的迭代器，：
+    - `Map.prototype.values()`
+    - `Map.prototype.keys()`
+    - `Map.prototype.entries()`
+    - `Map.prototype[@@iterator]()`
+- `'SetIterator'`: 如果值为由以下函数返回的集合对象 `Set` 的迭代器：
+    - `Set.prototype.values()`
+    - `Set.prototype.keys()`
+    - `Set.prototype.entries()`
+    - `Set.prototype[@@iterator]()`
+- `'ArrayIterator'`: 如果值为由以下函数返回的数组对象 `Array` 的迭代器：
+    - `Array.prototype.values()`
+    - `Array.prototype.keys()`
+    - `Array.prototype.entries()`
+    - `Array.prototype[@@iterator]()`
+    - `TypedArray.prototype.values()`
+    - `TypedArray.prototype.keys()`
+    - `TypedArray.prototype.entries()`
+- `'StringIterator'`: 如果值为由以下函数返回的字符串对象 `String` 的迭代器：
+    - `String.prototype[@@iterator]()`
+- `'RegExpStringIterator'`: 如果值为由以下函数返回的正则表达式对象 `RegExp` 的字符串迭代器：
+    - `RegExp.prototype[@@matchAll]()`
+    - `String.prototype.matchAll()`
+- `'SegmenterStringIterator'`: 如果值为由以下函数返回的分段对象 `Intel.Segmenter` 的字
+  符串迭代器：
+    - `Intl.Segmenter.prototype.segment()`返回的Segments对象的`[@@iterator]()`方法。
+- `'Error'`: 如果值为JavaScript内置的`Error`类的对象，或`Error`类的子类的对象。
+- `'Arguments'`: 如果值为JavaScript内置的`arguments`对象；这是一个特殊的类数组对象，存储函数的调用参数。
+- `'Generator'`: 如果值为生成器对象，即同步生成器函数返回的对象。
+- `'AsyncGenerator'`: 如果值为异步生成器对象，即异步生成器函数返回的对象。
+- `value[Symbol.toStringTag]`: 如果值有自定义的 `Symbol.toStringTag` 属性。
+- `value.constructor.name`: 如果值有具有名称的构造函数，并且名称不是 `'Object'`。
+  也就是说，如果值是用户定义的类的实例，并且该类有名称，则`subtype`为该类的名称。
+- `'Object'`: 如果值是用户定义的匿名类的实例。
+- 从 `value.toString()` 中提取的名称：如果值与上述任何情况都不匹配，则 `subtype` 是从
+  `value.toString()`结果中提取的名称（通常为 `'[object XXX]'` 的形式），
+  并删除名称中的任何内部空格。例如，如果 `value.toString()` 结果为 `'[object My Class ]'`，
+  则 `subtype` 为 `'MyClass'`。
+
 
 该函数支持的JavaScript内置对象的详细列表可在 [Standard built-in objects] 中找到。
 
