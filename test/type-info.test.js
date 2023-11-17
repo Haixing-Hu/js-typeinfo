@@ -103,14 +103,6 @@ describe('Test the `typeInfo()` function', () => {
     expect(typeInfo(1n)).toEqual(expected);
     expect(typeInfo(BigInt(1))).toEqual(expected);
   });
-  test('global object', () => {
-    const expected = {
-      type: 'global',
-      isPrimitive: false,
-      isBuiltIn: true,
-    };
-    expect(typeInfo(globalObject)).toEqual(expected);
-  });
   test('function', () => {
     const expected = {
       type: 'function',
@@ -681,6 +673,15 @@ describe('Test the `typeInfo()` function', () => {
     };
     const info = typeInfo(x);
     expect(info).toEqual(expected);
+  });
+  test('global object', () => {
+    const expected = {
+      type: 'object',
+      subtype: 'GlobalObject',
+      isPrimitive: false,
+      isBuiltIn: true,
+    };
+    expect(typeInfo(globalObject)).toEqual(expected);
   });
   test('user defined class instance', () => {
     class Foo {}

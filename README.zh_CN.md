@@ -53,7 +53,7 @@ function clone(value) {
     case 'number':         // drop down
     case 'string':         // drop down
     case 'symbol':         // drop down
-    case 'global':         // drop down
+    case 'bigint':         // drop down
     case 'function':       // drop down
       return value;        // don't need to clone immutable objects
     case 'object':         // drop down
@@ -98,9 +98,8 @@ function typeInfo(value)
 - `'boolean'`: 如果值为原始布尔值。
 - `'number'`: 如果值为原始数值。
 - `'string'`: 如果值为原始字符串值。
-- `'bigint'`: 如果值为原始bigint值。
 - `'symbol'`: 如果值为符号值。
-- `'global'`: 如果值为全局对象。全局对象是始终存在于全局作用域中的对象。
+- `'bigint'`: 如果值为原始bigint值。
 - `'function'`: 如果值为函数。
 - `'object'`: 如果值为普通对象。
 
@@ -179,6 +178,7 @@ function typeInfo(value)
 - `'Arguments'`: 如果值为JavaScript内置的`arguments`对象；这是一个特殊的类数组对象，存储函数的调用参数。
 - `'Generator'`: 如果值为生成器对象，即同步生成器函数返回的对象。
 - `'AsyncGenerator'`: 如果值为异步生成器对象，即异步生成器函数返回的对象。
+- `'GlobalObject'`: 如果值为[全局对象]。全局对象是始终存在于全局作用域中的对象。
 - `value[Symbol.toStringTag]`: 如果值有自定义的 `Symbol.toStringTag` 属性。
 - `value.constructor.name`: 如果值有具有名称的构造函数，并且名称不是 `'Object'`。
   也就是说，如果值是用户定义的类的实例，并且该类有名称，则`subtype`为该类的名称。
@@ -201,6 +201,6 @@ function typeInfo(value)
 
 
 [typeinfo]: https://npmjs.com/package/@haixing_hu/typeinfo
-[global object]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
+[全局对象]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
 [Standard built-in objects]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 [GitHub repository]: https://github.com/Haixing-Hu/js-typeinfo

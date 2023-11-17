@@ -54,7 +54,7 @@ function clone(value) {
     case 'number':         // drop down
     case 'string':         // drop down
     case 'symbol':         // drop down
-    case 'global':         // drop down
+    case 'bigint':         // drop down
     case 'function':       // drop down
       return value;        // don't need to clone immutable objects
     case 'object':         // drop down
@@ -90,8 +90,7 @@ This function returns the information about the precise type of the specified
 value. The returned information is an object with the following properties:
 - `'type'`: the name of the type of the specified value. This is the same as
   the value returned by the built-in `typeof` operator, except that the type
-  of `null` is `'null'` instead of `'object'`, and we add `'global'` for type of
-  the [global object].
+  of `null` is `'null'` instead of `'object'`.
 - `'subtype'`: the name of the subtype of the specified value. This property
   is only present when the type of the specified value is `'object'` or
   `'function'`.
@@ -107,10 +106,8 @@ The possible `type` values are:
 - `'boolean'`: if the value is a primitive boolean value.
 - `'number'`: if the value is a primitive number value.
 - `'string'`: if the value is a primitive string value.
-- `'bigint'`: if the value is a primitive bigint value.
 - `'symbol'`: if the value is a symbol value.
-- `'global'`: if the value is the [global object]. A global object is an object
-  that always exists in the global scope.
+- `'bigint'`: if the value is a primitive bigint value.
 - `'function'`: if the value is a function.
 - `'object'`: if the value is a plain object.
 
@@ -201,6 +198,8 @@ The possible `subtype` names of the `'object'` type are:
   by a sync generator function.
 - `'AsyncGenerator'`: if the value is an async generator object, i.e., the
   object returned by an async generator function.
+- `'GlobalObject'`: if the value is the [global object]. A global object is an 
+  object that always exists in the global scope.
 - `value[Symbol.toStringTag]`: if the value has a customized `Symbol.toStringTag`
   property.
 - `value.constructor.name`: if the value has a constructor with a name, and

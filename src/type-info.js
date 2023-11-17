@@ -32,10 +32,8 @@ import getObjectTypeInfo from './get-object-type-info';
  * - `'boolean'`: if the value is a primitive boolean value.
  * - `'number'`: if the value is a primitive number value.
  * - `'string'`: if the value is a primitive string value.
- * - `'bigint'`: if the value is a primitive bigint value.
  * - `'symbol'`: if the value is a symbol value.
- * - `'global'`: if the value is the global object. A global object is an object
- *    that always exists in the global scope.
+ * - `'bigint'`: if the value is a primitive bigint value.
  * - `'function'`: if the value is a function.
  * - `'object'`: if the value is a plain object.
  *
@@ -126,6 +124,8 @@ import getObjectTypeInfo from './get-object-type-info';
  *   by a sync generator function.
  * - `'AsyncGenerator'`: if the value is an async generator object, i.e., the
  *   object returned by an async generator function.
+ * - `'GlobalObject'`: if the value is the global object. A global object is an
+ *   object that always exists in the global scope.
  * - `value[Symbol.toStringTag]`: if the value has a customized `Symbol.toStringTag`
  *   property.
  * - `value.constructor.name`: if the value has a constructor with a name, and
@@ -157,7 +157,8 @@ function typeInfo(value) {
   }
   if (value === GLOBAL_OBJECT) {
     return {
-      type: 'global',
+      type: 'object',
+      subtype: 'GlobalObject',
       isPrimitive: false,
       isBuiltIn: true,
     };
