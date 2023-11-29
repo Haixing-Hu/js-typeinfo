@@ -47,6 +47,9 @@ export const PROMISE_EXISTS = (typeof Promise !== 'undefined');
 
 export const MAP_ENTRIES_EXISTS = (MAP_EXISTS && (typeof Map.prototype.entries === 'function'));
 export const SET_ENTRIES_EXISTS = (SET_EXISTS && (typeof Set.prototype.entries === 'function'));
+
+export const MAP_ITERATOR_EXISTS = (MAP_EXISTS && (typeof Map.prototype.entries === 'function'));
+export const SET_ITERATOR_EXISTS = (SET_EXISTS && (typeof Set.prototype.entries === 'function'));
 export const ARRAY_ITERATOR_EXISTS = (SYMBOL_ITERATOR_EXISTS && typeof Array.prototype[Symbol.iterator] === 'function');
 export const STRING_ITERATOR_EXISTS = (SYMBOL_ITERATOR_EXISTS && (typeof String.prototype[Symbol.iterator] === 'function'));
 export const REGEXP_ITERATOR_EXISTS = (REGEXP_EXISTS && SYMBOL_MATCH_ALL_EXISTS && (typeof RegExp.prototype[Symbol.matchAll] === 'function'));

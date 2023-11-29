@@ -8,8 +8,37 @@
 ////////////////////////////////////////////////////////////////////////////////
 import {
   typeInfo,
+  SYMBOL_EXISTS,
+  SYMBOL_TO_STRING_TAG_EXISTS,
+  BIGINT_EXISTS,
+  REGEXP_EXISTS,
   AGGREGATEERROR_EXIST,
   INTERNALERROR_EXIST,
+  MAP_EXISTS,
+  SET_EXISTS,
+  WEAKMAP_EXISTS,
+  WEAKSET_EXISTS,
+  INT8ARRAY_EXISTS,
+  UINT8ARRAY_EXISTS,
+  UINT8CLAMPEDARRAY_EXISTS,
+  INT16ARRAY_EXISTS,
+  UINT16ARRAY_EXISTS,
+  INT32ARRAY_EXISTS,
+  UINT32ARRAY_EXISTS,
+  BIGINT64ARRAY_EXISTS,
+  BIGUINT64ARRAY_EXISTS,
+  FLOAT32ARRAY_EXISTS,
+  FLOAT64ARRAY_EXISTS,
+  ARRAYBUFFER_EXISTS,
+  SHAREDARRAYBUFFER_EXISTS,
+  DATAVIEW_EXISTS,
+  WEAKREF_EXISTS,
+  PROMISE_EXISTS,
+  MAP_ITERATOR_EXISTS,
+  SET_ITERATOR_EXISTS,
+  ARRAY_ITERATOR_EXISTS,
+  STRING_ITERATOR_EXISTS,
+  REGEXP_ITERATOR_EXISTS,
   INTL_COLLATOR_EXISTS,
   INTL_DATETIMEFORMAT_EXISTS,
   INTL_DISPLAYNAMES_EXISTS,
@@ -19,7 +48,8 @@ import {
   INTL_NUMBERFORMAT_EXISTS,
   INTL_PLURALRULES_EXISTS,
   INTL_RELATIVETIMEFORMAT_EXISTS,
-  INTL_SEGMENTER_EXISTS, SYMBOL_TO_STRING_TAG_EXISTS,
+  INTL_SEGMENTER_EXISTS,
+  INTL_SEGMENTER_ITERATOR_EXISTS,
 } from '../src';
 
 /* eslint-disable no-undef, func-names, no-empty-function, prefer-regex-literals, max-classes-per-file */
@@ -82,27 +112,31 @@ describe('Test the `typeInfo()` function', () => {
     expect(typeInfo('')).toEqual(expected);
     expect(typeInfo('abc')).toEqual(expected);
   });
-  test('primitive symbol', () => {
-    const expected = {
-      type: 'symbol',
-      isPrimitive: true,
-      isBuiltIn: true,
-    };
-    expect(typeInfo(Symbol(''))).toEqual(expected);
-    expect(typeInfo(Symbol('xyz'))).toEqual(expected);
-    if (SYMBOL_TO_STRING_TAG_EXISTS) {
-      expect(typeInfo(Symbol.toStringTag)).toEqual(expected);
-    }
-  });
-  test('primitive bigint', () => {
-    const expected = {
-      type: 'bigint',
-      isPrimitive: true,
-      isBuiltIn: true,
-    };
-    expect(typeInfo(1n)).toEqual(expected);
-    expect(typeInfo(BigInt(1))).toEqual(expected);
-  });
+  if (SYMBOL_EXISTS) {
+    test('primitive symbol', () => {
+      const expected = {
+        type: 'symbol',
+        isPrimitive: true,
+        isBuiltIn: true,
+      };
+      expect(typeInfo(Symbol(''))).toEqual(expected);
+      expect(typeInfo(Symbol('xyz'))).toEqual(expected);
+      if (SYMBOL_TO_STRING_TAG_EXISTS) {
+        expect(typeInfo(Symbol.toStringTag)).toEqual(expected);
+      }
+    });
+  }
+  if (BIGINT_EXISTS) {
+    test('primitive bigint', () => {
+      const expected = {
+        type: 'bigint',
+        isPrimitive: true,
+        isBuiltIn: true,
+      };
+      expect(typeInfo(1n)).toEqual(expected);
+      expect(typeInfo(BigInt(1))).toEqual(expected);
+    });
+  }
   test('function', () => {
     const expected = {
       type: 'function',
@@ -201,18 +235,20 @@ describe('Test the `typeInfo()` function', () => {
     expect(typeInfo(new String(''))).toEqual(expected);
     expect(typeInfo(new String('abc'))).toEqual(expected);
   });
-  test('RegExp', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'RegExp',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: RegExp,
-    };
-    expect(typeInfo(/^[0-9]+[a-z]+$/)).toEqual(expected);
-    expect(typeInfo(new RegExp('^[0-9]+[a-z]+$', 'i'))).toEqual(expected);
-    expect(typeInfo(new RegExp(/^[0-9]+[a-z]+$/, 'i'))).toEqual(expected);
-  });
+  if (REGEXP_EXISTS) {
+    test('RegExp', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'RegExp',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: RegExp,
+      };
+      expect(typeInfo(/^[0-9]+[a-z]+$/)).toEqual(expected);
+      expect(typeInfo(new RegExp('^[0-9]+[a-z]+$', 'i'))).toEqual(expected);
+      expect(typeInfo(new RegExp(/^[0-9]+[a-z]+$/, 'i'))).toEqual(expected);
+    });
+  }
   test('Date', () => {
     const expected = {
       type: 'object',
@@ -223,46 +259,54 @@ describe('Test the `typeInfo()` function', () => {
     };
     expect(typeInfo(new Date())).toEqual(expected);
   });
-  test('Map', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Map',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Map,
-    };
-    expect(typeInfo(new Map())).toEqual(expected);
-  });
-  test('Set', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Set',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Set,
-    };
-    expect(typeInfo(new Set())).toEqual(expected);
-  });
-  test('WeakMap', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'WeakMap',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: WeakMap,
-    };
-    expect(typeInfo(new WeakMap())).toEqual(expected);
-  });
-  test('WeakSet', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'WeakSet',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: WeakSet,
-    };
-    expect(typeInfo(new WeakSet())).toEqual(expected);
-  });
+  if (MAP_EXISTS) {
+    test('Map', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Map',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Map,
+      };
+      expect(typeInfo(new Map())).toEqual(expected);
+    });
+  }
+  if (SET_EXISTS) {
+    test('Set', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Set',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Set,
+      };
+      expect(typeInfo(new Set())).toEqual(expected);
+    });
+  }
+  if (WEAKMAP_EXISTS) {
+    test('WeakMap', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'WeakMap',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: WeakMap,
+      };
+      expect(typeInfo(new WeakMap())).toEqual(expected);
+    });
+  }
+  if (WEAKSET_EXISTS) {
+    test('WeakSet', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'WeakSet',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: WeakSet,
+      };
+      expect(typeInfo(new WeakSet())).toEqual(expected);
+    });
+  }
   test('Array', () => {
     const expected = {
       type: 'object',
@@ -275,256 +319,311 @@ describe('Test the `typeInfo()` function', () => {
     expect(typeInfo([1, 2, 3])).toEqual(expected);
     expect(typeInfo(new Array([1, 2, 3]))).toEqual(expected);
   });
-  test('Int8Array', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Int8Array',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Int8Array,
-    };
-    expect(typeInfo(new Int8Array(2))).toEqual(expected);
-  });
-  test('Uint8Array', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Uint8Array',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Uint8Array,
-    };
-    expect(typeInfo(new Uint8Array(2))).toEqual(expected);
-  });
-  test('Uint8ClampedArray', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Uint8ClampedArray',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Uint8ClampedArray,
-    };
-    expect(typeInfo(new Uint8ClampedArray(2))).toEqual(expected);
-  });
-  test('Int16Array', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Int16Array',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Int16Array,
-    };
-    expect(typeInfo(new Int16Array(2))).toEqual(expected);
-  });
-  test('Uint16Array', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Uint16Array',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Uint16Array,
-    };
-    expect(typeInfo(new Uint16Array(2))).toEqual(expected);
-  });
-  test('Int32Array', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Int32Array',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Int32Array,
-    };
-    expect(typeInfo(new Int32Array(2))).toEqual(expected);
-  });
-  test('Uint32Array', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Uint32Array',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Uint32Array,
-    };
-    expect(typeInfo(new Uint32Array(2))).toEqual(expected);
-  });
-  test('BigInt64Array', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'BigInt64Array',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: BigInt64Array,
-    };
-    expect(typeInfo(new BigInt64Array(2))).toEqual(expected);
-  });
-  test('BigUint64Array', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'BigUint64Array',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: BigUint64Array,
-    };
-    expect(typeInfo(new BigUint64Array(2))).toEqual(expected);
-  });
-  test('Float32Array', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Float32Array',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Float32Array,
-    };
-    expect(typeInfo(new Float32Array(2))).toEqual(expected);
-  });
-  test('Float64Array', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Float64Array',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Float64Array,
-    };
-    expect(typeInfo(new Float64Array(2))).toEqual(expected);
-  });
-  test('ArrayBuffer', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'ArrayBuffer',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: ArrayBuffer,
-    };
-    expect(typeInfo(new ArrayBuffer(2))).toEqual(expected);
-  });
-  test('SharedArrayBuffer', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'SharedArrayBuffer',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: SharedArrayBuffer,
-    };
-    expect(typeInfo(new SharedArrayBuffer(2))).toEqual(expected);
-  });
-  test('DataView', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'DataView',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: DataView,
-    };
-    expect(typeInfo(new DataView(new ArrayBuffer(2)))).toEqual(expected);
-  });
-  test('WeakRef', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'WeakRef',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: WeakRef,
-    };
-    const obj = {};
-    expect(typeInfo(new WeakRef(obj))).toEqual(expected);
-  });
-  test('Promise', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'Promise',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: Promise,
-    };
-    const myPromise = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve('foo');
-      }, 300);
+  if (INT8ARRAY_EXISTS) {
+    test('Int8Array', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Int8Array',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Int8Array,
+      };
+      expect(typeInfo(new Int8Array(2))).toEqual(expected);
     });
-    expect(typeInfo(myPromise)).toEqual(expected);
-  });
-  test('MapIterator', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'MapIterator',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: new Map().entries().constructor,
-    };
-    const map = new Map();
-    expect(typeInfo(map.entries())).toEqual(expected);
-    expect(typeInfo(map.keys())).toEqual(expected);
-    expect(typeInfo(map.values())).toEqual(expected);
-    expect(typeInfo(map[Symbol.iterator]())).toEqual(expected);
-  });
-  test('SetIterator', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'SetIterator',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: new Set().entries().constructor,
-    };
-    const set = new Set();
-    expect(typeInfo(set.entries())).toEqual(expected);
-    expect(typeInfo(set.values())).toEqual(expected);
-    expect(typeInfo(set.keys())).toEqual(expected);
-    expect(typeInfo(set[Symbol.iterator]())).toEqual(expected);
-  });
-  test('ArrayIterator', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'ArrayIterator',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: [].values().constructor,
-    };
-    const array = [1, 2, 3];
-    expect(typeInfo(array.values())).toEqual(expected);
-    expect(typeInfo(array.keys())).toEqual(expected);
-    expect(typeInfo(array.entries())).toEqual(expected);
-    expect(typeInfo(array[Symbol.iterator]())).toEqual(expected);
-    const int8array = new Int8Array(2);
-    expect(typeInfo(int8array.values())).toEqual(expected);
-    expect(typeInfo(int8array.keys())).toEqual(expected);
-    expect(typeInfo(int8array.entries())).toEqual(expected);
-    expect(typeInfo(int8array[Symbol.iterator]())).toEqual(expected);
-  });
-  test('StringIterator', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'StringIterator',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: ''[Symbol.iterator]().constructor,
-    };
-    const str = 'hello world';
-    expect(typeInfo(str[Symbol.iterator]())).toEqual(expected);
-  });
-  test('RegExpStringIterator', () => {
-    const expected = {
-      type: 'object',
-      subtype: 'RegExpStringIterator',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: /^[a-z]+/[Symbol.matchAll]().constructor,
-    };
-    const regexp = /^[a-z]+/;
-    expect(typeInfo(regexp[Symbol.matchAll]())).toEqual(expected);
-  });
-  test('SegmenterStringIterator', () => {
-    const string1 = 'Que ma joie demeure';
-    const segmenterFrGrapheme = new Intl.Segmenter('fr', {
-      granularity: 'grapheme',
+  }
+  if (UINT8ARRAY_EXISTS) {
+    test('Uint8Array', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Uint8Array',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Uint8Array,
+      };
+      expect(typeInfo(new Uint8Array(2))).toEqual(expected);
     });
-    const graphemeSegments = segmenterFrGrapheme.segment(string1);
-    const expected = {
-      type: 'object',
-      subtype: 'SegmenterStringIterator',
-      isPrimitive: false,
-      isBuiltIn: true,
-      constructor: graphemeSegments[Symbol.iterator]().constructor,
-    };
-    expect(typeInfo(graphemeSegments[Symbol.iterator]())).toEqual(expected);
-  });
+  }
+  if (UINT8CLAMPEDARRAY_EXISTS) {
+    test('Uint8ClampedArray', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Uint8ClampedArray',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Uint8ClampedArray,
+      };
+      expect(typeInfo(new Uint8ClampedArray(2))).toEqual(expected);
+    });
+  }
+  if (INT16ARRAY_EXISTS) {
+    test('Int16Array', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Int16Array',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Int16Array,
+      };
+      expect(typeInfo(new Int16Array(2))).toEqual(expected);
+    });
+  }
+  if (UINT16ARRAY_EXISTS) {
+    test('Uint16Array', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Uint16Array',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Uint16Array,
+      };
+      expect(typeInfo(new Uint16Array(2))).toEqual(expected);
+    });
+  }
+  if (INT32ARRAY_EXISTS) {
+    test('Int32Array', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Int32Array',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Int32Array,
+      };
+      expect(typeInfo(new Int32Array(2))).toEqual(expected);
+    });
+  }
+  if (UINT32ARRAY_EXISTS) {
+    test('Uint32Array', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Uint32Array',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Uint32Array,
+      };
+      expect(typeInfo(new Uint32Array(2))).toEqual(expected);
+    });
+  }
+  if (BIGINT64ARRAY_EXISTS) {
+    test('BigInt64Array', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'BigInt64Array',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: BigInt64Array,
+      };
+      expect(typeInfo(new BigInt64Array(2))).toEqual(expected);
+    });
+  }
+  if (BIGUINT64ARRAY_EXISTS) {
+    test('BigUint64Array', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'BigUint64Array',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: BigUint64Array,
+      };
+      expect(typeInfo(new BigUint64Array(2))).toEqual(expected);
+    });
+  }
+  if (FLOAT32ARRAY_EXISTS) {
+    test('Float32Array', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Float32Array',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Float32Array,
+      };
+      expect(typeInfo(new Float32Array(2))).toEqual(expected);
+    });
+  }
+  if (FLOAT64ARRAY_EXISTS) {
+    test('Float64Array', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Float64Array',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Float64Array,
+      };
+      expect(typeInfo(new Float64Array(2))).toEqual(expected);
+    });
+  }
+  if (ARRAYBUFFER_EXISTS) {
+    test('ArrayBuffer', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'ArrayBuffer',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: ArrayBuffer,
+      };
+      expect(typeInfo(new ArrayBuffer(2))).toEqual(expected);
+    });
+  }
+  if (SHAREDARRAYBUFFER_EXISTS) {
+    test('SharedArrayBuffer', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'SharedArrayBuffer',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: SharedArrayBuffer,
+      };
+      expect(typeInfo(new SharedArrayBuffer(2))).toEqual(expected);
+    });
+  }
+  if (DATAVIEW_EXISTS) {
+    test('DataView', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'DataView',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: DataView,
+      };
+      expect(typeInfo(new DataView(new ArrayBuffer(2)))).toEqual(expected);
+    });
+  }
+  if (WEAKREF_EXISTS) {
+    test('WeakRef', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'WeakRef',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: WeakRef,
+      };
+      const obj = {};
+      expect(typeInfo(new WeakRef(obj))).toEqual(expected);
+    });
+  }
+  if (PROMISE_EXISTS) {
+    test('Promise', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'Promise',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: Promise,
+      };
+      const myPromise = new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('foo');
+        }, 300);
+      });
+      expect(typeInfo(myPromise)).toEqual(expected);
+    });
+  }
+  if (MAP_ITERATOR_EXISTS) {
+    test('MapIterator', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'MapIterator',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: new Map().entries().constructor,
+      };
+      const map = new Map();
+      expect(typeInfo(map.entries())).toEqual(expected);
+      expect(typeInfo(map.keys())).toEqual(expected);
+      expect(typeInfo(map.values())).toEqual(expected);
+      expect(typeInfo(map[Symbol.iterator]())).toEqual(expected);
+    });
+  }
+  if (SET_ITERATOR_EXISTS) {
+    test('SetIterator', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'SetIterator',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: new Set().entries().constructor,
+      };
+      const set = new Set();
+      expect(typeInfo(set.entries())).toEqual(expected);
+      expect(typeInfo(set.values())).toEqual(expected);
+      expect(typeInfo(set.keys())).toEqual(expected);
+      expect(typeInfo(set[Symbol.iterator]())).toEqual(expected);
+    });
+  }
+  if (ARRAY_ITERATOR_EXISTS) {
+    test('ArrayIterator', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'ArrayIterator',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: [].values().constructor,
+      };
+      const array = [1, 2, 3];
+      expect(typeInfo(array.values())).toEqual(expected);
+      expect(typeInfo(array.keys())).toEqual(expected);
+      expect(typeInfo(array.entries())).toEqual(expected);
+      expect(typeInfo(array[Symbol.iterator]())).toEqual(expected);
+    });
+    if (INT8ARRAY_EXISTS) {
+      test('TypedArrayIterator', () => {
+        const expected = {
+          type: 'object',
+          subtype: 'ArrayIterator',
+          isPrimitive: false,
+          isBuiltIn: true,
+          constructor: [].values().constructor,
+        };
+        const int8array = new Int8Array(2);
+        expect(typeInfo(int8array.values())).toEqual(expected);
+        expect(typeInfo(int8array.keys())).toEqual(expected);
+        expect(typeInfo(int8array.entries())).toEqual(expected);
+        expect(typeInfo(int8array[Symbol.iterator]())).toEqual(expected);
+      });
+    }
+  }
+  if (STRING_ITERATOR_EXISTS) {
+    test('StringIterator', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'StringIterator',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: ''[Symbol.iterator]().constructor,
+      };
+      const str = 'hello world';
+      expect(typeInfo(str[Symbol.iterator]())).toEqual(expected);
+    });
+  }
+  if (REGEXP_ITERATOR_EXISTS) {
+    test('RegExpStringIterator', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'RegExpStringIterator',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: /^[a-z]+/[Symbol.matchAll]().constructor,
+      };
+      const regexp = /^[a-z]+/;
+      expect(typeInfo(regexp[Symbol.matchAll]())).toEqual(expected);
+    });
+  }
+  if (INTL_SEGMENTER_ITERATOR_EXISTS) {
+    test('SegmenterStringIterator', () => {
+      const string1 = 'Que ma joie demeure';
+      const segmenterFrGrapheme = new Intl.Segmenter('fr', {
+        granularity: 'grapheme',
+      });
+      const graphemeSegments = segmenterFrGrapheme.segment(string1);
+      const expected = {
+        type: 'object',
+        subtype: 'SegmenterStringIterator',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: graphemeSegments[Symbol.iterator]().constructor,
+      };
+      expect(typeInfo(graphemeSegments[Symbol.iterator]())).toEqual(expected);
+    });
+  }
   test('Error', () => {
     const expected = {
       type: 'object',
@@ -657,23 +756,25 @@ describe('Test the `typeInfo()` function', () => {
     };
     expect(typeInfo(x)).toEqual(expected);
   });
-  test('async generator', () => {
-    async function* foo() {
-      yield await Promise.resolve('a');
-      yield await Promise.resolve('b');
-      yield await Promise.resolve('c');
-    }
-    const x = foo();
-    const expected = {
-      type: 'object',
-      subtype: 'AsyncGenerator',
-      isPrimitive: false,
-      isBuiltIn: false,
-      constructor: x.constructor,
-    };
-    const info = typeInfo(x);
-    expect(info).toEqual(expected);
-  });
+  if (ASYNC_FUNCTION_EXISTS) {
+    test('async generator', () => {
+      async function* foo() {
+        yield await Promise.resolve('a');
+        yield await Promise.resolve('b');
+        yield await Promise.resolve('c');
+      }
+      const x = foo();
+      const expected = {
+        type: 'object',
+        subtype: 'AsyncGenerator',
+        isPrimitive: false,
+        isBuiltIn: false,
+        constructor: x.constructor,
+      };
+      const info = typeInfo(x);
+      expect(info).toEqual(expected);
+    });
+  }
   test('global object', () => {
     const expected = {
       type: 'object',
