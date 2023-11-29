@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2014 - 2023.
-//    Jon Schlinkert, Haixing Hu
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //

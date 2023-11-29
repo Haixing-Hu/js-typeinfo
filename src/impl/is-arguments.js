@@ -7,6 +7,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+import {
+  SYMBOL_ITERATOR_EXISTS,
+  SYMBOL_TO_STRING_TAG_EXISTS,
+} from '../feature-detect';
+
 /**
  * Tests whether a value is an arguments object of a function.
  *
@@ -15,14 +20,32 @@
  * @return {boolean}
  *     {@code true} if the value is an arguments object of a function;
  *     {@code false} otherwise.
- * @author Jon Schlinkert
+ * @author Haixing Hu
  * @private
  */
 function isArguments(value) {
   try {
-    if ((typeof value.length === 'number') && typeof (value.callee === 'function')) {
-      return true;
+    if (typeof value.length !== 'number') {
+      return false;
     }
+    for (let i = 0; i < value.length; ++i) {
+      if (!(String(i) in value)) {
+        return false;
+      }
+    }
+    if (SYMBOL_ITERATOR_EXISTS) {
+      if (typeof value[Symbol.iterator] !== 'function') {
+        return false;
+      }
+    }
+    const str = value.toString();
+    if (str !== '[object Arguments]') {
+      return false;
+    }
+    if (typeof value.callee !== 'function') {
+      return false;
+    }
+    return true;
   } catch (err) {
     if (err.message.indexOf('callee') !== -1) {
       return true;
