@@ -6,11 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-import {
-  SYMBOL_ITERATOR_EXISTS,
-  SYMBOL_TO_STRING_TAG_EXISTS,
-} from '../feature-detect';
+import { SYMBOL_ITERATOR_EXISTS } from '../feature-detect';
 
 /**
  * Tests whether a value is an arguments object of a function.

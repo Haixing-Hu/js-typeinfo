@@ -755,8 +755,8 @@ describe('Test the `typeInfo()` function', () => {
     expect(typeInfo(obj1)).toEqual(expected);
     const obj2 = {
       '0': 'x',
-      length: 1,
-      callee: () => {},
+      'length': 1,
+      'callee': () => {},
     };
     expect(typeInfo(obj2)).toEqual(expected);
   });
@@ -770,8 +770,8 @@ describe('Test the `typeInfo()` function', () => {
     };
     const fake = {
       '0': 'x',
-      length: 1,
-      callee: () => {},
+      'length': 1,
+      'callee': () => {},
       [Symbol.toStringTag]: 'Arguments',
       [Symbol.iterator]: () => {},
     };
