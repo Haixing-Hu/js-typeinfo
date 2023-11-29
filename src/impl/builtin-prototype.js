@@ -30,6 +30,7 @@ import {
   INTL_PLURALRULES_EXISTS,
   INTL_RELATIVETIMEFORMAT_EXISTS,
   INTL_SEGMENTER_EXISTS,
+  INTL_SEGMENTER_ITERATOR_EXISTS,
   MAP_ENTRIES_EXISTS,
   MAP_EXISTS,
   PROMISE_EXISTS,
@@ -39,7 +40,6 @@ import {
   SET_EXISTS,
   SHAREDARRAYBUFFER_EXISTS,
   STRING_ITERATOR_EXISTS,
-  SYMBOL_ITERATOR_EXISTS,
   UINT16ARRAY_EXISTS,
   UINT32ARRAY_EXISTS,
   UINT8ARRAY_EXISTS,
@@ -99,6 +99,6 @@ export const IntlNumberFormatPrototype = (INTL_NUMBERFORMAT_EXISTS ? Intl.Number
 export const IntlPluralRulesPrototype = (INTL_PLURALRULES_EXISTS ? Intl.PluralRules.prototype : undefined);
 export const IntlRelativeTimeFormatPrototype = (INTL_RELATIVETIMEFORMAT_EXISTS ? Intl.RelativeTimeFormat.prototype : undefined);
 export const IntlSegmenterPrototype = (INTL_SEGMENTER_EXISTS ? Intl.Segmenter.prototype : undefined);
-export const IntelSegmentIteratorPrototype = (INTL_SEGMENTER_EXISTS && SYMBOL_ITERATOR_EXISTS
+export const IntelSegmentIteratorPrototype = (INTL_SEGMENTER_ITERATOR_EXISTS
   ? Object.getPrototypeOf(new Intl.Segmenter('en', { granularity: 'grapheme' }).segment('')[Symbol.iterator]())
   : undefined);
