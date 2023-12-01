@@ -43,7 +43,10 @@ import {
   Uint8ClampedArrayPrototype,
   WeakMapPrototype,
   WeakRefPrototype,
-  WeakSetPrototype, AggregateErrorPrototype, InternalErrorPrototype,
+  WeakSetPrototype,
+  AggregateErrorPrototype,
+  InternalErrorPrototype,
+  FinalizationRegistryPrototype,
 } from './impl/builtin-prototype';
 import isArguments from './impl/is-arguments';
 import hasToStringTag from './impl/has-to-string-tag';
@@ -129,6 +132,9 @@ function getObjectTypeInfo(value) {
       // removes the spaces in the toStringTag of the object.
       // for example, the '[object Map Iterator]' becomes 'MapIterator'.
       result.subtype = value[Symbol.toStringTag].replace(/\s/g, '');
+      return result;
+    case FinalizationRegistryPrototype:
+      result.subtype = 'FinalizationRegistry';
       return result;
     default:                                 // drop down
       break;

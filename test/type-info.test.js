@@ -50,6 +50,7 @@ import {
   INTL_RELATIVETIMEFORMAT_EXISTS,
   INTL_SEGMENTER_EXISTS,
   INTL_SEGMENTER_ITERATOR_EXISTS,
+  FINALIZATIONREGISTRY_EXISTS,
 } from '../src';
 
 /* eslint-disable no-undef, func-names, no-empty-function, prefer-regex-literals, max-classes-per-file */
@@ -1004,6 +1005,21 @@ describe('Test the `typeInfo()` function', () => {
         constructor: Intl.Segmenter,
       };
       expect(typeInfo(new Intl.Segmenter('zh'))).toEqual(expected);
+    });
+  }
+  if (FINALIZATIONREGISTRY_EXISTS) {
+    test('FinalizationRegistry', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'FinalizationRegistry',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: FinalizationRegistry,
+      };
+      const registry = new FinalizationRegistry((value) => {
+        console.log('An object was finalized. The value is:', value);
+      });
+      expect(typeInfo(registry)).toEqual(expected);
     });
   }
 });

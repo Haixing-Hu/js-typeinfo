@@ -117,6 +117,8 @@ import getObjectTypeInfo from './get-object-type-info';
  *       `Intl.Segmenter.prototype.segment()`.
  * - `'Error'`: if the value is an object of the JavaScript built-in `Error` class,
  *   or an object of a subclass of the `Error` class.
+ * - `FinalizationRegistry`: if the value is an instance of the `FinalizationRegistry`
+ *   class.
  * - `'Arguments`: if the value is the JavaScript built-in `arguments` object,
  *   which is a special array-like object storing the calling arguments of a
  *   function.

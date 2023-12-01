@@ -175,6 +175,8 @@ function typeInfo(value)
   符串迭代器：
     - `Intl.Segmenter.prototype.segment()`返回的Segments对象的`[@@iterator]()`方法。
 - `'Error'`: 如果值为JavaScript内置的`Error`类的对象，或`Error`类的子类的对象。
+- `'FinalizationRegistry'`: 如果值为JavaScript内置的`FinalizationRegistry`类的对象。
+  一个 `FinalizationRegistry` 对象允许您在一个值被垃圾收集时执行一个回调函数。
 - `'Arguments'`: 如果值为JavaScript内置的`arguments`对象；这是一个特殊的类数组对象，存储函数的调用参数。
 - `'Generator'`: 如果值为生成器对象，即同步生成器函数返回的对象。
 - `'AsyncGenerator'`: 如果值为异步生成器对象，即异步生成器函数返回的对象。

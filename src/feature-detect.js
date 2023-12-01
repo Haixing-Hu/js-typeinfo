@@ -66,3 +66,5 @@ export const INTL_PLURALRULES_EXISTS = (INTL_EXISTS && (typeof Intl.PluralRules 
 export const INTL_RELATIVETIMEFORMAT_EXISTS = (INTL_EXISTS && (typeof Intl.RelativeTimeFormat !== 'undefined'));
 export const INTL_SEGMENTER_EXISTS = (INTL_EXISTS && (typeof Intl.Segmenter !== 'undefined'));
 export const INTL_SEGMENTER_ITERATOR_EXISTS = (INTL_SEGMENTER_EXISTS && SYMBOL_ITERATOR_EXISTS);
+
+export const FINALIZATIONREGISTRY_EXISTS = (typeof FinalizationRegistry === 'function');

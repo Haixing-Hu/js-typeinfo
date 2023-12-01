@@ -14,6 +14,7 @@ import {
   BIGINT_EXISTS,
   BIGUINT64ARRAY_EXISTS,
   DATAVIEW_EXISTS,
+  FINALIZATIONREGISTRY_EXISTS,
   FLOAT32ARRAY_EXISTS,
   FLOAT64ARRAY_EXISTS,
   INT16ARRAY_EXISTS,
@@ -102,3 +103,5 @@ export const IntlSegmenterPrototype = (INTL_SEGMENTER_EXISTS ? Intl.Segmenter.pr
 export const IntelSegmentIteratorPrototype = (INTL_SEGMENTER_ITERATOR_EXISTS
   ? Object.getPrototypeOf(new Intl.Segmenter('en', { granularity: 'grapheme' }).segment('')[Symbol.iterator]())
   : undefined);
+
+export const FinalizationRegistryPrototype = (FINALIZATIONREGISTRY_EXISTS ? FinalizationRegistry.prototype : undefined);
