@@ -59,7 +59,6 @@ import {
   FINALIZATIONREGISTRY_EXISTS,
 } from './feature-detect';
 
-export default typeInfo;
 export {
   typeInfo,
   SYMBOL_EXISTS,
@@ -112,3 +111,5 @@ export {
   INTL_SEGMENTER_ITERATOR_EXISTS,
   FINALIZATIONREGISTRY_EXISTS,
 };
+
+export default typeInfo;
