@@ -18,6 +18,9 @@ JavaScript 变量更精确可靠的类型信息。它为最新的 ECMAScript 标
 - [安装](#installation)
 - [例子](#example)
 - [使用](#usage)
+    - [Type](#type)
+    - [Subtype](#subtype)
+    - [Category](#category)
 - [贡献](#contributing)
 - [许可证](#license)
 
@@ -72,6 +75,28 @@ function clone(value) {
   }
 }
 ```
+或者使用 [info.category](#category) 简化代码逻辑：
+```js
+import typeInfo from '@haixing_hu/typeinfo';
+
+function clone(value) {
+  const info = typeInfo(value);
+  switch (info.category) {
+    case 'undefined':       // drop down
+    case 'null':            // drop down
+    case 'primitive':       // drop down
+    case 'function':       
+      return value;         // don't need to clone immutable objects
+    case 'primitive-wrapper':  
+      return value;         // don't need to clone immutable objects
+    case 'date':
+      return new Date(value);
+    case 'regexp':
+      return new RegExp(value);
+    ...
+  }
+}
+```
 
 ## <span id="usage">使用</span>
 
@@ -85,14 +110,18 @@ function typeInfo(value)
     - `object`：关于指定值类型的信息。
 
 这个函数返回关于指定值的精确类型信息。返回的信息是一个具有以下属性的对象：
-- `'type'`: 指定值的类型名称。这与内置的`typeof`操作符返回的值相同，不同的是`null`的类型是
-  `'null'`而不是`'object'`，并且我们增加了`'global'`表示 [global object] 的类型。
-- `'subtype'`: 指定值的子类型名称。此属性仅在指定值的类型为`'object'`或`'function'`时存在。
-- `'isPrimitive'`: 是否为原始值。
-- `'isBuiltIn'`: 是否为JavaScript内置的原始值或内置对象。
-- `'constructor'`: 指定值的构造函数。此属性仅在指定值的类型为`'object'`时存在。
+- `type: string`: 指定值的类型名称。这与内置的`typeof`操作符返回的值相同，不同的是`null`
+  值的类型是`'null'`而不是`'object'`，并且我们增加了`'global'`表示 [global object] 的类型。
+- `subtype: string`: 指定值的子类型名称。此属性仅在指定值的类型为`'object'`或`'function'`时存在。
+- `category: string`：指定值的类别。这个属性适用于所有类型的值。更多详情请见[Category](#category)。
+- `isPrimitive: boolean`: 是否为原始值。
+- `isBuiltIn: boolean`: 是否为JavaScript内置的原始值或内置对象。
+- `constructor: function`: 指定值的构造函数。此属性仅在指定值的类型为`'object'`时存在。
 
-可能的`type`值包括：
+### <span id="type">Type</span>
+
+由 `typeInfo()` 返回的类型信息对象具有一个 `type` 属性，它可能具有以下值：
+
 - `'undefined'`: 如果值为`undefined`。
 - `'null'`: 如果值为`null`。
 - `'boolean'`: 如果值为原始布尔值。
@@ -103,15 +132,26 @@ function typeInfo(value)
 - `'function'`: 如果值为函数。
 - `'object'`: 如果值为普通对象。
 
-如果值的类型为`function`或`object`，返回的类型信息对象将包含`subtype`属性，它是指定值的详细子类型名称。
+`type` 属性的值类似于内置的 `typeof` 操作符返回的值，不同之处在于 `null` 的类型是 `'null'` 
+而不是 `'object'`。
+
+### <span id="subtype">Subtype</span>
+
+如果值的类型为`function`或`object`，`typeInfo()`返回的类型信息对象将包含`subtype`属性，
+它是指定值的详细子类型名称。
 
 `'function'`类型的可能`subtype`名称包括：
+
 - `'Function'`: 如果值为同步函数。
 - `'GeneratorFunction'`: 如果值为同步生成器函数。
 - `'AsyncFunction'`: 如果值为异步函数。
 - `'AsyncGeneratorFunction'`: 如果值为异步生成器函数。
 
+请注意，`'AsyncFunction'`和`'AsyncGeneratorFunction'`子类型只在支持异步函数的
+JavaScript 引擎中可用。
+
 `'object'`类型的可能`subtype`名称包括：
+
 - `'Boolean'`: 如果值为JavaScript内置的`Boolean`对象。
 - `'Number'`: 如果值为JavaScript内置的`Number`对象。
 - `'String'`: 如果值为JavaScript内置的`String`对象。
@@ -138,6 +178,15 @@ function typeInfo(value)
 - `'DataView'`: 如果值为JavaScript内置的`DataView`对象。
 - `'WeakRef'`: 如果值为JavaScript内置的`WeakRef`对象。
 - `'Promise'`: 如果值为JavaScript内置的`Promise`对象。
+- `'Error'`：如果值为JavaScript内置`Error`类的对象。
+- `'EvalError'`：如果值为JavaScript内置`EvalError`类的对象。
+- `'RangeError'`：如果值为JavaScript内置`RangeError`类的对象。
+- `'ReferenceError'`：如果值为JavaScript内置`ReferenceError`类的对象。
+- `'SyntaxError'`：如果值为JavaScript内置`SyntaxError`类的对象。
+- `'TypeError'`：如果值为JavaScript内置`TypeError`类的对象。
+- `'URIError'`：如果值为JavaScript内置`URIError`类的对象。
+- `'AggregateError'`：如果值为JavaScript内置`AggregateError`类的对象。
+- `'InternalError'`：如果值为JavaScript内置`InternalError`类的对象。
 - `'Intl.Collator'`: 如果值为JavaScript内置的`Intl.Collator`对象。
 - `'Intl.DateTimeFormat'`: 如果值为JavaScript内置的`Intl.DateTimeFormat`对象。
 - `'Intl.DisplayNames'`: 如果值为JavaScript内置的`Intl.DisplayNames`对象。
@@ -174,24 +223,65 @@ function typeInfo(value)
 - `'SegmenterStringIterator'`: 如果值为由以下函数返回的分段对象 `Intel.Segmenter` 的字
   符串迭代器：
     - `Intl.Segmenter.prototype.segment()`返回的Segments对象的`[@@iterator]()`方法。
-- `'Error'`: 如果值为JavaScript内置的`Error`类的对象，或`Error`类的子类的对象。
 - `'FinalizationRegistry'`: 如果值为JavaScript内置的`FinalizationRegistry`类的对象。
   一个 `FinalizationRegistry` 对象允许您在一个值被垃圾收集时执行一个回调函数。
 - `'Arguments'`: 如果值为JavaScript内置的`arguments`对象；这是一个特殊的类数组对象，存储函数的调用参数。
 - `'Generator'`: 如果值为生成器对象，即同步生成器函数返回的对象。
 - `'AsyncGenerator'`: 如果值为异步生成器对象，即异步生成器函数返回的对象。
 - `'GlobalObject'`: 如果值为[全局对象]。全局对象是始终存在于全局作用域中的对象。
+- `'Object'`: 如果值为简单的 JavaScript 对象，即通过 `obj = { .. }` 语法定义的对象。
+- `''` (空字符串): 如果值为用户定义的匿名类的实例。
 - `value[Symbol.toStringTag]`: 如果值有自定义的 `Symbol.toStringTag` 属性。
 - `value.constructor.name`: 如果值有具有名称的构造函数，并且名称不是 `'Object'`。
-  也就是说，如果值是用户定义的类的实例，并且该类有名称，则`subtype`为该类的名称。
-- `'Object'`: 如果值是用户定义的匿名类的实例。
+  也就是说，如果值为用户定义的类的实例，并且该类有名称，则`subtype`为该类的名称。
 - 从 `value.toString()` 中提取的名称：如果值与上述任何情况都不匹配，则 `subtype` 是从
   `value.toString()`结果中提取的名称（通常为 `'[object XXX]'` 的形式），
   并删除名称中的任何内部空格。例如，如果 `value.toString()` 结果为 `'[object My Class ]'`，
   则 `subtype` 为 `'MyClass'`。
 
-
 该函数支持的JavaScript内置对象的详细列表可在 [Standard built-in objects] 中找到。
+
+### <span id="category">Category</span>
+
+`typeInfo()` 返回的类型信息对象具有一个 `category` 属性，它是指定值的类别。
+`category`属性的可能值包括：
+
+- `'null'`：如果值为`null`。
+- `'undefined'`：如果值为`undefined`。
+- `'primitive'`：如果值为 JavaScript 内置的 primitive 值，包括`'undefined'`、
+  `'boolean'`、`'number'`、`'string'`、`'symbol'`和`'bigint'`。
+- `'function'`：如果值为函数，包括同步函数、异步函数、同步生成器函数和异步生成器函数。
+- `'primitive-wrapper'`：如果值为 JavaScript 内置的 primitive 值的包装器对象，
+  包括`'Boolean'`、`'Number'`和`'String'`。
+- `'regexp'`：如果值为正则表达式，即JavaScript内置的`RegExp`对象。
+- `'date'`：如果值为JavaScript内置的`Date`对象。
+- `'map'`：如果值为JavaScript内置的`Map`或`WeakMap`对象。
+- `'set'`：如果值为JavaScript内置的`Set`或`WeakSet`对象。
+- `'array'`：如果值为JavaScript内置的`Array`对象。
+- `'typed-array'`：如果值为JavaScript内置的类型化数组对象，包括`'Int8Array'`、
+  `'Uint8Array'`、`'Uint8ClampedArray'`、`'Int16Array'`、`'Uint16Array'`、
+  `'Int32Array'`、`'Uint32Array'`、`'BigInt64Array'`、`'BigUint64Array'`、
+  `'Float32Array'`和`'Float64Array'`。
+- `'buffer'`：如果值为JavaScript内置的缓冲区对象，包括`'ArrayBuffer'`和`'SharedArrayBuffer'`。
+- `'data-view'`：如果值为JavaScript内置的`DataView`对象。
+- `'weak-ref'`：如果值为JavaScript内置的`WeakRef`对象。
+- `'promise'`：如果值为JavaScript内置的`Promise`对象。
+- `'error'`：如果值为JavaScript内置的`Error`类的对象，或`Error`类的子类的对象。
+- `'intl'`：如果值为JavaScript内置的`Intl`命名空间下的对象，包括`'Intl.Collator'`、
+  `'Intl.DateTimeFormat'`、`'Intl.DisplayNames'`、`'Intl.DurationFormat'`、
+  `'Intl.ListFormat'`、`'Intl.Locale'`、`'Intl.NumberFormat'`、
+  `'Intl.PluralRules'`和`'Intl.RelativeTimeFormat'`。
+- `'iterator'`：如果值为迭代器对象，包括`'MapIterator'`、`'SetIterator'`、
+  `'ArrayIterator'`、`'StringIterator'`、`'RegExpStringIterator'`
+  和`'SegmenterStringIterator'`。
+- `'finalization-registry'`：如果值为JavaScript内置的`FinalizationRegistry`
+  类的实例。`FinalizationRegistry`对象允许您在值被垃圾回收时请求回调。
+- `'global'`：如果值为[全局对象]。
+- `'arguments'`：如果值为JavaScript内置的`arguments`对象。
+- `'generator'`：如果值为生成器对象，即由同步生成器函数返回的对象，包括`'Generator'`
+  和`'AsyncGenerator'`。
+- `'object'`：如果值为普通的JavaScript对象。
+- `'class'`：如果值为用户定义类的实例。
 
 ## <span id="contributing">贡献</span>
 
