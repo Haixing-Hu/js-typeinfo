@@ -63,6 +63,8 @@ import fixSubtypeCompatibility from './impl/fix-subtype-compatibility';
 function getObjectTypeInfo(value) {
   const result = {
     type: 'object',
+    subtype: value.constructor?.name,
+    category: '',
     isPrimitive: false,
     isBuiltIn: true,
     constructor: value.constructor,
@@ -74,13 +76,25 @@ function getObjectTypeInfo(value) {
     case Boolean.prototype:                 // drop down
     case Number.prototype:                  // drop down
     case String.prototype:                  // drop down
+      result.category = 'primitive-wrapper';
+      return result;
     case RegExpPrototype:                   // drop down
+      result.category = 'regexp';
+      return result;
     case Date.prototype:                    // drop down
+      result.category = 'date';
+      return result;
     case MapPrototype:                      // drop down
-    case SetPrototype:                      // drop down
     case WeakMapPrototype:                  // drop down
+      result.category = 'map';
+      return result;
+    case SetPrototype:                      // drop down
     case WeakSetPrototype:                  // drop down
+      result.category = 'set';
+      return result;
     case Array.prototype:                   // drop down
+      result.category = 'array';
+      return result;
     case Int8ArrayPrototype:                // drop down
     case Uint8ArrayPrototype:               // drop down
     case Uint8ClampedArrayPrototype:        // drop down
@@ -92,12 +106,20 @@ function getObjectTypeInfo(value) {
     case BigUint64ArrayPrototype:           // drop down
     case Float32ArrayPrototype:             // drop down
     case Float64ArrayPrototype:             // drop down
+      result.category = 'typed-array';
+      return result;
     case ArrayBufferPrototype:              // drop down
     case SharedArrayBufferPrototype:        // drop down
+      result.category = 'buffer';
+      return result;
     case DataViewPrototype:                 // drop down
+      result.category = 'data-view';
+      return result;
     case WeakRefPrototype:                  // drop down
+      result.category = 'weak-ref';
+      return result;
     case PromisePrototype:                  // drop down
-      result.subtype = value.constructor.name;
+      result.category = 'promise';
       return result;
     case Error.prototype:                   // drop down
     case EvalError.prototype:               // drop down
@@ -108,7 +130,7 @@ function getObjectTypeInfo(value) {
     case URIError.prototype:                // drop down
     case AggregateErrorPrototype:           // drop down
     case InternalErrorPrototype:            // drop down
-      result.subtype = 'Error';
+      result.category = 'error';
       return result;
     case IntlCollatorPrototype:             // drop down
     case IntlDateTimeFormatPrototype:       // drop down
@@ -122,6 +144,7 @@ function getObjectTypeInfo(value) {
     case IntlSegmenterPrototype:            // drop down
       // add 'Intl.' prefix to the constructor name of the object
       result.subtype = `Intl.${value.constructor.name}`;
+      result.category = 'intl';
       return result;
     case MapIteratorPrototype:              // drop down
     case SetIteratorPrototype:              // drop down
@@ -132,21 +155,24 @@ function getObjectTypeInfo(value) {
       // removes the spaces in the toStringTag of the object.
       // for example, the '[object Map Iterator]' becomes 'MapIterator'.
       result.subtype = value[Symbol.toStringTag].replace(/\s/g, '');
+      result.category = 'iterator';
       return result;
     case FinalizationRegistryPrototype:
       result.subtype = 'FinalizationRegistry';
+      result.category = 'finalization-registry';
       return result;
     default:                                 // drop down
       break;
   }
   if (isArguments(value)) {                  // arguments
     result.subtype = 'Arguments';
+    result.category = 'arguments';
     return result;
   }
   // other non-built-in objects
   result.isBuiltIn = false;
   if (value instanceof Error) {              // other errors
-    result.subtype = 'Error';
+    result.category = 'error';
     return result;
   }
   let subtype = '';
@@ -155,7 +181,8 @@ function getObjectTypeInfo(value) {
     // Symbol.toStringTag property, so the following code will handle those cases.
     subtype = value[Symbol.toStringTag].replace(/\s/g, '');
   } else if (value.constructor
-     && value.constructor.name
+     && (value.constructor.name !== undefined)
+     && (value.constructor.name !== null)
      && (value.constructor.name !== 'Object')) {
     // user defined class instance
     subtype = value.constructor.name;
@@ -164,6 +191,16 @@ function getObjectTypeInfo(value) {
     subtype = str.slice(8, -1).replace(/\s/g, '');
   }
   result.subtype = fixSubtypeCompatibility(subtype);
+  if (/Generator$/.test(result.subtype)) {
+    result.category = 'generator';
+  } else if (result.subtype === 'Object') {
+    // If the value is a instance of a anonymous class, its constructor name
+    // is "" (empty string), we should use the 'Object' as its subtype and use
+    // "class" as its category
+    result.category = 'object';
+  } else {
+    result.category = 'class';
+  }
   return result;
 }
 

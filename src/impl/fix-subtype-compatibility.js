@@ -16,10 +16,15 @@
  *     the fixed name of the subtype.
  */
 function fixSubtypeCompatibility(subtype) {
+  // in es6 target, babel translate the anonymous class as a function of the
+  // name ''
+  if (subtype === '') {
+    return '';
+  }
   // in es5 target, babel translate the anonymous class as a function of the
   // name '_class'
   if (subtype === '_class') {
-    return 'Object';
+    return '';
   }
   // in es5 and es6 targets, babel translate the async generator object to
   // an object built with a function named '_AsyncGenerator()'
