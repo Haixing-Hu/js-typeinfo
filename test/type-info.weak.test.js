@@ -6,7 +6,12 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { WEAKREF_EXISTS, typeInfo } from '../src';
+import {
+  WEAKREF_EXISTS,
+  WEAKMAP_EXISTS,
+  WEAKSET_EXISTS,
+  typeInfo,
+} from '../src';
 
 /* eslint-disable no-undef */
 
@@ -21,13 +26,39 @@ describe('Test the `typeInfo()` function for WeakRef object', () => {
       const expected = {
         type: 'object',
         subtype: 'WeakRef',
-        category: 'weak-ref',
+        category: 'weak',
         isPrimitive: false,
         isBuiltIn: true,
         constructor: WeakRef,
       };
       const obj = {};
       expect(typeInfo(new WeakRef(obj))).toEqual(expected);
+    });
+  }
+  if (WEAKMAP_EXISTS) {
+    test('WeakMap', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'WeakMap',
+        category: 'weak',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: WeakMap,
+      };
+      expect(typeInfo(new WeakMap())).toEqual(expected);
+    });
+  }
+  if (WEAKSET_EXISTS) {
+    test('WeakSet', () => {
+      const expected = {
+        type: 'object',
+        subtype: 'WeakSet',
+        category: 'weak',
+        isPrimitive: false,
+        isBuiltIn: true,
+        constructor: WeakSet,
+      };
+      expect(typeInfo(new WeakSet())).toEqual(expected);
     });
   }
 });

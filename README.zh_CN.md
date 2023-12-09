@@ -255,8 +255,8 @@ JavaScript 引擎中可用。
   包括`'Boolean'`、`'Number'`和`'String'`。
 - `'regexp'`：如果值为正则表达式，即JavaScript内置的`RegExp`对象。
 - `'date'`：如果值为JavaScript内置的`Date`对象。
-- `'map'`：如果值为JavaScript内置的`Map`或`WeakMap`对象。
-- `'set'`：如果值为JavaScript内置的`Set`或`WeakSet`对象。
+- `'map'`：如果值为JavaScript内置的`Map`对象。
+- `'set'`：如果值为JavaScript内置的`Set`对象。
 - `'array'`：如果值为JavaScript内置的`Array`对象。
 - `'typed-array'`：如果值为JavaScript内置的类型化数组对象，包括`'Int8Array'`、
   `'Uint8Array'`、`'Uint8ClampedArray'`、`'Int16Array'`、`'Uint16Array'`、
@@ -264,7 +264,8 @@ JavaScript 引擎中可用。
   `'Float32Array'`和`'Float64Array'`。
 - `'buffer'`：如果值为JavaScript内置的缓冲区对象，包括`'ArrayBuffer'`和`'SharedArrayBuffer'`。
 - `'data-view'`：如果值为JavaScript内置的`DataView`对象。
-- `'weak-ref'`：如果值为JavaScript内置的`WeakRef`对象。
+- `'weak'`：如果值为JavaScript内置的`WeakMap`, `WeakSet` or `WeakRef`对象。注意，
+  弱引用对象不可被克隆。
 - `'promise'`：如果值为JavaScript内置的`Promise`对象。
 - `'error'`：如果值为JavaScript内置的`Error`类的对象，或`Error`类的子类的对象。
 - `'intl'`：如果值为JavaScript内置的`Intl`命名空间下的对象，包括`'Intl.Collator'`、

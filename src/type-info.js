@@ -191,8 +191,8 @@ import getObjectTypeInfo from './get-object-type-info';
  * - `'regexp'`: if the value is a regular expression, i.e., the JavaScript
  *   built-in `RegExp` object.
  * - `'date'`: if the value is a JavaScript built-in `Date` object.
- * - `'map'`: if the value is a JavaScript built-in `Map` or `WeakMap` object.
- * - `'set'`: if the value is a JavaScript built-in `Set` or `WeakSet` object.
+ * - `'map'`: if the value is a JavaScript built-in `Map` object.
+ * - `'set'`: if the value is a JavaScript built-in `Set` object.
  * - `'array'`: if the value is a JavaScript built-in `Array` object.
  * - `'typed-array'`: if the value is a JavaScript built-in typed array object,
  *   including `'Int8Array'`, `'Uint8Array'`, `'Uint8ClampedArray'`,
@@ -201,7 +201,8 @@ import getObjectTypeInfo from './get-object-type-info';
  * - `'buffer'`: if the value is a JavaScript built-in buffer object, including
  *     `'ArrayBuffer'` and `'SharedArrayBuffer'`.
  * - `'data-view'`: if the value is a JavaScript built-in `DataView` object.
- * - `'weak-ref'`: if the value is a JavaScript built-in `WeakRef` object.
+ * - `'weak'`: if the value is a JavaScript built-in `WeakMap`, `WeakSet`, or
+ *   `WeakRef` object. Note that weak referenced objects cannot be cloned.
  * - `'promise'`: if the value is a JavaScript built-in `Promise` object.
  * - `'error'`: if the value is an object of the JavaScript built-in `Error` class,
  *   or an object of a subclass of the `Error` class.

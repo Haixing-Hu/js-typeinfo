@@ -8,7 +8,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 import {
   MAP_EXISTS,
-  WEAKMAP_EXISTS,
   typeInfo,
 } from '../src';
 
@@ -29,19 +28,6 @@ describe('Test the `typeInfo()` function for map objects', () => {
         constructor: Map,
       };
       expect(typeInfo(new Map())).toEqual(expected);
-    });
-  }
-  if (WEAKMAP_EXISTS) {
-    test('WeakMap', () => {
-      const expected = {
-        type: 'object',
-        subtype: 'WeakMap',
-        category: 'map',
-        isPrimitive: false,
-        isBuiltIn: true,
-        constructor: WeakMap,
-      };
-      expect(typeInfo(new WeakMap())).toEqual(expected);
     });
   }
 });

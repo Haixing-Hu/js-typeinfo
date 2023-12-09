@@ -8,7 +8,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 import {
   SET_EXISTS,
-  WEAKSET_EXISTS,
   typeInfo,
 } from '../src';
 
@@ -29,19 +28,6 @@ describe('Test the `typeInfo()` function for set objects', () => {
         constructor: Set,
       };
       expect(typeInfo(new Set())).toEqual(expected);
-    });
-  }
-  if (WEAKSET_EXISTS) {
-    test('WeakSet', () => {
-      const expected = {
-        type: 'object',
-        subtype: 'WeakSet',
-        category: 'set',
-        isPrimitive: false,
-        isBuiltIn: true,
-        constructor: WeakSet,
-      };
-      expect(typeInfo(new WeakSet())).toEqual(expected);
     });
   }
 });

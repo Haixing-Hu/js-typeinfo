@@ -85,11 +85,9 @@ function getObjectTypeInfo(value) {
       result.category = 'date';
       return result;
     case MapPrototype:                      // drop down
-    case WeakMapPrototype:                  // drop down
       result.category = 'map';
       return result;
     case SetPrototype:                      // drop down
-    case WeakSetPrototype:                  // drop down
       result.category = 'set';
       return result;
     case Array.prototype:                   // drop down
@@ -115,8 +113,10 @@ function getObjectTypeInfo(value) {
     case DataViewPrototype:                 // drop down
       result.category = 'data-view';
       return result;
-    case WeakRefPrototype:                  // drop down
-      result.category = 'weak-ref';
+    case WeakMapPrototype:                  // drop down
+    case WeakSetPrototype:                  // drop down
+    case WeakRefPrototype:
+      result.category = 'weak';
       return result;
     case PromisePrototype:                  // drop down
       result.category = 'promise';
