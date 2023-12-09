@@ -63,7 +63,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         constructor: Intl.DisplayNames,
       };
       expect(typeInfo(new Intl.DisplayNames('zh', { type: 'region' })))
-      .toEqual(expected);
+        .toEqual(expected);
     });
   }
   if (INTL_DURATIONFORMAT_EXISTS) {
@@ -77,7 +77,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         constructor: Intl.DurationFormat,
       };
       expect(typeInfo(new Intl.DurationFormat('zh', { style: 'long' })))
-      .toEqual(expected);
+        .toEqual(expected);
     });
   }
   if (INTL_LISTFORMAT_EXISTS) {

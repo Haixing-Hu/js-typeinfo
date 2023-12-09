@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 import typeInfo from '../src';
 
+/* eslint-disable no-undef */
+
 const globalObject = globalThis;
 
 /**

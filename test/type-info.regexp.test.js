@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 import { REGEXP_EXISTS, typeInfo } from '../src';
 
+/* eslint-disable prefer-regex-literals */
+
 /**
  * Unit test of the `typeInfo()` function.
  *

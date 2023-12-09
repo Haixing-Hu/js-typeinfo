@@ -12,6 +12,8 @@ import {
   typeInfo,
 } from '../src';
 
+/* eslint-disable no-undef */
+
 /**
  * Unit test of the `typeInfo()` function.
  *
@@ -106,7 +108,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
         constructor: AggregateError,
       };
       expect(typeInfo(new AggregateError([new Error('some error')], 'Hello')))
-      .toEqual(expected);
+        .toEqual(expected);
     });
   }
   if (INTERNALERROR_EXIST) {
