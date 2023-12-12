@@ -6,7 +6,6 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { SYMBOL_ITERATOR_EXISTS } from './feature-detect';
 
 /**
  * Tests whether a value is an arguments object of a function.

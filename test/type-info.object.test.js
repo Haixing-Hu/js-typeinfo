@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 import typeInfo from '../src';
 
+/* eslint-disable no-new-object */
+
 /**
  * Unit test of the `typeInfo()` function.
  *
@@ -34,7 +36,7 @@ describe('Test the `typeInfo()` function for plain object', () => {
       isBuiltIn: false,
       constructor: Object,
     };
-    const obj = new Object({x : 1});
+    const obj = new Object({ x: 1 });
     expect(typeInfo(obj)).toEqual(expected);
   });
   test('normal object with customized toStringTag', () => {
@@ -46,7 +48,7 @@ describe('Test the `typeInfo()` function for plain object', () => {
       isBuiltIn: false,
       constructor: Object,
     };
-    const obj = new Object({x : 1});
+    const obj = new Object({ x: 1 });
     obj[Symbol.toStringTag] = 'MyObject';
     expect(typeInfo(obj)).toEqual(expected);
   });

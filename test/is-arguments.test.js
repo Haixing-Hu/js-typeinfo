@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { isArguments, isError } from '../src';
+import { isArguments } from '../src';
 
 /* eslint-disable no-undef */
 

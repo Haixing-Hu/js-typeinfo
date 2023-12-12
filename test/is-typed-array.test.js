@@ -86,7 +86,7 @@ describe('Test the `isTypedArray()` function', () => {
   test('non-TypedArray object', () => {
     expect(isTypedArray({ abc: 123 })).toBe(false);
     expect(isTypedArray(new Boolean(true))).toBe(false);
-    expect(isTypedArray([1, 2,3 ])).toBe(false);
+    expect(isTypedArray([1, 2, 3])).toBe(false);
   });
   test('primitive values', () => {
     expect(isTypedArray(0)).toBe(false);

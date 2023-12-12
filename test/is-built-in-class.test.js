@@ -355,7 +355,7 @@ describe('Test the `isBuiltInClass()` function', () => {
   test('anonymous class', () => {
     const Foo = class {
       value = 0;
-    }
+    };
     expect(isBuiltInClass(Foo)).toBe(false);
   });
   test('undefined', () => {
