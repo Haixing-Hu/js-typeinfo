@@ -48,7 +48,7 @@ import {
   InternalErrorPrototype,
   FinalizationRegistryPrototype,
 } from './impl/builtin-prototype';
-import isArguments from './impl/is-arguments';
+import isArguments from './is-arguments';
 import hasToStringTag from './impl/has-to-string-tag';
 import fixSubtypeCompatibility from './impl/fix-subtype-compatibility';
 
@@ -193,12 +193,14 @@ function getObjectTypeInfo(value) {
   result.subtype = fixSubtypeCompatibility(subtype);
   if (/Generator$/.test(result.subtype)) {
     result.category = 'generator';
-  } else if (result.subtype === 'Object') {
-    // If the value is a instance of a anonymous class, its constructor name
-    // is "" (empty string), we should use the 'Object' as its subtype and use
-    // "class" as its category
+  } else if ((result.subtype === 'Object') || (result.constructor === Object)) {
+    // If the value is a instance of Object and has a customized toStringTag
+    // its subtype is not `'Object'` but its constructor is `Object`
     result.category = 'object';
   } else {
+    // If the value is a instance of a anonymous class, its constructor name
+    // is "" (empty string), we should use the '' as its subtype and use
+    // "class" as its category
     result.category = 'class';
   }
   return result;

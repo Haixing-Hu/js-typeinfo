@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import typeInfo from '../src';
+import typeInfo, { isArguments } from '../src';
 
 /* eslint-disable no-undef */
 
@@ -47,6 +47,28 @@ describe('Test the `typeInfo()` function for arguments object', () => {
       'callee': () => {},
     };
     expect(typeInfo(obj2)).toEqual(expected);
+    const obj3 = {
+      '0': 'x',
+      'length': 1,
+      'callee': () => {},
+      [Symbol.iterator]: () => {},
+    };
+    expect(typeInfo(obj3)).toEqual(expected);
+    const expected4 = {
+      type: 'object',
+      subtype: 'Arguments',
+      category: 'object',
+      isPrimitive: false,
+      isBuiltIn: false,
+      constructor: arguments.constructor,
+    };
+    const obj4 = {
+      '0': 'x',
+      'length': 1,
+      [Symbol.toStringTag]: 'Arguments',
+      [Symbol.iterator]: () => {},
+    };
+    expect(typeInfo(obj4)).toEqual(expected4);
   });
   test('fake arguments', () => {
     const expected = {

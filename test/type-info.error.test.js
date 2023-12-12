@@ -7,8 +7,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 import {
-  AGGREGATEERROR_EXIST,
-  INTERNALERROR_EXIST,
+  AGGREGATEERROR_EXISTS,
+  INTERNALERROR_EXISTS,
   typeInfo,
 } from '../src';
 
@@ -97,7 +97,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
     };
     expect(typeInfo(new URIError('Hello'))).toEqual(expected);
   });
-  if (AGGREGATEERROR_EXIST) {
+  if (AGGREGATEERROR_EXISTS) {
     test('AggregateError', () => {
       const expected = {
         type: 'object',
@@ -111,7 +111,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
         .toEqual(expected);
     });
   }
-  if (INTERNALERROR_EXIST) {
+  if (INTERNALERROR_EXISTS) {
     test('InternalError', () => {
       const expected = {
         type: 'object',

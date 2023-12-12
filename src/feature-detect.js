@@ -18,8 +18,8 @@ export const BIGINT_EXISTS = (typeof BigInt !== 'undefined');
 export const REGEXP_EXISTS = (typeof RegExp !== 'undefined');
 export const ARRAY_ISARRAY_EXISTS = (typeof Array.isArray === 'function');
 
-export const AGGREGATEERROR_EXIST = (typeof AggregateError !== 'undefined');
-export const INTERNALERROR_EXIST = (typeof InternalError !== 'undefined');
+export const AGGREGATEERROR_EXISTS = (typeof AggregateError !== 'undefined');
+export const INTERNALERROR_EXISTS = (typeof InternalError !== 'undefined');
 
 export const MAP_EXISTS = (typeof Map !== 'undefined');
 export const SET_EXISTS = (typeof Set !== 'undefined');
@@ -68,3 +68,7 @@ export const INTL_SEGMENTER_EXISTS = (INTL_EXISTS && (typeof Intl.Segmenter !== 
 export const INTL_SEGMENTER_ITERATOR_EXISTS = (INTL_SEGMENTER_EXISTS && SYMBOL_ITERATOR_EXISTS);
 
 export const FINALIZATIONREGISTRY_EXISTS = (typeof FinalizationRegistry === 'function');
+
+export const ATOMICS_EXISTS = (typeof Atomics === 'object');
+export const REFLECT_EXISTS = (typeof Reflect === 'object');
+export const PROXY_EXISTS = (typeof Proxy === 'function');

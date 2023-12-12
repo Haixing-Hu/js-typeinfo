@@ -7,7 +7,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 import {
-  AGGREGATEERROR_EXIST,
+  AGGREGATEERROR_EXISTS,
   ARRAYBUFFER_EXISTS,
   ARRAY_ITERATOR_EXISTS,
   BIGINT64ARRAY_EXISTS,
@@ -20,7 +20,7 @@ import {
   INT16ARRAY_EXISTS,
   INT32ARRAY_EXISTS,
   INT8ARRAY_EXISTS,
-  INTERNALERROR_EXIST,
+  INTERNALERROR_EXISTS,
   INTL_COLLATOR_EXISTS,
   INTL_DATETIMEFORMAT_EXISTS,
   INTL_DISPLAYNAMES_EXISTS,
@@ -48,17 +48,19 @@ import {
   WEAKMAP_EXISTS,
   WEAKREF_EXISTS,
   WEAKSET_EXISTS,
+  SYMBOL_EXISTS,
 } from '../feature-detect';
 
 // Define prototypes for various ES5+ built-in objects
 
 /* eslint-disable no-undef */
 
+export const SymbolPrototype = (SYMBOL_EXISTS ? Symbol.prototype : undefined);
 export const BigIntPrototype = (BIGINT_EXISTS ? BigInt.prototype : undefined);
 export const RegExpPrototype = (REGEXP_EXISTS ? RegExp.prototype : undefined);
 
-export const AggregateErrorPrototype = (AGGREGATEERROR_EXIST ? AggregateError.prototype : undefined);
-export const InternalErrorPrototype = (INTERNALERROR_EXIST ? InternalError.prototype : undefined);
+export const AggregateErrorPrototype = (AGGREGATEERROR_EXISTS ? AggregateError.prototype : undefined);
+export const InternalErrorPrototype = (INTERNALERROR_EXISTS ? InternalError.prototype : undefined);
 
 export const MapPrototype = (MAP_EXISTS ? Map.prototype : undefined);
 export const SetPrototype = (SET_EXISTS ? Set.prototype : undefined);

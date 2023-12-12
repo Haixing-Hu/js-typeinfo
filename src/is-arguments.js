@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { SYMBOL_ITERATOR_EXISTS } from '../feature-detect';
+import { SYMBOL_ITERATOR_EXISTS } from './feature-detect';
 
 /**
  * Tests whether a value is an arguments object of a function.
@@ -17,7 +17,6 @@ import { SYMBOL_ITERATOR_EXISTS } from '../feature-detect';
  *     {@code true} if the value is an arguments object of a function;
  *     {@code false} otherwise.
  * @author Haixing Hu
- * @private
  */
 function isArguments(value) {
   try {
@@ -29,10 +28,8 @@ function isArguments(value) {
         return false;
       }
     }
-    if (SYMBOL_ITERATOR_EXISTS) {
-      if (typeof value[Symbol.iterator] !== 'function') {
-        return false;
-      }
+    if (typeof value[Symbol.iterator] !== 'function') {
+      return false;
     }
     const str = value.toString();
     if (str !== '[object Arguments]') {
