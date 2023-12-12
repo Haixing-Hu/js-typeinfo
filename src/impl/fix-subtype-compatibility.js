@@ -14,6 +14,8 @@
  *     the name of a subtype to be fixed.
  * @return {string}
  *     the fixed name of the subtype.
+ * @author Haixing Hu
+ * @private
  */
 function fixSubtypeCompatibility(subtype) {
   // in es6 target, babel translate the anonymous class as a function of the

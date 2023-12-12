@@ -17,6 +17,7 @@ import { SYMBOL_TO_STRING_TAG_EXISTS } from '../feature-detect';
  *     `true` if the specified object has the `Symbol.toStringTag` property;
  *     `false` otherwise.
  * @author Haixing Hu
+ * @private
  */
 function hasToStringTag(obj) {
   return (SYMBOL_TO_STRING_TAG_EXISTS) && (Symbol.toStringTag in obj);
