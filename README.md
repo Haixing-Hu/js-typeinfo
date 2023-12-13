@@ -287,13 +287,15 @@ of the `category` property are:
 
 - `'null'`: if the value is `null`.
 - `'undefined'`: if the value is `undefined`.
-- `'primitive'`: if the value is a primitive value, including `'undefined'`,
-   `'boolean'`, `'number'`, `'string'`, `'symbol'`, and `'bigint'`.
+- `'boolean'`: if the value is a primitive `boolean` value or a built-in
+  `Boolean` object.
+- `'numeric'`: if the value is a primitive `number` value, or a primitive
+  `bigint` value, or a built-in `Number` object.
+- `'string'`: if the value is a primitive `string` value, or a built-in
+  `String` object.
+- `'symbol'`: if the value is a primitive `symbol` value.
 - `'function'`: if the value is a function, including sync functions, async
   functions, sync generator functions, and async generator functions.
-- `'primitive-wrapper'`: if the value is a JavaScript built-in primitive wrapper
-  object, i.e., an object that wraps a primitive value, including `'Boolean'`,
-  `'Number'`, and `'String'`.
 - `'regexp'`: if the value is a regular expression, i.e., the JavaScript
   built-in `RegExp` object.
 - `'date'`: if the value is a JavaScript built-in `Date` object.

@@ -24,7 +24,7 @@ describe('Test the `typeInfo()` function for primitive values', () => {
   test('primitive boolean', () => {
     const expected = {
       type: 'boolean',
-      category: 'primitive',
+      category: 'boolean',
       isPrimitive: true,
       isBuiltIn: true,
     };
@@ -34,7 +34,7 @@ describe('Test the `typeInfo()` function for primitive values', () => {
   test('primitive number', () => {
     const expected = {
       type: 'number',
-      category: 'primitive',
+      category: 'numeric',
       isPrimitive: true,
       isBuiltIn: true,
     };
@@ -52,7 +52,7 @@ describe('Test the `typeInfo()` function for primitive values', () => {
   test('primitive string', () => {
     const expected = {
       type: 'string',
-      category: 'primitive',
+      category: 'string',
       isPrimitive: true,
       isBuiltIn: true,
     };
@@ -63,7 +63,7 @@ describe('Test the `typeInfo()` function for primitive values', () => {
     test('primitive symbol', () => {
       const expected = {
         type: 'symbol',
-        category: 'primitive',
+        category: 'symbol',
         isPrimitive: true,
         isBuiltIn: true,
       };
@@ -78,7 +78,7 @@ describe('Test the `typeInfo()` function for primitive values', () => {
     test('primitive bigint', () => {
       const expected = {
         type: 'bigint',
-        category: 'primitive',
+        category: 'numeric',
         isPrimitive: true,
         isBuiltIn: true,
       };

@@ -74,9 +74,13 @@ function getObjectTypeInfo(value) {
     // NOTE that BigInt.prototype is not a primitive wrapper, instead, BigInt is
     // a built-in primitive type.
     case Boolean.prototype:                 // drop down
+      result.category = 'boolean';
+      return result;
     case Number.prototype:                  // drop down
+      result.category = 'numeric';
+      return result;
     case String.prototype:                  // drop down
-      result.category = 'primitive-wrapper';
+      result.category = 'string';
       return result;
     case RegExpPrototype:                   // drop down
       result.category = 'regexp';

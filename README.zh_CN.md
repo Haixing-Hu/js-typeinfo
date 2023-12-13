@@ -249,11 +249,11 @@ JavaScript 引擎中可用。
 
 - `'null'`：如果值为`null`。
 - `'undefined'`：如果值为`undefined`。
-- `'primitive'`：如果值为 JavaScript 内置的 primitive 值，包括`'undefined'`、
-  `'boolean'`、`'number'`、`'string'`、`'symbol'`和`'bigint'`。
+- `'boolean'`: 若指定的值为 primitive `boolean` 值，或内置的 `Boolean` 对象。
+- `'numeric'`: 若指定的值为 primitive `number` 值，或 primitive `bigint` 值，或内置的 `Number` 对象。
+- `'string'`: 若指定的值为 primitive `string` 值，或内置的 `String` 对象。
+- `'symbol'`: 若指定的值为 primitive `Symbol` 值，或内置的 `Boolean` 对象。
 - `'function'`：如果值为函数，包括同步函数、异步函数、同步生成器函数和异步生成器函数。
-- `'primitive-wrapper'`：如果值为 JavaScript 内置的 primitive 值的包装器对象，
-  包括`'Boolean'`、`'Number'`和`'String'`。
 - `'regexp'`：如果值为正则表达式，即JavaScript内置的`RegExp`对象。
 - `'date'`：如果值为JavaScript内置的`Date`对象。
 - `'map'`：如果值为JavaScript内置的`Map`对象。

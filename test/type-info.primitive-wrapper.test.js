@@ -18,7 +18,7 @@ describe('Test the `typeInfo()` function for primitive wrapper objects', () => {
     const expected = {
       type: 'object',
       subtype: 'Boolean',
-      category: 'primitive-wrapper',
+      category: 'boolean',
       isPrimitive: false,
       isBuiltIn: true,
       constructor: Boolean,
@@ -32,7 +32,7 @@ describe('Test the `typeInfo()` function for primitive wrapper objects', () => {
     const expected = {
       type: 'object',
       subtype: 'Number',
-      category: 'primitive-wrapper',
+      category: 'numeric',
       isPrimitive: false,
       isBuiltIn: true,
       constructor: Number,
@@ -52,7 +52,7 @@ describe('Test the `typeInfo()` function for primitive wrapper objects', () => {
     const expected = {
       type: 'object',
       subtype: 'String',
-      category: 'primitive-wrapper',
+      category: 'string',
       isPrimitive: false,
       isBuiltIn: true,
       constructor: String,
