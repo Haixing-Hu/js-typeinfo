@@ -7,11 +7,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 import {
-  BLOB_EXIST,
-  FILE_EXIST,
-  FILE_LIST_EXIST,
-  FILE_READER_EXIST,
-  FILE_READER_SYNC_EXIST,
+  BLOB_EXISTS,
+  FILE_EXISTS,
+  FILE_LIST_EXISTS,
+  FILE_READER_EXISTS,
+  FILE_READER_SYNC_EXISTS,
   typeInfo,
 } from '../src';
 
@@ -23,7 +23,7 @@ import {
  * @author Haixing Hu
  */
 describe('Test the `typeInfo()` function for the File API object', () => {
-  if (FILE_EXIST) {
+  if (FILE_EXISTS) {
     it('File', () => {
       const expected = {
         type: 'object',
@@ -38,7 +38,7 @@ describe('Test the `typeInfo()` function for the File API object', () => {
       expect(typeInfo(file)).toEqual(expected);
     });
   }
-  if (BLOB_EXIST) {
+  if (BLOB_EXISTS) {
     it('Blob', () => {
       const expected = {
         type: 'object',
@@ -53,7 +53,7 @@ describe('Test the `typeInfo()` function for the File API object', () => {
       expect(typeInfo(blob)).toEqual(expected);
     });
   }
-  if (FILE_LIST_EXIST) {
+  if (FILE_LIST_EXISTS) {
     it('FileList', () => {
       const expected = {
         type: 'object',
@@ -71,7 +71,7 @@ describe('Test the `typeInfo()` function for the File API object', () => {
       expect(typeInfo(list)).toEqual(expected);
     });
   }
-  if (FILE_READER_EXIST) {
+  if (FILE_READER_EXISTS) {
     it('FileReader', () => {
       const expected = {
         type: 'object',
@@ -86,7 +86,7 @@ describe('Test the `typeInfo()` function for the File API object', () => {
       expect(typeInfo(reader)).toEqual(expected);
     });
   }
-  if (FILE_READER_SYNC_EXIST) {
+  if (FILE_READER_SYNC_EXISTS) {
     // FileReaderSync 只在Web Workers中可用，我们这里跳过它的测试
     // 但是，如果你需要包括它，可以在Web Worker环境中编写类似的测试代码
     it('FileReaderSync', () => {

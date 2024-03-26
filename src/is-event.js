@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { EVENT_EXIST } from './feature-detect';
+import { EVENT_EXISTS } from './feature-detect';
 
 /**
  * Determines whether the specified object is an event object.
@@ -17,7 +17,7 @@ import { EVENT_EXIST } from './feature-detect';
  *     `true` if the specified object is an event object; `false` otherwise.
  */
 function isEvent(obj) {
-  return EVENT_EXIST && (obj instanceof Event);
+  return EVENT_EXISTS && (obj instanceof Event);
 }
 
 export default isEvent;

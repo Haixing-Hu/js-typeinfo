@@ -581,39 +581,39 @@ export const ABORT_CONTROLLER_EXISTS = (typeof AbortController === 'function');
  *
  * @type {boolean}
  */
-export const EVENT_EXIST = (typeof Event === 'function');
+export const EVENT_EXISTS = (typeof Event === 'function');
 
 /**
  * Whether the `File` class in the Web API exists.
  *
  * @type {boolean}
  */
-export const FILE_EXIST = (typeof File === 'function');
+export const FILE_EXISTS = (typeof File === 'function');
 
 /**
  * Whether the `Blob` class in the Web API exists.
  *
  * @type {boolean}
  */
-export const BLOB_EXIST = (typeof Blob === 'function');
+export const BLOB_EXISTS = (typeof Blob === 'function');
 
 /**
  * Whether the `FileList` class in the Web API exists.
  *
  * @type {boolean}
  */
-export const FILE_LIST_EXIST = (typeof FileList === 'function');
+export const FILE_LIST_EXISTS = (typeof FileList === 'function');
 
 /**
  * Whether the `FileReader` class in the Web API exists.
  *
  * @type {boolean}
  */
-export const FILE_READER_EXIST = (typeof FileReader === 'function');
+export const FILE_READER_EXISTS = (typeof FileReader === 'function');
 
 /**
  * Whether the `FileReaderSync` class in the Web API exists.
  *
  * @type {boolean}
  */
-export const FILE_READER_SYNC_EXIST = (typeof FileReaderSync === 'function');
+export const FILE_READER_SYNC_EXISTS = (typeof FileReaderSync === 'function');

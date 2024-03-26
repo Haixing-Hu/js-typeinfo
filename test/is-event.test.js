@@ -7,7 +7,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 import {
-  EVENT_EXIST,
+  EVENT_EXISTS,
   isEvent,
 } from '../src';
 
@@ -19,7 +19,7 @@ import {
  * @author Haixing Hu
  */
 describe('Test the `isEvent()` function', () => {
-  if (EVENT_EXIST) {
+  if (EVENT_EXISTS) {
     test('should return true for Event object', () => {
       // 创建一个事件对象
       const event = new Event('click');

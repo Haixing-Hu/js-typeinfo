@@ -7,11 +7,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 import {
-  BLOB_EXIST,
-  FILE_EXIST,
-  FILE_LIST_EXIST,
-  FILE_READER_EXIST,
-  FILE_READER_SYNC_EXIST,
+  BLOB_EXISTS,
+  FILE_EXISTS,
+  FILE_LIST_EXISTS,
+  FILE_READER_EXISTS,
+  FILE_READER_SYNC_EXISTS,
   isFile,
 } from '../src';
 
@@ -23,19 +23,19 @@ import {
  * @author Haixing Hu
  */
 describe('Test the `isFile()` function', () => {
-  if (FILE_EXIST) {
+  if (FILE_EXISTS) {
     it('File', () => {
       const file = new File([''], 'filename');
       expect(isFile(file)).toBe(true);
     });
   }
-  if (BLOB_EXIST) {
+  if (BLOB_EXISTS) {
     it('Blob', () => {
       const blob = new Blob([''], { type: 'text/plain' });
       expect(isFile(blob)).toBe(true);
     });
   }
-  if (FILE_LIST_EXIST) {
+  if (FILE_LIST_EXISTS) {
     it('FileList', () => {
       const fileInput = document.createElement('input');
       fileInput.type = 'file';
@@ -44,13 +44,13 @@ describe('Test the `isFile()` function', () => {
       expect(isFile(list)).toBe(true);
     });
   }
-  if (FILE_READER_EXIST) {
+  if (FILE_READER_EXISTS) {
     it('FileReader', () => {
       const reader = new FileReader();
       expect(isFile(reader)).toBe(true);
     });
   }
-  if (FILE_READER_SYNC_EXIST) {
+  if (FILE_READER_SYNC_EXISTS) {
     // FileReaderSync 只在Web Workers中可用，我们这里跳过它的测试
     // 但是，如果你需要包括它，可以在Web Worker环境中编写类似的测试代码
     it('FileReaderSync', () => {

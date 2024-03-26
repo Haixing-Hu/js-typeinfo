@@ -7,19 +7,19 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 import {
-  BLOB_EXIST,
-  FILE_EXIST,
-  FILE_LIST_EXIST,
-  FILE_READER_EXIST,
-  FILE_READER_SYNC_EXIST,
+  BLOB_EXISTS,
+  FILE_EXISTS,
+  FILE_LIST_EXISTS,
+  FILE_READER_EXISTS,
+  FILE_READER_SYNC_EXISTS,
 } from './feature-detect';
 
 function isFile(obj) {
-  return (FILE_EXIST && (obj instanceof File))
-    || (BLOB_EXIST && (obj instanceof Blob))
-    || (FILE_LIST_EXIST && (obj instanceof FileList))
-    || (FILE_READER_EXIST && (obj instanceof FileReader))
-    || (FILE_READER_SYNC_EXIST && (obj instanceof FileReaderSync));   // eslint-disable-line no-undef
+  return (FILE_EXISTS && (obj instanceof File))
+    || (BLOB_EXISTS && (obj instanceof Blob))
+    || (FILE_LIST_EXISTS && (obj instanceof FileList))
+    || (FILE_READER_EXISTS && (obj instanceof FileReader))
+    || (FILE_READER_SYNC_EXISTS && (obj instanceof FileReaderSync));   // eslint-disable-line no-undef
 }
 
 export default isFile;
