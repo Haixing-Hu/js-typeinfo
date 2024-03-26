@@ -7,7 +7,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 import {
-  DOM_NODE_EXIST,
+  DOM_NODE_EXISTS,
   DOM_PARSER_EXISTS,
   DOM_POINT_READONLY_EXISTS,
   DOM_RECT_EXISTS,
@@ -22,7 +22,7 @@ import {
  * @author Haixing Hu
  */
 describe('Test the `isDom()` function', () => {
-  if (DOM_NODE_EXIST) {
+  if (DOM_NODE_EXISTS) {
     test('window.document', () => {
       expect(isDom(window.document)).toBe(true);
     });

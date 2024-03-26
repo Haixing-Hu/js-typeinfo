@@ -10,7 +10,7 @@ import {
   ABSTRACT_RANGE_EXISTS,
   DOM_EXCEPTION_EXISTS,
   DOM_IMPLEMENTATION_EXISTS,
-  DOM_NODE_EXIST,
+  DOM_NODE_EXISTS,
   DOM_PARSER_EXISTS,
   DOM_POINT_READONLY_EXISTS,
   DOM_RECT_EXISTS,
@@ -34,7 +34,7 @@ import {
  *     `true` if the specified object is a DOM object; `false` otherwise.
  */
 function isDom(obj) {
-  return (DOM_NODE_EXIST && (obj instanceof Node))
+  return (DOM_NODE_EXISTS && (obj instanceof Node))
     || (HTML_COLLECTION_EXISTS && (obj instanceof HTMLCollection))
     || (NODE_LIST_EXISTS && (obj instanceof NodeList))
     || (NAMED_NODE_MAP_EXISTS && (obj instanceof NamedNodeMap))

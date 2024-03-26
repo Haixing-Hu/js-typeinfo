@@ -1,6 +1,6 @@
 {
   "name": "@haixing_hu/typeinfo",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "A JavaScript library provides a type information detection function",
   "author": "Haixing Hu",
   "license": "Apache-2.0",

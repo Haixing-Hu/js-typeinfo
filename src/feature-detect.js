@@ -378,7 +378,7 @@ export const PROXY_EXISTS = (typeof Proxy === 'function');
  *
  * @type {boolean}
  */
-export const DOM_NODE_EXIST = (typeof Node === 'function');
+export const DOM_NODE_EXISTS = (typeof Node === 'function');
 
 /**
  * Whether the `HTMLCollection` class in the DOM API exists.
