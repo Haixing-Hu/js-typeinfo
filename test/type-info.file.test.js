@@ -12,7 +12,6 @@ import {
   FILE_LIST_EXIST,
   FILE_READER_EXIST,
   FILE_READER_SYNC_EXIST,
-  isFile,
   typeInfo,
 } from '../src';
 
