@@ -25,6 +25,7 @@ in your projects.
     - [Feature Detection Constants](#feature-detection)
     - [Type Prototype Constants](#type-prototype)
     - [Type Detection Functions](#type-detection)
+- [Why `Proxy` Type Information is Unavailable](#why-no-proxy)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -602,6 +603,31 @@ function foo(value) {
   }
 }
 ```
+
+## <span id="no-proxy">Why `Proxy` Type Information is Unavailable</span>
+
+One of the primary purposes of `Proxy` objects in JavaScript is to allow developers 
+to customize the behavior of object operations, acting as a delegate for another 
+object (referred to as the target object). One of the key features of `Proxy` is 
+its transparency—externally, unless the proxy object is intentionally designed 
+to reveal itself, it is challenging to distinguish a `Proxy` object from the 
+target object it represents. This is largely because `Proxy` can intercept and
+redefine almost all fundamental operations of an object, including but not 
+limited to property access, assignment, and enumeration.
+
+Therefore, when libraries like [typeinfo] attempt to retrieve type information 
+of an object, the inherent transparency of `Proxy` means these libraries can 
+only process and "see" the final outcomes of operations, without direct means
+to identify whether these operations were intercepted by a `Proxy`. If a 
+`Proxy` flawlessly mimics the behavior of its target object, there exists no 
+reliable method to determine from the operation outcomes whether an object is 
+a `Proxy`. In essence, the design philosophy of `Proxy` aims to make it nearly
+invisible to external observation, making it impossible for even libraries 
+specialized in fetching type information to definitively ascertain if an object 
+is a `Proxy`, unless the proxy object deliberately exposes its identity through 
+certain intercepting behaviors. This design significantly enhances the power
+and flexibility of `Proxy`, but it also means that directly detecting `Proxy`
+objects through external observation presents a challenge.
 
 ## <span id="contributing">Contributing</span>
 
