@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 import {
   BLOB_EXIST,
-  File_EXIST,
+  FILE_EXIST,
   FILE_LIST_EXIST,
   FILE_READER_EXIST,
   FILE_READER_SYNC_EXIST,
@@ -23,7 +23,7 @@ import {
  * @author Haixing Hu
  */
 describe('Test the `isFile()` function', () => {
-  if (File_EXIST) {
+  if (FILE_EXIST) {
     it('File', () => {
       const file = new File([''], 'filename');
       expect(isFile(file)).toBe(true);

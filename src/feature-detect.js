@@ -588,7 +588,7 @@ export const EVENT_EXIST = (typeof Event === 'function');
  *
  * @type {boolean}
  */
-export const File_EXIST = (typeof File === 'function');
+export const FILE_EXIST = (typeof File === 'function');
 
 /**
  * Whether the `Blob` class in the Web API exists.
