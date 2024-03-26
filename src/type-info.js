@@ -25,6 +25,7 @@ import getObjectTypeInfo from './get-object-type-info';
  * - `isPrimitive: boolean`: whether the specified value is a primitive value.
  * - `isBuiltIn: boolean`: whether the specified value is a JavaScript built-in
  *    primitive or built-in object.
+ * - `isWebApi: boolean`: whether the specified value is a Web API built-in object.
  * - `constructor: function`: the constructor function of the specified value.
  *   This property is only present when the type of the specified value is
  *   `'object'`.
@@ -223,6 +224,8 @@ import getObjectTypeInfo from './get-object-type-info';
  * - `'arguments'`: if the value is the JavaScript built-in `arguments` object.
  * - `'generator'`: if the value is a generator object, i.e., the object returned
  *   by a sync generator function, including `'Generator'` and `'AsyncGenerator'`.
+ * - `'DOM'`: if the value is a DOM object, e.g., the `document`, `window`, `Element`, etc.
+ * - `'event'`: if the value is a event object, i.e., the `Event` and all its subclasses.
  * - `'object'`: if the value is a plain JavaScript object.
  * - `'class'`: if the value is an instance of a user defined class.
  *
@@ -241,6 +244,7 @@ function typeInfo(value) {
       category: 'null',
       isPrimitive: true,
       isBuiltIn: true,
+      isWebApi: false,
     };
   }
   if (value === GLOBAL_OBJECT) {
@@ -250,6 +254,7 @@ function typeInfo(value) {
       category: 'global',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: value.constructor,
     };
   }
@@ -268,6 +273,7 @@ function typeInfo(value) {
         category: 'function',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
       };
     case 'number':
     case 'bigint':
@@ -276,6 +282,7 @@ function typeInfo(value) {
         category: 'numeric',
         isPrimitive: true,
         isBuiltIn: true,
+        isWebApi: false,
       };
     case 'undefined':
     case 'boolean':
@@ -287,6 +294,7 @@ function typeInfo(value) {
         category: type,
         isPrimitive: true,
         isBuiltIn: true,
+        isWebApi: false,
       };
   }
 }

@@ -26,6 +26,7 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
         category: 'iterator',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: new Map().entries().constructor,
       };
       const map = new Map();
@@ -43,6 +44,7 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
         category: 'iterator',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: new Set().entries().constructor,
       };
       const set = new Set();
@@ -60,6 +62,7 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
         category: 'iterator',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: [].values().constructor,
       };
       const array = [1, 2, 3];
@@ -76,6 +79,7 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
           category: 'iterator',
           isPrimitive: false,
           isBuiltIn: true,
+          isWebApi: false,
           constructor: [].values().constructor,
         };
         const int8array = new Int8Array(2);
@@ -94,6 +98,7 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
         category: 'iterator',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: ''[Symbol.iterator]().constructor,
       };
       const str = 'hello world';
@@ -108,6 +113,7 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
         category: 'iterator',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: /^[a-z]+/[Symbol.matchAll]().constructor,
       };
       const regexp = /^[a-z]+/;
@@ -127,6 +133,7 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
         category: 'iterator',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: graphemeSegments[Symbol.iterator]().constructor,
       };
       expect(typeInfo(graphemeSegments[Symbol.iterator]())).toEqual(expected);

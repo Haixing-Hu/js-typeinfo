@@ -27,6 +27,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
       category: 'error',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: Error,
     };
     expect(typeInfo(new Error())).toEqual(expected);
@@ -38,6 +39,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
       category: 'error',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: EvalError,
     };
     expect(typeInfo(new EvalError('Hello'))).toEqual(expected);
@@ -49,6 +51,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
       category: 'error',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: RangeError,
     };
     expect(typeInfo(new RangeError('Hello'))).toEqual(expected);
@@ -60,6 +63,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
       category: 'error',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: ReferenceError,
     };
     expect(typeInfo(new ReferenceError('Hello'))).toEqual(expected);
@@ -71,6 +75,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
       category: 'error',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: SyntaxError,
     };
     expect(typeInfo(new SyntaxError('Hello'))).toEqual(expected);
@@ -82,6 +87,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
       category: 'error',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: TypeError,
     };
     expect(typeInfo(new TypeError('Hello'))).toEqual(expected);
@@ -93,6 +99,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
       category: 'error',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: URIError,
     };
     expect(typeInfo(new URIError('Hello'))).toEqual(expected);
@@ -105,6 +112,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
         category: 'error',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: AggregateError,
       };
       expect(typeInfo(new AggregateError([new Error('some error')], 'Hello')))
@@ -119,6 +127,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
         category: 'error',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: InternalError,
       };
       expect(typeInfo(new InternalError('Hello'))).toEqual(expected);
@@ -132,6 +141,7 @@ describe('Test the `typeInfo()` function for error objects', () => {
       category: 'error',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: MyError,
     };
     expect(typeInfo(new MyError())).toEqual(expected);

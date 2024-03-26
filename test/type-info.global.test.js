@@ -26,6 +26,7 @@ describe('Test the `typeInfo()` function for global object', () => {
       constructor: Window,
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
     };
     expect(typeInfo(globalObject)).toEqual(expected);
   });

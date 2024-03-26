@@ -24,6 +24,7 @@ describe('Test the `typeInfo()` function for regular expression object', () => {
         category: 'regexp',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: RegExp,
       };
       expect(typeInfo(/^[0-9]+[a-z]+$/)).toEqual(expected);

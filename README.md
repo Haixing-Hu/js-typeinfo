@@ -126,6 +126,7 @@ value. The returned information is an object with the following properties:
 - `isPrimitive: boolean`: whether the specified value is a primitive value.
 - `isBuiltIn: boolean`: whether the specified value is a JavaScript built-in
   primitive or built-in object.
+- `isWebApi: boolean`: whether the specified value is a Web API built-in object.
 - `constructor: function`: the constructor function of the specified value. This
   property is only present when the type of the specified value is `'object'`.
 
@@ -327,6 +328,8 @@ of the `category` property are:
   a callback when a value is garbage-collected.
 - `'global'`: if the value is the [global object].
 - `'arguments'`: if the value is the JavaScript built-in `arguments` object.
+- `'DOM'`: if the value is a DOM object, e.g., the `document`, `window`, `Element`, etc.
+- `'event'`: if the value is a event object, i.e., the `Event` and all its subclasses.
 - `'generator'`: if the value is a generator object, i.e., the object returned
   by a sync generator function, including `'Generator'` and `'AsyncGenerator'`.
 - `'object'`: if the value is a plain JavaScript object.

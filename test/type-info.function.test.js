@@ -24,6 +24,7 @@ describe('Test the `typeInfo()` function for function values', () => {
       category: 'function',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
     };
     expect(typeInfo(() => {})).toEqual(expected);
   });
@@ -34,6 +35,7 @@ describe('Test the `typeInfo()` function for function values', () => {
       category: 'function',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
     };
     function* foo() {
       yield 'a';
@@ -50,6 +52,7 @@ describe('Test the `typeInfo()` function for function values', () => {
         category: 'function',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
       };
       async function myFunc() {
         new Promise((resolve) => {
@@ -67,6 +70,7 @@ describe('Test the `typeInfo()` function for function values', () => {
         category: 'function',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
       };
       async function* foo() {
         yield await Promise.resolve('a');

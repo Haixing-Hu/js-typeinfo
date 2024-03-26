@@ -28,6 +28,7 @@ describe('Test the `typeInfo()` function for buffer objects', () => {
         category: 'buffer',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: ArrayBuffer,
       };
       expect(typeInfo(new ArrayBuffer(2))).toEqual(expected);
@@ -41,6 +42,7 @@ describe('Test the `typeInfo()` function for buffer objects', () => {
         category: 'buffer',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: SharedArrayBuffer,
       };
       expect(typeInfo(new SharedArrayBuffer(2))).toEqual(expected);

@@ -22,6 +22,7 @@ describe('Test the `typeInfo()` function for promise object', () => {
         category: 'promise',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Promise,
       };
       const myPromise = new Promise((resolve) => {

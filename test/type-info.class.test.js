@@ -22,6 +22,7 @@ describe('Test the `typeInfo()` function for instances of user defined classes',
       category: 'class',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: Foo,
     };
     expect(typeInfo(new Foo())).toEqual(expected);
@@ -34,6 +35,7 @@ describe('Test the `typeInfo()` function for instances of user defined classes',
       category: 'class',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: obj.constructor,
     };
     expect(typeInfo(obj)).toEqual(expected);
@@ -50,6 +52,7 @@ describe('Test the `typeInfo()` function for instances of user defined classes',
       category: 'class',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: Foo,
     };
     const obj = new Foo();
@@ -67,6 +70,7 @@ describe('Test the `typeInfo()` function for instances of user defined classes',
       category: 'class',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: Foo,
     };
     expect(typeInfo(new Foo())).toEqual(expected);

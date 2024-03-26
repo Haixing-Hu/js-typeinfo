@@ -372,3 +372,129 @@ export const REFLECT_EXISTS = (typeof Reflect === 'object');
  * @type {boolean}
  */
 export const PROXY_EXISTS = (typeof Proxy === 'function');
+
+/**
+ * Whether the `Node` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const DOM_NODE_EXIST = (typeof Node === 'function');
+
+/**
+ * Whether the `HTMLCollection` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const HTML_COLLECTION_EXISTS = (typeof HTMLCollection === 'function');
+
+/**
+ * Whether the `NodeList` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const NODE_LIST_EXISTS = (typeof NodeList === 'function');
+
+/**
+ * Whether the `NamedNodeMap` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const NAMED_NODE_MAP_EXISTS = (typeof NamedNodeMap === 'function');
+
+/**
+ * Whether the `NodeIterator` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const NODE_ITERATOR_EXISTS = (typeof NodeIterator === 'function');
+
+/**
+ * Whether the `TreeWalker` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const TREE_WALKER_EXISTS = (typeof TreeWalker === 'function');
+
+/**
+ * Whether the `AbstractRange` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const ABSTRACT_RANGE_EXISTS = (typeof AbstractRange === 'function');
+
+/**
+ * Whether the `MutationRecord` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const MUTATION_RECORD_EXISTS = (typeof MutationRecord === 'function');
+
+/**
+ * Whether the `MutationObserver` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const MUTATION_OBSERVER_EXISTS = (typeof MutationObserver === 'function');
+
+/**
+ * Whether the `DOMTokenList` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const DOM_TOKEN_LIST_EXISTS = (typeof DOMTokenList === 'function');
+
+/**
+ * Whether the `DOMRect` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const DOM_RECT_EXISTS = (typeof DOMRect === 'function');
+
+/**
+ * Whether the `DOMPointReadOnly` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const DOM_POINT_READONLY_EXISTS = (typeof DOMPointReadOnly === 'function');
+
+/**
+ * Whether the `DOMParser` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const DOM_PARSER_EXISTS = (typeof DOMParser === 'function');
+
+/**
+ * Whether the `DOMImplementation` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const DOM_IMPLEMENTATION_EXISTS = (typeof DOMImplementation === 'function');
+
+/**
+ * Whether the `DOMException` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const DOM_EXCEPTION_EXISTS = (typeof DOMException === 'function');
+
+/**
+ * Whether the `AbortSignal` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const ABORT_SIGNAL_EXISTS = (typeof AbortSignal === 'function');
+
+/**
+ * Whether the `AbortController` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const ABORT_CONTROLLER_EXISTS = (typeof AbortController === 'function');
+
+/**
+ * Whether the `Event` class in the Web API exists.
+ *
+ * @type {boolean}
+ */
+export const EVENT_EXIST = (typeof Event === 'function');

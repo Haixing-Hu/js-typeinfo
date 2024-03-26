@@ -25,6 +25,7 @@ describe('Test the `typeInfo()` function for map objects', () => {
         category: 'map',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Map,
       };
       expect(typeInfo(new Map())).toEqual(expected);

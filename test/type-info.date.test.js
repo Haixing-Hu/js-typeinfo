@@ -21,6 +21,7 @@ describe('Test the `typeInfo()` function for `Date` object', () => {
       category: 'date',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: Date,
     };
     expect(typeInfo(new Date())).toEqual(expected);

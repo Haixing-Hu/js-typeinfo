@@ -27,6 +27,7 @@ describe('Test the `typeInfo()` function for primitive values', () => {
       category: 'boolean',
       isPrimitive: true,
       isBuiltIn: true,
+      isWebApi: false,
     };
     expect(typeInfo(true)).toEqual(expected);
     expect(typeInfo(false)).toEqual(expected);
@@ -37,6 +38,7 @@ describe('Test the `typeInfo()` function for primitive values', () => {
       category: 'numeric',
       isPrimitive: true,
       isBuiltIn: true,
+      isWebApi: false,
     };
     expect(typeInfo(0)).toEqual(expected);
     expect(typeInfo(+0)).toEqual(expected);
@@ -55,6 +57,7 @@ describe('Test the `typeInfo()` function for primitive values', () => {
       category: 'string',
       isPrimitive: true,
       isBuiltIn: true,
+      isWebApi: false,
     };
     expect(typeInfo('')).toEqual(expected);
     expect(typeInfo('abc')).toEqual(expected);
@@ -66,6 +69,7 @@ describe('Test the `typeInfo()` function for primitive values', () => {
         category: 'symbol',
         isPrimitive: true,
         isBuiltIn: true,
+        isWebApi: false,
       };
       expect(typeInfo(Symbol(''))).toEqual(expected);
       expect(typeInfo(Symbol('xyz'))).toEqual(expected);
@@ -81,6 +85,7 @@ describe('Test the `typeInfo()` function for primitive values', () => {
         category: 'numeric',
         isPrimitive: true,
         isBuiltIn: true,
+        isWebApi: false,
       };
       expect(typeInfo(1n)).toEqual(expected);
       expect(typeInfo(BigInt(1))).toEqual(expected);

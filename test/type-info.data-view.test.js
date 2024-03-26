@@ -22,6 +22,7 @@ describe('Test the `typeInfo()` function for DataView object', () => {
         category: 'data-view',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: DataView,
       };
       expect(typeInfo(new DataView(new ArrayBuffer(2)))).toEqual(expected);

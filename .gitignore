@@ -133,3 +133,6 @@ dist
 
 # API doc
 doc
+
+# IDEA configuration
+.idea

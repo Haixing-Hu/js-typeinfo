@@ -23,6 +23,7 @@ describe('Test the `typeInfo()` function for arguments object', () => {
       category: 'arguments',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: arguments.constructor,
     };
     expect(typeInfo(arguments)).toEqual(expected);
@@ -34,6 +35,7 @@ describe('Test the `typeInfo()` function for arguments object', () => {
       category: 'object',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: arguments.constructor,
     };
     const obj1 = {
@@ -60,6 +62,7 @@ describe('Test the `typeInfo()` function for arguments object', () => {
       category: 'object',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: arguments.constructor,
     };
     const obj4 = {
@@ -77,6 +80,7 @@ describe('Test the `typeInfo()` function for arguments object', () => {
       category: 'arguments',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: arguments.constructor,
     };
     const fake = {

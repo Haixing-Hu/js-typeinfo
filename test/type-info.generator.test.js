@@ -30,6 +30,7 @@ describe('Test the `typeInfo()` function for generator objects', () => {
       category: 'generator',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: x.constructor,
     };
     expect(typeInfo(x)).toEqual(expected);
@@ -48,6 +49,7 @@ describe('Test the `typeInfo()` function for generator objects', () => {
         category: 'generator',
         isPrimitive: false,
         isBuiltIn: false,
+        isWebApi: false,
         constructor: x.constructor,
       };
       const info = typeInfo(x);

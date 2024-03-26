@@ -21,6 +21,7 @@ describe('Test the `typeInfo()` function for array object', () => {
       category: 'array',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: Array,
     };
     expect(typeInfo([])).toEqual(expected);

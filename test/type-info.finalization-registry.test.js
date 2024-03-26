@@ -27,6 +27,7 @@ describe('Test the `typeInfo()` function for the FinalizationRegistry object', (
         category: 'finalization-registry',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: FinalizationRegistry,
       };
       const registry = new FinalizationRegistry((value) => {

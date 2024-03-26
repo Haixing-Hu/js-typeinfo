@@ -20,6 +20,7 @@ describe('Test the `typeInfo()` function for `undefined` value', () => {
       category: 'undefined',
       isPrimitive: true,
       isBuiltIn: true,
+      isWebApi: false,
     });
   });
 });

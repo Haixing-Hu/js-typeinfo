@@ -21,6 +21,7 @@ describe('Test the `typeInfo()` function for primitive wrapper objects', () => {
       category: 'boolean',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: Boolean,
     };
     expect(typeInfo(new Boolean(true))).toEqual(expected);
@@ -35,6 +36,7 @@ describe('Test the `typeInfo()` function for primitive wrapper objects', () => {
       category: 'numeric',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: Number,
     };
     expect(typeInfo(new Number(0))).toEqual(expected);
@@ -55,6 +57,7 @@ describe('Test the `typeInfo()` function for primitive wrapper objects', () => {
       category: 'string',
       isPrimitive: false,
       isBuiltIn: true,
+      isWebApi: false,
       constructor: String,
     };
     expect(typeInfo(new String(''))).toEqual(expected);

@@ -29,6 +29,7 @@ describe('Test the `typeInfo()` function for WeakRef object', () => {
         category: 'weak',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: WeakRef,
       };
       const obj = {};
@@ -43,6 +44,7 @@ describe('Test the `typeInfo()` function for WeakRef object', () => {
         category: 'weak',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: WeakMap,
       };
       expect(typeInfo(new WeakMap())).toEqual(expected);
@@ -56,6 +58,7 @@ describe('Test the `typeInfo()` function for WeakRef object', () => {
         category: 'weak',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: WeakSet,
       };
       expect(typeInfo(new WeakSet())).toEqual(expected);

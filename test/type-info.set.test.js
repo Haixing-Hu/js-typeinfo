@@ -25,6 +25,7 @@ describe('Test the `typeInfo()` function for set objects', () => {
         category: 'set',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Set,
       };
       expect(typeInfo(new Set())).toEqual(expected);

@@ -20,6 +20,7 @@ describe('Test the `typeInfo()` function for `null` value', () => {
       category: 'null',
       isPrimitive: true,
       isBuiltIn: true,
+      isWebApi: false,
     });
   });
 });

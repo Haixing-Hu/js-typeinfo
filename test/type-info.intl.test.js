@@ -34,6 +34,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         category: 'intl',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Intl.Collator,
       };
       expect(typeInfo(new Intl.Collator('zh'))).toEqual(expected);
@@ -47,6 +48,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         category: 'intl',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Intl.DateTimeFormat,
       };
       expect(typeInfo(new Intl.DateTimeFormat('zh'))).toEqual(expected);
@@ -60,6 +62,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         category: 'intl',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Intl.DisplayNames,
       };
       expect(typeInfo(new Intl.DisplayNames('zh', { type: 'region' })))
@@ -74,6 +77,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         category: 'intl',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Intl.DurationFormat,
       };
       expect(typeInfo(new Intl.DurationFormat('zh', { style: 'long' })))
@@ -88,6 +92,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         category: 'intl',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Intl.ListFormat,
       };
       expect(typeInfo(new Intl.ListFormat('zh'))).toEqual(expected);
@@ -101,6 +106,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         category: 'intl',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Intl.Locale,
       };
       expect(typeInfo(new Intl.Locale('zh'))).toEqual(expected);
@@ -114,6 +120,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         category: 'intl',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Intl.NumberFormat,
       };
       expect(typeInfo(new Intl.NumberFormat('zh'))).toEqual(expected);
@@ -127,6 +134,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         category: 'intl',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Intl.PluralRules,
       };
       expect(typeInfo(new Intl.PluralRules('zh'))).toEqual(expected);
@@ -140,6 +148,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         category: 'intl',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Intl.RelativeTimeFormat,
       };
       expect(typeInfo(new Intl.RelativeTimeFormat('zh'))).toEqual(expected);
@@ -153,6 +162,7 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         category: 'intl',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Intl.Segmenter,
       };
       expect(typeInfo(new Intl.Segmenter('zh'))).toEqual(expected);

@@ -23,6 +23,7 @@ describe('Test the `typeInfo()` function for plain object', () => {
       category: 'object',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: Object,
     };
     expect(typeInfo({ x: 1 })).toEqual(expected);
@@ -34,6 +35,7 @@ describe('Test the `typeInfo()` function for plain object', () => {
       category: 'object',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: Object,
     };
     const obj = new Object({ x: 1 });
@@ -46,6 +48,7 @@ describe('Test the `typeInfo()` function for plain object', () => {
       category: 'object',
       isPrimitive: false,
       isBuiltIn: false,
+      isWebApi: false,
       constructor: Object,
     };
     const obj = new Object({ x: 1 });

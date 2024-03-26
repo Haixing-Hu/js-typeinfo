@@ -37,6 +37,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Int8Array,
       };
       expect(typeInfo(new Int8Array(2))).toEqual(expected);
@@ -50,6 +51,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Uint8Array,
       };
       expect(typeInfo(new Uint8Array(2))).toEqual(expected);
@@ -63,6 +65,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Uint8ClampedArray,
       };
       expect(typeInfo(new Uint8ClampedArray(2))).toEqual(expected);
@@ -76,6 +79,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Int16Array,
       };
       expect(typeInfo(new Int16Array(2))).toEqual(expected);
@@ -89,6 +93,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Uint16Array,
       };
       expect(typeInfo(new Uint16Array(2))).toEqual(expected);
@@ -102,6 +107,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Int32Array,
       };
       expect(typeInfo(new Int32Array(2))).toEqual(expected);
@@ -115,6 +121,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Uint32Array,
       };
       expect(typeInfo(new Uint32Array(2))).toEqual(expected);
@@ -128,6 +135,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: BigInt64Array,
       };
       expect(typeInfo(new BigInt64Array(2))).toEqual(expected);
@@ -141,6 +149,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: BigUint64Array,
       };
       expect(typeInfo(new BigUint64Array(2))).toEqual(expected);
@@ -154,6 +163,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Float32Array,
       };
       expect(typeInfo(new Float32Array(2))).toEqual(expected);
@@ -167,6 +177,7 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         category: 'typed-array',
         isPrimitive: false,
         isBuiltIn: true,
+        isWebApi: false,
         constructor: Float64Array,
       };
       expect(typeInfo(new Float64Array(2))).toEqual(expected);

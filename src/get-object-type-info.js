@@ -51,6 +51,8 @@ import {
 import isArguments from './is-arguments';
 import hasToStringTag from './impl/has-to-string-tag';
 import fixSubtypeCompatibility from './impl/fix-subtype-compatibility';
+import isDomObject from './is-dom-object';
+import isEvent from './is-event';
 
 /**
  * Gets the detail types of a non-null object.
@@ -67,6 +69,7 @@ function getObjectTypeInfo(value) {
     category: '',
     isPrimitive: false,
     isBuiltIn: true,
+    isWebApi: false,
     constructor: value.constructor,
   };
   const proto = Object.getPrototypeOf(value);
@@ -195,7 +198,13 @@ function getObjectTypeInfo(value) {
     subtype = str.slice(8, -1).replace(/\s/g, '');
   }
   result.subtype = fixSubtypeCompatibility(subtype);
-  if (/Generator$/.test(result.subtype)) {
+  if (isEvent(value)) {
+    result.category = 'event';
+    result.isWebApi = true;
+  } else if (isDomObject(value)) {
+    result.category = 'DOM';
+    result.isWebApi = true;
+  } else if (/Generator$/.test(result.subtype)) {
     result.category = 'generator';
   } else if ((result.subtype === 'Object') || (result.constructor === Object)) {
     // If the value is a instance of Object and has a customized toStringTag
