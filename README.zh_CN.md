@@ -280,6 +280,11 @@ JavaScript 引擎中可用。
   类的实例。`FinalizationRegistry`对象允许您在值被垃圾回收时请求回调。
 - `'global'`：如果值为[全局对象]。
 - `'arguments'`：如果值为JavaScript内置的`arguments`对象。
+- `'DOM'`: 如果值为DOM对象，包括`'Node'`、`'Element'`、`'Document'`、`'Window'`等。
+- `'CSSOM'`: 如果值为CSSOM对象，包括`'CSSStyleDeclaration'`、`'CSSRule'`、`'CSSStyleSheet'`等。
+- `'event'`: 如果值为事件对象，包括`'Event'`、`'MouseEvent'`、`'KeyboardEvent'`等。
+- `'console'`: 如果值为控制台对象，即`'window.console'`。
+- `'file'`: 如果值为文件对象，包括`'File'`、`'FileList'`、`'FileReader'`等。
 - `'generator'`：如果值为生成器对象，即由同步生成器函数返回的对象，包括`'Generator'`
   和`'AsyncGenerator'`。
 - `'object'`：如果值为普通的JavaScript对象。

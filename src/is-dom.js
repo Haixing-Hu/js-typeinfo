@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -21,6 +21,7 @@ import {
   NAMED_NODE_MAP_EXISTS,
   NODE_ITERATOR_EXISTS,
   NODE_LIST_EXISTS,
+  TIME_RANGES_EXISTS,
   TREE_WALKER_EXISTS,
 } from './feature-detect';
 
@@ -32,7 +33,7 @@ import {
  * @returns {boolean}
  *     `true` if the specified object is a DOM object; `false` otherwise.
  */
-function isDomObject(obj) {
+function isDom(obj) {
   return (DOM_NODE_EXIST && (obj instanceof Node))
     || (HTML_COLLECTION_EXISTS && (obj instanceof HTMLCollection))
     || (NODE_LIST_EXISTS && (obj instanceof NodeList))
@@ -47,7 +48,8 @@ function isDomObject(obj) {
     || (DOM_POINT_READONLY_EXISTS && (obj instanceof DOMPointReadOnly))
     || (DOM_PARSER_EXISTS && (obj instanceof DOMParser))
     || (DOM_IMPLEMENTATION_EXISTS && (obj instanceof DOMImplementation))
-    || (DOM_EXCEPTION_EXISTS && (obj instanceof DOMException));
+    || (DOM_EXCEPTION_EXISTS && (obj instanceof DOMException))
+    || (TIME_RANGES_EXISTS && (obj instanceof TimeRanges));
 }
 
-export default isDomObject;
+export default isDom;

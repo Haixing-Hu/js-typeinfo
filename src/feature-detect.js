@@ -479,6 +479,90 @@ export const DOM_IMPLEMENTATION_EXISTS = (typeof DOMImplementation === 'function
 export const DOM_EXCEPTION_EXISTS = (typeof DOMException === 'function');
 
 /**
+ * Whether the `TimeRanges` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const TIME_RANGES_EXISTS = (typeof TimeRanges === 'function');
+
+/**
+ * Whether the `CSS` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const CSS_EXISTS = (typeof CSS === 'function');
+
+/**
+ * Whether the `CSSRule` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const CSS_RULE_EXISTS = (typeof CSSRule === 'function');
+
+/**
+ * Whether the `CSSRuleList` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const CSS_RULE_LIST_EXISTS = (typeof CSSRuleList === 'function');
+
+/**
+ * Whether the `CSSStyleDeclaration` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const CSS_STYLE_DECLARATION_EXISTS = (typeof CSSStyleDeclaration === 'function');
+
+/**
+ * Whether the `StyleSheet` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const STYLE_SHEET_EXISTS = (typeof StyleSheet === 'function');
+
+/**
+ * Whether the `StyleSheetList` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const STYLE_SHEET_LIST_EXISTS = (typeof StyleSheetList === 'function');
+
+/**
+ * Whether the `FontFace` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const FONT_FACE_EXISTS = (typeof FontFace === 'function');
+
+/**
+ * Whether the `FontFaceSet` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const FONT_FACE_SET_EXISTS = (typeof FontFaceSet === 'function');
+
+/**
+ * Whether the `MediaList` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const MEDIA_LIST_EXISTS = (typeof MediaList === 'function');
+
+/**
+ * Whether the `MediaQueryList` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const MEDIA_QUERY_LIST_EXISTS = (typeof MediaQueryList === 'function');
+
+/**
+ * Whether the `Screen` class in the DOM API exists.
+ *
+ * @type {boolean}
+ */
+export const SCREEN_EXISTS = (typeof Screen === 'function');
+
+/**
  * Whether the `AbortSignal` class in the DOM API exists.
  *
  * @type {boolean}
@@ -498,3 +582,38 @@ export const ABORT_CONTROLLER_EXISTS = (typeof AbortController === 'function');
  * @type {boolean}
  */
 export const EVENT_EXIST = (typeof Event === 'function');
+
+/**
+ * Whether the `File` class in the Web API exists.
+ *
+ * @type {boolean}
+ */
+export const File_EXIST = (typeof File === 'function');
+
+/**
+ * Whether the `Blob` class in the Web API exists.
+ *
+ * @type {boolean}
+ */
+export const BLOB_EXIST = (typeof Blob === 'function');
+
+/**
+ * Whether the `FileList` class in the Web API exists.
+ *
+ * @type {boolean}
+ */
+export const FILE_LIST_EXIST = (typeof FileList === 'function');
+
+/**
+ * Whether the `FileReader` class in the Web API exists.
+ *
+ * @type {boolean}
+ */
+export const FILE_READER_EXIST = (typeof FileReader === 'function');
+
+/**
+ * Whether the `FileReaderSync` class in the Web API exists.
+ *
+ * @type {boolean}
+ */
+export const FILE_READER_SYNC_EXIST = (typeof FileReaderSync === 'function');

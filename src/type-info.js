@@ -225,7 +225,10 @@ import getObjectTypeInfo from './get-object-type-info';
  * - `'generator'`: if the value is a generator object, i.e., the object returned
  *   by a sync generator function, including `'Generator'` and `'AsyncGenerator'`.
  * - `'DOM'`: if the value is a DOM object, e.g., the `document`, `window`, `Element`, etc.
+ * - `'CSSOM'`: if the value is a CSSOM object, e.g., the `document.styleSheets`, etc.
  * - `'event'`: if the value is a event object, i.e., the `Event` and all its subclasses.
+ * - `'file'`: if the value is a File API object, i.e., the `File`, `Blob`, `FileList`, etc.
+ * - `'console'`: if the value is the `window.console` object.
  * - `'object'`: if the value is a plain JavaScript object.
  * - `'class'`: if the value is an instance of a user defined class.
  *

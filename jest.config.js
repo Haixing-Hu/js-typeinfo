@@ -10,7 +10,7 @@
 module.exports = {
   verbose: true,
   testMatch: ['**/test/**/*.test.js'],
-  testEnvironment: 'jest-environment-jsdom-global',
+  testEnvironment: 'jest-environment-jsdom',
   moduleFileExtensions: ['js'],
   transform: {
     '\\.js$': 'babel-jest',

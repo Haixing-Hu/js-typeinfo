@@ -328,8 +328,13 @@ of the `category` property are:
   a callback when a value is garbage-collected.
 - `'global'`: if the value is the [global object].
 - `'arguments'`: if the value is the JavaScript built-in `arguments` object.
-- `'DOM'`: if the value is a DOM object, e.g., the `document`, `window`, `Element`, etc.
-- `'event'`: if the value is a event object, i.e., the `Event` and all its subclasses.
+- `'DOM'`: if the value is a DOM object, e.g., the `'Node'`, `'Element'`, 
+  `'Document'`, `'Window'`, etc.
+- `'CSSOM'`: if the value is a CSSOM object, e.g., `'CSSStyleDeclaration'`, 
+  `'CSSRule'`, `'CSSStyleSheet'`, etc.
+- `'event'`: if the value is a event object, i.e., the `'Event'` and all its subclasses.
+- `'console'`: if the value is the `'window.console'` object.
+- `'file'`: if the value is a File API object, i.e., the `'File'`, `'Blob'`, `'FileList'`, etc.
 - `'generator'`: if the value is a generator object, i.e., the object returned
   by a sync generator function, including `'Generator'` and `'AsyncGenerator'`.
 - `'object'`: if the value is a plain JavaScript object.

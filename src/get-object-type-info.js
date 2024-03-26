@@ -51,8 +51,11 @@ import {
 import isArguments from './is-arguments';
 import hasToStringTag from './impl/has-to-string-tag';
 import fixSubtypeCompatibility from './impl/fix-subtype-compatibility';
-import isDomObject from './is-dom-object';
+import isConsole from './is-console';
+import isCssom from './is-cssom';
+import isDom from './is-dom';
 import isEvent from './is-event';
+import isFile from './is-file';
 
 /**
  * Gets the detail types of a non-null object.
@@ -201,8 +204,17 @@ function getObjectTypeInfo(value) {
   if (isEvent(value)) {
     result.category = 'event';
     result.isWebApi = true;
-  } else if (isDomObject(value)) {
+  } else if (isDom(value)) {
     result.category = 'DOM';
+    result.isWebApi = true;
+  } else if (isCssom(value)) {
+    result.category = 'CSSOM';
+    result.isWebApi = true;
+  } else if (isConsole(value)) {
+    result.category = 'console';
+    result.isWebApi = true;
+  } else if (isFile(value)) {
+    result.category = 'file';
     result.isWebApi = true;
   } else if (/Generator$/.test(result.subtype)) {
     result.category = 'generator';

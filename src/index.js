@@ -19,8 +19,11 @@ import isBuffer from './is-buffer';
 import isBuiltInClass from './is-built-in-class';
 import isIntl from './is-intl';
 import isIterator from './is-iterator';
-import isDomObject from './is-dom-object';
+import isDom from './is-dom';
+import isCssom from './is-cssom';
 import isEvent from './is-event';
+import isConsole from './is-console';
+import isFile from './is-file';
 import {
   AGGREGATEERROR_EXISTS,
   ARRAYBUFFER_EXISTS,
@@ -89,9 +92,26 @@ import {
   DOM_PARSER_EXISTS,
   DOM_IMPLEMENTATION_EXISTS,
   DOM_EXCEPTION_EXISTS,
+  TIME_RANGES_EXISTS,
+  CSS_EXISTS,
+  CSS_RULE_EXISTS,
+  CSS_RULE_LIST_EXISTS,
+  CSS_STYLE_DECLARATION_EXISTS,
+  STYLE_SHEET_EXISTS,
+  STYLE_SHEET_LIST_EXISTS,
+  FONT_FACE_EXISTS,
+  FONT_FACE_SET_EXISTS,
+  MEDIA_LIST_EXISTS,
+  MEDIA_QUERY_LIST_EXISTS,
+  SCREEN_EXISTS,
   ABORT_SIGNAL_EXISTS,
   ABORT_CONTROLLER_EXISTS,
   EVENT_EXIST,
+  BLOB_EXIST,
+  File_EXIST,
+  FILE_LIST_EXIST,
+  FILE_READER_EXIST,
+  FILE_READER_SYNC_EXIST,
 } from './feature-detect';
 import {
   AggregateErrorPrototype,
@@ -152,8 +172,11 @@ export {
   isString,
   isTypedArray,
   isWeak,
-  isDomObject,
+  isDom,
+  isCssom,
   isEvent,
+  isConsole,
+  isFile,
   AGGREGATEERROR_EXISTS,
   ARRAYBUFFER_EXISTS,
   ARRAY_ISARRAY_EXISTS,
@@ -221,9 +244,26 @@ export {
   DOM_PARSER_EXISTS,
   DOM_IMPLEMENTATION_EXISTS,
   DOM_EXCEPTION_EXISTS,
+  TIME_RANGES_EXISTS,
+  CSS_EXISTS,
+  CSS_RULE_EXISTS,
+  CSS_RULE_LIST_EXISTS,
+  CSS_STYLE_DECLARATION_EXISTS,
+  STYLE_SHEET_EXISTS,
+  STYLE_SHEET_LIST_EXISTS,
+  FONT_FACE_EXISTS,
+  FONT_FACE_SET_EXISTS,
+  MEDIA_LIST_EXISTS,
+  MEDIA_QUERY_LIST_EXISTS,
+  SCREEN_EXISTS,
   ABORT_SIGNAL_EXISTS,
   ABORT_CONTROLLER_EXISTS,
   EVENT_EXIST,
+  BLOB_EXIST,
+  File_EXIST,
+  FILE_LIST_EXIST,
+  FILE_READER_EXIST,
+  FILE_READER_SYNC_EXIST,
   AggregateErrorPrototype,
   ArrayBufferPrototype,
   ArrayIteratorPrototype,
