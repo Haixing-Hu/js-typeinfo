@@ -6,11 +6,16 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import typeInfo, {
-  ARRAY_ITERATOR_EXISTS, INT8ARRAY_EXISTS, INTL_SEGMENTER_ITERATOR_EXISTS,
-  MAP_ITERATOR_EXISTS, REGEXP_ITERATOR_EXISTS,
-  SET_ITERATOR_EXISTS, STRING_ITERATOR_EXISTS,
-} from '../src';
+import {
+  ARRAY_ITERATOR_EXISTS,
+  INT8ARRAY_EXISTS,
+  INTL_SEGMENTER_ITERATOR_EXISTS,
+  MAP_ITERATOR_EXISTS,
+  REGEXP_ITERATOR_EXISTS,
+  SET_ITERATOR_EXISTS,
+  STRING_ITERATOR_EXISTS,
+} from '@haixing_hu/type-detect';
+import typeInfo from '../src';
 
 /**
  * Unit test of the `typeInfo()` function.

@@ -17,8 +17,8 @@ import {
   INTL_PLURALRULES_EXISTS,
   INTL_RELATIVETIMEFORMAT_EXISTS,
   INTL_SEGMENTER_EXISTS,
-  typeInfo,
-} from '../src';
+} from '@haixing_hu/type-detect';
+import typeInfo from '../src';
 
 /**
  * Unit test of the `typeInfo()` function.

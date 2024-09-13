@@ -47,15 +47,14 @@ import {
   AggregateErrorPrototype,
   InternalErrorPrototype,
   FinalizationRegistryPrototype,
-} from './impl/builtin-prototype';
-import isArguments from './is-arguments';
-import hasToStringTag from './impl/has-to-string-tag';
-import fixSubtypeCompatibility from './impl/fix-subtype-compatibility';
-import isConsole from './is-console';
-import isCssom from './is-cssom';
-import isDom from './is-dom';
-import isEvent from './is-event';
-import isFile from './is-file';
+  isArguments,
+  isConsole,
+  isCssom,
+  isDom,
+  isEvent,
+  isFile,
+  getTypeName,
+} from '@haixing_hu/type-detect';
 
 /**
  * Gets the detail types of a non-null object.
@@ -185,22 +184,7 @@ function getObjectTypeInfo(value) {
     result.category = 'error';
     return result;
   }
-  let subtype = '';
-  if (hasToStringTag(value)) {
-    // note that Generator and AsyncGenerator objects has defined its own
-    // Symbol.toStringTag property, so the following code will handle those cases.
-    subtype = value[Symbol.toStringTag].replace(/\s/g, '');
-  } else if (value.constructor
-     && (value.constructor.name !== undefined)
-     && (value.constructor.name !== null)
-     && (value.constructor.name !== 'Object')) {
-    // user defined class instance
-    subtype = value.constructor.name;
-  } else {
-    const str = Object.prototype.toString.call(value);
-    subtype = str.slice(8, -1).replace(/\s/g, '');
-  }
-  result.subtype = fixSubtypeCompatibility(subtype);
+  result.subtype = getTypeName(value);
   if (isEvent(value)) {
     result.category = 'event';
     result.isWebApi = true;

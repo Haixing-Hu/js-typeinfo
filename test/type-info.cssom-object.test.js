@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { typeInfo } from '../src';
+import typeInfo from '../src';
 
 /* eslint-disable no-undef */
 

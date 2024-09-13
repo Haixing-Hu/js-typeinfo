@@ -6,10 +6,8 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import {
-  FINALIZATIONREGISTRY_EXISTS,
-  typeInfo,
-} from '../src';
+import { FINALIZATIONREGISTRY_EXISTS } from '@haixing_hu/type-detect';
+import typeInfo from '../src';
 
 /* eslint-disable no-undef */
 

@@ -6,7 +6,8 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { REGEXP_EXISTS, typeInfo } from '../src';
+import { REGEXP_EXISTS } from '@haixing_hu/type-detect';
+import typeInfo from '../src';
 
 /* eslint-disable prefer-regex-literals */
 

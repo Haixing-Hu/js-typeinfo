@@ -6,7 +6,8 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import typeInfo, { DATAVIEW_EXISTS } from '../src';
+import { DATAVIEW_EXISTS } from '@haixing_hu/type-detect';
+import typeInfo from '../src';
 
 /**
  * Unit test of the `typeInfo()` function.

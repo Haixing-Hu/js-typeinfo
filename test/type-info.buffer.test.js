@@ -9,8 +9,8 @@
 import {
   ARRAYBUFFER_EXISTS,
   SHAREDARRAYBUFFER_EXISTS,
-  typeInfo,
-} from '../src';
+} from '@haixing_hu/type-detect';
+import typeInfo from '../src';
 
 /* eslint-disable no-undef */
 

@@ -6,10 +6,8 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import {
-  SET_EXISTS,
-  typeInfo,
-} from '../src';
+import { SET_EXISTS } from '@haixing_hu/type-detect';
+import typeInfo from '../src';
 
 /**
  * Unit test of the `typeInfo()` function.

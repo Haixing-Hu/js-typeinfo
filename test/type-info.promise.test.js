@@ -6,7 +6,8 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { PROMISE_EXISTS, typeInfo } from '../src';
+import { PROMISE_EXISTS } from '@haixing_hu/type-detect';
+import typeInfo from '../src';
 
 /**
  * Unit test of the `typeInfo()` function.

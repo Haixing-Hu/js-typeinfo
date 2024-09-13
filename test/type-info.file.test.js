@@ -12,8 +12,8 @@ import {
   FILE_LIST_EXISTS,
   FILE_READER_EXISTS,
   FILE_READER_SYNC_EXISTS,
-  typeInfo,
-} from '../src';
+} from '@haixing_hu/type-detect';
+import typeInfo from '../src';
 
 /* eslint-disable no-undef */
 

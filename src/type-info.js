@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import GLOBAL_OBJECT from './impl/global-object';
+import { isGlobalObject } from '@haixing_hu/type-detect';
 import getObjectTypeInfo from './get-object-type-info';
 
 /**
@@ -250,7 +250,7 @@ function typeInfo(value) {
       isWebApi: false,
     };
   }
-  if (value === GLOBAL_OBJECT) {
+  if (isGlobalObject(value)) {
     return {
       type: 'object',
       subtype: 'GlobalObject',

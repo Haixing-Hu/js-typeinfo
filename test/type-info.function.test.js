@@ -6,10 +6,8 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
+import { ASYNC_FUNCTION_EXISTS } from '@haixing_hu/type-detect';
 import typeInfo from '../src';
-
-/* eslint-disable no-undef, func-names, no-empty-function, prefer-regex-literals, max-classes-per-file */
-const ASYNC_FUNCTION_EXISTS = ((async function () {}).constructor.name === 'AsyncFunction');
 
 /**
  * Unit test of the `typeInfo()` function.

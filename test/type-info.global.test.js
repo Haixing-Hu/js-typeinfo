@@ -8,10 +8,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 import typeInfo from '../src';
 
-/* eslint-disable no-undef */
-
-const globalObject = globalThis;
-
 /**
  * Unit test of the `typeInfo()` function.
  *
@@ -28,6 +24,7 @@ describe('Test the `typeInfo()` function for global object', () => {
       isBuiltIn: true,
       isWebApi: false,
     };
-    expect(typeInfo(globalObject)).toEqual(expected);
+    /* eslint-disable no-undef */
+    expect(typeInfo(globalThis)).toEqual(expected);
   });
 });

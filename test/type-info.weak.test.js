@@ -10,8 +10,8 @@ import {
   WEAKREF_EXISTS,
   WEAKMAP_EXISTS,
   WEAKSET_EXISTS,
-  typeInfo,
-} from '../src';
+} from '@haixing_hu/type-detect';
+import typeInfo from '../src';
 
 /* eslint-disable no-undef */
 
