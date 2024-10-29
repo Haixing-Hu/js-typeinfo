@@ -1,6 +1,6 @@
 {
   "name": "@haixing_hu/typeinfo",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "A JavaScript library provides a type information detection function",
   "author": "Haixing Hu",
   "license": "Apache-2.0",
@@ -12,12 +12,12 @@
     "url": "https://github.com/Haixing-Hu/js-typeinfo/issues"
   },
   "homepage": "https://github.com/Haixing-Hu/js-typeinfo",
-  "main": "dist/typeinfo.cjs.min.js",
-  "module": "dist/typeinfo.esm.min.mjs",
+  "main": "dist/typeinfo.min.cjs",
+  "module": "dist/typeinfo.min.mjs",
   "exports": {
     ".": {
-      "require": "./dist/typeinfo.cjs.min.js",
-      "import": "./dist/typeinfo.esm.min.mjs"
+      "require": "./dist/typeinfo.min.cjs",
+      "import": "./dist/typeinfo.min.mjs"
     }
   },
   "sideEffects": false,
@@ -44,7 +44,7 @@
   },
   "peerDependencies": {
     "@babel/runtime": "^7.23.0",
-    "@haixing_hu/type-detect": "^1.1.0"
+    "@haixing_hu/type-detect": "^1.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.0",
@@ -55,8 +55,8 @@
     "@babel/runtime": "^7.23.0",
     "@haixing_hu/eslint-config": "^1.3.3",
     "@haixing_hu/jsdoc-minami": "^1.5.1",
-    "@haixing_hu/rollup-builder": "^1.6.5",
-    "@haixing_hu/type-detect": "^1.1.0",
+    "@haixing_hu/rollup-builder": "^1.8.2",
+    "@haixing_hu/type-detect": "^1.2.0",
     "@jest/core": "^29.7.0",
     "@rollup/plugin-alias": "^5.0.1",
     "@rollup/plugin-babel": "^6.0.4",
