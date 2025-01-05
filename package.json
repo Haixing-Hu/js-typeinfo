@@ -1,6 +1,6 @@
 {
   "name": "@qubit-ltd/typeinfo",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "description": "A JavaScript library provides a type information detection function",
   "author": "Haixing Hu",
   "license": "Apache-2.0",
@@ -44,7 +44,7 @@
   },
   "peerDependencies": {
     "@babel/runtime": "^7.26.0",
-    "@qubit-ltd/type-detect": "^1.2.2"
+    "@qubit-ltd/type-detect": "^1.2.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.26.4",
