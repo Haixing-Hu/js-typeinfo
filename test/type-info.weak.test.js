@@ -10,7 +10,7 @@ import {
   WEAKREF_EXISTS,
   WEAKMAP_EXISTS,
   WEAKSET_EXISTS,
-} from '@haixing_hu/type-detect';
+} from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /* eslint-disable no-undef */

@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import rollupBuilder from '@haixing_hu/rollup-builder';
+import rollupBuilder from '@qubit-ltd/rollup-builder';
 import { fileURLToPath } from 'node:url';
 
 export default rollupBuilder('typeinfo', import.meta.url, {

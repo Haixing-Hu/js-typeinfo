@@ -18,7 +18,7 @@ import {
   UINT32ARRAY_EXISTS,
   UINT8ARRAY_EXISTS,
   UINT8CLAMPEDARRAY_EXISTS,
-} from '@haixing_hu/type-detect';
+} from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /* eslint-disable no-undef */

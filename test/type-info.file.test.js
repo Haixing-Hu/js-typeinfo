@@ -12,7 +12,7 @@ import {
   FILE_LIST_EXISTS,
   FILE_READER_EXISTS,
   FILE_READER_SYNC_EXISTS,
-} from '@haixing_hu/type-detect';
+} from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /* eslint-disable no-undef */

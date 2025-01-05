@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { ASYNC_FUNCTION_EXISTS } from '@haixing_hu/type-detect';
+import { ASYNC_FUNCTION_EXISTS } from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /**

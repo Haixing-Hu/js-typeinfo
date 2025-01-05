@@ -14,7 +14,7 @@ import {
   REGEXP_ITERATOR_EXISTS,
   SET_ITERATOR_EXISTS,
   STRING_ITERATOR_EXISTS,
-} from '@haixing_hu/type-detect';
+} from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /**

@@ -9,7 +9,7 @@
 import {
   AGGREGATEERROR_EXISTS,
   INTERNALERROR_EXISTS,
-} from '@haixing_hu/type-detect';
+} from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /* eslint-disable no-undef */

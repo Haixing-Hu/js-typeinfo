@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { isGlobalObject } from '@haixing_hu/type-detect';
+import { isGlobalObject } from '@qubit-ltd/type-detect';
 import getObjectTypeInfo from './get-object-type-info';
 
 /**

@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { PROMISE_EXISTS } from '@haixing_hu/type-detect';
+import { PROMISE_EXISTS } from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /**

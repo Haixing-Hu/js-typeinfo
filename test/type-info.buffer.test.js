@@ -9,7 +9,7 @@
 import {
   ARRAYBUFFER_EXISTS,
   SHAREDARRAYBUFFER_EXISTS,
-} from '@haixing_hu/type-detect';
+} from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /* eslint-disable no-undef */

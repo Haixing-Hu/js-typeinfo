@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { REGEXP_EXISTS } from '@haixing_hu/type-detect';
+import { REGEXP_EXISTS } from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /* eslint-disable prefer-regex-literals */

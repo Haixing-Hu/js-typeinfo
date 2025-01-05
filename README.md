@@ -1,6 +1,6 @@
 # typeinfo
 
-[![npm package](https://img.shields.io/npm/v/@haixing_hu/typeinfo.svg)](https://npmjs.com/package/@haixing_hu/typeinfo)
+[![npm package](https://img.shields.io/npm/v/@qubit-ltd/typeinfo.svg)](https://npmjs.com/package/@qubit-ltd/typeinfo)
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![中文文档](https://img.shields.io/badge/文档-中文版-blue.svg)](README.zh_CN.md)
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Haixing-Hu/js-typeinfo/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Haixing-Hu/js-typeinfo/tree/master)
@@ -39,18 +39,18 @@ in your projects.
 
 You can install [typeinfo] via `npm`:
 ```sh
-npm install @haixing_hu/typeinfo
+npm install @qubit-ltd/typeinfo
 ```
 or via `yarn`:
 ```bash
-yarn add @haixing_hu/typeinfo
+yarn add @qubit-ltd/typeinfo
 ```
 
 ## <span id="example">Example</span>
 
 The following is a usage example:
 ```js
-import typeInfo from '@haixing_hu/typeinfo';
+import typeInfo from '@qubit-ltd/typeinfo';
 
 function clone(value) {
   const info = typeInfo(value);
@@ -82,7 +82,7 @@ function clone(value) {
 ```
 or use [info.category](#category) to simplify the code logic:
 ```js
-import typeInfo from '@haixing_hu/typeinfo';
+import typeInfo from '@qubit-ltd/typeinfo';
 
 function clone(value) {
   const info = typeInfo(value);
@@ -420,7 +420,7 @@ This library provides the following constants for feature detection:
 
 The following code shows how to use these constants:
 ```js
-import { WEAKMAP_EXISTS } from '@haixing_hu/typeinfo';
+import { WEAKMAP_EXISTS } from '@qubit-ltd/typeinfo';
 
 function foo(value) {
   if (WEAKMAP_EXISTS) {
@@ -548,7 +548,7 @@ built-in objects:
 
 The following code shows how to use these constants:
 ```js
-import { WeakMapPrototype } from '@haixing_hu/typeinfo';
+import { WeakMapPrototype } from '@qubit-ltd/typeinfo';
 
 function foo(value) {
   const proto = Object.getPrototypeOf(value);
@@ -593,7 +593,7 @@ The library provides the following functions for type detection:
 
 The following code shows how to use these functions:
 ```js
-import { isTypedArray } from '@haixing_hu/typeinfo';
+import { isTypedArray } from '@qubit-ltd/typeinfo';
 
 function foo(value) {
   if (isTypedArray(value)) {
@@ -639,7 +639,7 @@ to open an issue or submit a pull request to the [GitHub repository].
 [typeinfo] is distributed under the Apache 2.0 license.
 See the [LICENSE](LICENSE) file for more details.
 
-[typeinfo]: https://npmjs.com/package/@haixing_hu/typeinfo
+[typeinfo]: https://npmjs.com/package/@qubit-ltd/typeinfo
 [global object]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
 [Standard built-in objects]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 [GitHub repository]: https://github.com/Haixing-Hu/js-typeinfo

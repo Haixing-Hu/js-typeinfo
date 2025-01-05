@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { MAP_EXISTS } from '@haixing_hu/type-detect';
+import { MAP_EXISTS } from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /**

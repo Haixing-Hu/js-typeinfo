@@ -1,6 +1,6 @@
 # typeinfo
 
-[![npm package](https://img.shields.io/npm/v/@haixing_hu/typeinfo.svg)](https://npmjs.com/package/@haixing_hu/typeinfo)
+[![npm package](https://img.shields.io/npm/v/@qubit-ltd/typeinfo.svg)](https://npmjs.com/package/@qubit-ltd/typeinfo)
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![English Document](https://img.shields.io/badge/文档-中文版-blue.svg)](README.md)
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Haixing-Hu/js-typeinfo/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Haixing-Hu/js-typeinfo/tree/master)
@@ -36,18 +36,18 @@ JavaScript 变量更精确可靠的类型信息。它为最新的 ECMAScript 标
 
 您可以通过 `npm` 安装 [typeinfo]:
 ```sh
-npm install @haixing_hu/typeinfo
+npm install @qubit-ltd/typeinfo
 ```
 或者通过 `yarn` 安装:
 ```bash
-yarn add @haixing_hu/typeinfo
+yarn add @qubit-ltd/typeinfo
 ```
 
 ## <span id="example">例子</span>
 
 下面是一个使用示例：
 ```js
-import typeInfo from '@haixing_hu/typeinfo';
+import typeInfo from '@qubit-ltd/typeinfo';
 
 function clone(value) {
   const info = typeInfo(value);
@@ -79,7 +79,7 @@ function clone(value) {
 ```
 或者使用 [info.category](#category) 简化代码逻辑：
 ```js
-import typeInfo from '@haixing_hu/typeinfo';
+import typeInfo from '@qubit-ltd/typeinfo';
 
 function clone(value) {
   const info = typeInfo(value);
@@ -350,7 +350,7 @@ JavaScript 引擎中可用。
 
 以下代码展示如何使用这些常量：
 ```js
-import { WEAKMAP_EXISTS } from '@haixing_hu/typeinfo';
+import { WEAKMAP_EXISTS } from '@qubit-ltd/typeinfo';
 
 function foo(value) {
   if (WEAKMAP_EXISTS) {
@@ -414,7 +414,7 @@ function foo(value) {
 
 以下代码展示了如何使用这些函数：
 ```js
-import { isTypedArray } from '@haixing_hu/typeinfo';
+import { isTypedArray } from '@qubit-ltd/typeinfo';
 
 function foo(value) {
   if (isTypedArray(value)) {
@@ -447,7 +447,7 @@ function foo(value) {
 [typeinfo] 在 Apache 2.0 许可下分发。有关更多详情，请参阅[LICENSE](LICENSE)文件。
 
 
-[typeinfo]: https://npmjs.com/package/@haixing_hu/typeinfo
+[typeinfo]: https://npmjs.com/package/@qubit-ltd/typeinfo
 [全局对象]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
 [Standard built-in objects]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 [GitHub repository]: https://github.com/Haixing-Hu/js-typeinfo

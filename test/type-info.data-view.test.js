@@ -6,7 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { DATAVIEW_EXISTS } from '@haixing_hu/type-detect';
+import { DATAVIEW_EXISTS } from '@qubit-ltd/type-detect';
 import typeInfo from '../src';
 
 /**

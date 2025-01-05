@@ -54,7 +54,7 @@ import {
   isEvent,
   isFile,
   getTypeName,
-} from '@haixing_hu/type-detect';
+} from '@qubit-ltd/type-detect';
 
 /**
  * Gets the detail types of a non-null object.
