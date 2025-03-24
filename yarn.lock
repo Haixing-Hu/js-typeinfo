@@ -2218,7 +2218,7 @@ __metadata:
     rollup-plugin-visualizer: "npm:^5.13.1"
   peerDependencies:
     "@babel/runtime": ^7.26.0
-    "@qubit-ltd/type-detect": ^1.2.2
+    "@qubit-ltd/type-detect": ^1.2.3
   languageName: unknown
   linkType: soft
 
