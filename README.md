@@ -37,7 +37,7 @@ JavaScript's native `typeof` operator has limitations when it comes to detecting
 - Comprehensive detection of JavaScript built-in types (100+ types supported)
 - Support for the latest ECMAScript standards including ES6+ features
 - Browser and Node.js compatibility
-- Zero dependencies, lightweight (< 20KB minified)
+- Zero dependencies, lightweight (< 4KB minified)
 - 100% test coverage
 - Detailed type categorization for easier type checking
 - Feature detection for advanced type handling across different environments
