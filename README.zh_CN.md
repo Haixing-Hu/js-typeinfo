@@ -24,6 +24,7 @@ JavaScript的原生`typeof`操作符在检测复杂对象类型时有很多局�
     - [特性检测常量](#feature-detection)
     - [类型原型常量](#type-prototype)
     - [类型检测函数](#type-detection)
+- [跨域类型检测](#cross-realm)
 - [为何无法识别`Proxy`类型](#why-no-proxy)
 - [贡献](#contributing)
 - [许可证](#license)
@@ -40,6 +41,7 @@ JavaScript的原生`typeof`操作符在检测复杂对象类型时有很多局�
 - 为不同环境下的高级类型处理提供特性检测
 - 易于集成到现有项目中
 - 支持用户自定义类的类型信息
+- 支持跨域（不同JavaScript上下文）创建的对象的类型检测
 
 ## <span id="installation">安装</span>
 
@@ -540,6 +542,68 @@ isDOMNode({});           // false
 ```
 
 这些实用函数在检查类型时使您的代码更具可读性和可靠性。它们处理边缘情况，并为整个应用程序的类型检查提供一致的接口。
+
+## <span id="cross-realm">跨域类型检测</span>
+
+JavaScript中的"域"（realm）本质上是一个隔离的执行环境，拥有自己的全局对象和内置构造函数集。在Web应用程序中，不同的域可以以各种形式存在：
+
+- 浏览器中的不同框架（iframe）
+- 浏览器中的不同窗口
+- 工作线程（Web Workers、Service Workers）
+- 通过Node.js的`vm`模块创建的执行上下文
+
+当对象在域之间传递时，它们会失去与源域中构造函数的原始原型链连接。这对类型检测构成了重大挑战，因为标准方法如`instanceof`在跨域边界时会失效：
+
+```js
+// 在主域中
+const mainArray = new Uint8Array(2);
+console.log(mainArray instanceof Uint8Array); // true
+
+// 在不同域中创建的对象（例如，通过Node.js中的vm.runInNewContext）
+const foreignArray = runInNewContext('new Uint8Array(2)');
+console.log(foreignArray instanceof Uint8Array); // false - 不同的构造函数！
+```
+
+这种行为可能导致应用程序处理来自不同上下文（如iframe或外部脚本）的对象时出现意外错误。
+
+[typeinfo]库通过使用对象的内在特性来确定类型，而不是依赖原型链，从而解决了这个问题。这使其在跨域边界上也能可靠工作，如我们的测试所示：
+
+```js
+// 来自type-info.typed-array.test.js
+test('Int8Array across realms', () => {
+  const arr = runInNewContext('new Int8Array(2)');
+  const result = typeInfo(arr);
+  expect(result.type).toBe('object');
+  expect(result.subtype).toBe('Int8Array');
+  expect(result.category).toBe('typed-array');
+  // 其他断言...
+});
+```
+
+该库能够正确识别对象的类型信息，无论它们的来源是什么。这种跨域能力对以下场景至关重要：
+
+- 在iframe之间通信的Web应用程序
+- 处理序列化对象的服务器应用程序
+- 需要与第三方脚本中的对象协同工作的库
+- 在隔离上下文中创建对象的测试环境
+
+以下是[typeinfo]如何正确处理跨域类型化数组的示例：
+
+```js
+import typeInfo from '@qubit-ltd/typeinfo';
+import { runInNewContext } from 'node:vm';
+
+// 在不同域中创建对象
+const localArray = new Float32Array(4);
+const foreignArray = runInNewContext('new Float32Array(4)');
+
+// 两者返回相同的类型信息
+console.log(typeInfo(localArray).subtype);  // 'Float32Array'
+console.log(typeInfo(foreignArray).subtype); // 'Float32Array'
+
+// 标准的instanceof会失效
+console.log(foreignArray instanceof Float32Array); // false
+```
 
 ## <span id="why-no-proxy">为何无法识别`Proxy`类型</span>
 

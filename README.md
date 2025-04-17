@@ -27,6 +27,7 @@ JavaScript's native `typeof` operator has limitations when it comes to detecting
     - [Feature Detection Constants](#feature-detection)
     - [Type Prototype Constants](#type-prototype)
     - [Type Detection Functions](#type-detection)
+- [Cross-Realm Type Detection](#cross-realm)
 - [Why `Proxy` Type Information is Unavailable](#why-no-proxy)
 - [Contributing](#contributing)
 - [License](#license)
@@ -43,6 +44,7 @@ JavaScript's native `typeof` operator has limitations when it comes to detecting
 - Feature detection for advanced type handling across different environments
 - Easy integration into existing projects
 - Support for type information of user-defined classes
+- Cross-realm type detection for objects created in different JavaScript contexts
 
 ## <span id="installation">Installation</span>
 
@@ -705,6 +707,68 @@ isDOMNode({});           // false
 ```
 
 These utility functions make your code more readable and reliable when checking types. They handle edge cases and provide a consistent interface for type checking across your application.
+
+## <span id="cross-realm">Cross-Realm Type Detection</span>
+
+A JavaScript "realm" is essentially an isolated execution environment with its own global object and set of built-in constructors. In web applications, different realms can exist in various forms:
+
+- Different frames (iframes) in a browser
+- Different windows in a browser
+- Worker threads (Web Workers, Service Workers)
+- Execution contexts created via Node.js's `vm` module
+
+When objects are passed between realms, they lose their original prototype chain connection to the constructors in their source realm. This poses a significant challenge for type detection, as standard methods like `instanceof` fail across realm boundaries:
+
+```js
+// In main realm
+const mainArray = new Uint8Array(2);
+console.log(mainArray instanceof Uint8Array); // true
+
+// Object created in a different realm (e.g., via vm.runInNewContext in Node.js)
+const foreignArray = runInNewContext('new Uint8Array(2)');
+console.log(foreignArray instanceof Uint8Array); // false - different constructors!
+```
+
+This behavior can lead to unexpected bugs in applications that process objects from different contexts, such as iframes or external scripts.
+
+The [typeinfo] library solves this problem by using intrinsic characteristics to determine types rather than relying on the prototype chain. This makes it reliable across realm boundaries, as demonstrated in our tests:
+
+```js
+// From type-info.typed-array.test.js
+test('Int8Array across realms', () => {
+  const arr = runInNewContext('new Int8Array(2)');
+  const result = typeInfo(arr);
+  expect(result.type).toBe('object');
+  expect(result.subtype).toBe('Int8Array');
+  expect(result.category).toBe('typed-array');
+  // Other assertions...
+});
+```
+
+The library correctly identifies the type information of objects regardless of their origin. This cross-realm capability is critical for:
+
+- Web applications that communicate between iframes
+- Server applications processing serialized objects
+- Libraries that need to work with objects from third-party scripts
+- Testing environments where objects are created in isolated contexts
+
+Here's an example of how [typeinfo] correctly handles typed arrays across realms:
+
+```js
+import typeInfo from '@qubit-ltd/typeinfo';
+import { runInNewContext } from 'node:vm';
+
+// Create objects in different realms
+const localArray = new Float32Array(4);
+const foreignArray = runInNewContext('new Float32Array(4)');
+
+// Both return the same type information
+console.log(typeInfo(localArray).subtype);  // 'Float32Array'
+console.log(typeInfo(foreignArray).subtype); // 'Float32Array'
+
+// Standard instanceof would fail
+console.log(foreignArray instanceof Float32Array); // false
+```
 
 ## <span id="why-no-proxy">Why `Proxy` Type Information is Unavailable</span>
 
