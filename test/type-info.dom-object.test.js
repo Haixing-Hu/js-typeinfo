@@ -8,8 +8,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 import typeInfo from '../src';
 
-/* eslint-disable no-undef */
-
 /**
  * Unit test of the `typeInfo()` function.
  *
@@ -32,11 +30,26 @@ describe('Test the `typeInfo()` function for DOM API objects', () => {
     // 这类测试需要在真实的浏览器环境中进行。
   });
 
+  test('div element', () => {
+    const div = document.createElement('div');
+    div.innerHTML = 'Hello, world!';
+    const info = typeInfo(div);
+    expect(info).toEqual({
+      type: 'object',
+      subtype: 'HTMLDivElement',
+      category: 'DOM',
+      isPrimitive: false,
+      isBuiltIn: false,
+      isWebApi: true,
+      constructor: HTMLDivElement,
+    });
+  });
+
   test('document.documentElement', () => {
     const info = typeInfo(document.documentElement);
     expect(info).toEqual({
       type: 'object',
-      subtype: 'HTMLElement',
+      subtype: 'HTMLHtmlElement',
       category: 'DOM',
       isPrimitive: false,
       isBuiltIn: false,
