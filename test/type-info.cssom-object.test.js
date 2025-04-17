@@ -32,6 +32,9 @@ describe('Test the `typeInfo()` function for CSSOM API objects', () => {
       isWebApi: true,
       constructor: CSSStyleRule,
     });
+    // 注意：不添加跨领域测试，因为CSSStyleRule是CSSOM API对象，
+    // 在Node.js的vm模块创建的新上下文中不可用。
+    // 这类测试需要在真实的浏览器环境中进行。
   });
   test('CSSStyleSheet', () => {
     const styleElement = document.createElement('style');
@@ -48,6 +51,9 @@ describe('Test the `typeInfo()` function for CSSOM API objects', () => {
       isWebApi: true,
       constructor: CSSStyleSheet,
     });
+    // 注意：不添加跨领域测试，因为CSSStyleSheet是CSSOM API对象，
+    // 在Node.js的vm模块创建的新上下文中不可用。
+    // 这类测试需要在真实的浏览器环境中进行。
   });
   test('CSSStyleDeclaration', () => {
     const styleDeclaration = document.createElement('div').style;
@@ -61,6 +67,9 @@ describe('Test the `typeInfo()` function for CSSOM API objects', () => {
       isWebApi: true,
       constructor: CSSStyleDeclaration,
     });
+    // 注意：不添加跨领域测试，因为CSSStyleDeclaration是CSSOM API对象，
+    // 在Node.js的vm模块创建的新上下文中不可用。
+    // 这类测试需要在真实的浏览器环境中进行。
   });
   if (window && window.matchMedia) {
     test('MediaQueryList', () => {
@@ -76,6 +85,9 @@ describe('Test the `typeInfo()` function for CSSOM API objects', () => {
           isWebApi: true,
           constructor: MediaQueryList,
         });
+      // 注意：不添加跨领域测试，因为MediaQueryList是CSSOM API对象，
+      // 在Node.js的vm模块创建的新上下文中不可用。
+      // 这类测试需要在真实的浏览器环境中进行。
     });
   }
 });

@@ -1,10 +1,10 @@
 
 function getBabelConfig() {
   if (process.env.NODE_ENV === 'test') {    // for Jest testing
-    const targets = process.env.TARGETS ? process.env.TARGETS : 'defaults';
+    const theTargets = process.env.TARGETS ? process.env.TARGETS : 'defaults';
     const config = {
       presets: ['@babel/preset-env'],
-      targets: targets,
+      targets: theTargets,
     };
     console.log('Jest with babel configuration:', config);
     return config;
@@ -16,4 +16,4 @@ function getBabelConfig() {
   }
 }
 
-module.exports  = getBabelConfig();
+module.exports = getBabelConfig();

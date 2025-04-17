@@ -6,6 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
+import { runInNewContext } from 'node:vm';
 import typeInfo from '../src';
 
 /**
@@ -26,5 +27,17 @@ describe('Test the `typeInfo()` function for global object', () => {
     };
     /* eslint-disable no-undef */
     expect(typeInfo(globalThis)).toEqual(expected);
+  });
+
+  test('global object across realms', () => {
+    const globalObj = runInNewContext('globalThis');
+    const result = typeInfo(globalObj);
+    expect(result.type).toBe('object');
+    expect(result.subtype).toBe('GlobalObject');
+    expect(result.category).toBe('global');
+    expect(result.isPrimitive).toBe(false);
+    expect(result.isBuiltIn).toBe(true);
+    expect(result.isWebApi).toBe(false);
+    expect(result.constructor).toBeDefined();
   });
 });

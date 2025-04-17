@@ -28,6 +28,9 @@ describe('Test the `typeInfo()` function for Event objects', () => {
       isWebApi: true,
       constructor: Event,
     });
+    // 注意：不添加跨领域测试，因为Event是Web API对象，
+    // 在Node.js的vm模块创建的新上下文中不可用。
+    // 这类测试需要在真实的浏览器环境中进行。
   });
   test('MouseEvent', () => {
     const event = new MouseEvent('click');
@@ -41,6 +44,9 @@ describe('Test the `typeInfo()` function for Event objects', () => {
       isWebApi: true,
       constructor: MouseEvent,
     });
+    // 注意：不添加跨领域测试，因为MouseEvent是Web API对象，
+    // 在Node.js的vm模块创建的新上下文中不可用。
+    // 这类测试需要在真实的浏览器环境中进行。
   });
   test('CustomEvent', () => {
     const event = new CustomEvent('click');
@@ -54,5 +60,8 @@ describe('Test the `typeInfo()` function for Event objects', () => {
       isWebApi: true,
       constructor: CustomEvent,
     });
+    // 注意：不添加跨领域测试，因为CustomEvent是Web API对象，
+    // 在Node.js的vm模块创建的新上下文中不可用。
+    // 这类测试需要在真实的浏览器环境中进行。
   });
 });

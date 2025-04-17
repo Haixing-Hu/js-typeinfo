@@ -6,7 +6,8 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { FINALIZATIONREGISTRY_EXISTS } from '@qubit-ltd/type-detect';
+import { FINALIZATIONREGISTRY_EXISTS } from '@qubit-ltd/type-detect/src/feature-detect';
+import { runInNewContext } from 'node:vm';
 import typeInfo from '../src';
 
 /* eslint-disable no-undef */
@@ -32,6 +33,18 @@ describe('Test the `typeInfo()` function for the FinalizationRegistry object', (
         console.log('An object was finalized. The value is:', value);
       });
       expect(typeInfo(registry)).toEqual(expected);
+    });
+
+    test('FinalizationRegistry across realms', () => {
+      const registry = runInNewContext('new FinalizationRegistry((value) => { console.log("An object was finalized. The value is:", value); })');
+      const result = typeInfo(registry);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('FinalizationRegistry');
+      expect(result.category).toBe('finalization-registry');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
 });

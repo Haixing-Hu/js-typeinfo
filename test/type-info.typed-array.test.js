@@ -18,7 +18,8 @@ import {
   UINT32ARRAY_EXISTS,
   UINT8ARRAY_EXISTS,
   UINT8CLAMPEDARRAY_EXISTS,
-} from '@qubit-ltd/type-detect';
+} from '@qubit-ltd/type-detect/src/feature-detect';
+import { runInNewContext } from 'node:vm';
 import typeInfo from '../src';
 
 /* eslint-disable no-undef */
@@ -42,6 +43,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
       };
       expect(typeInfo(new Int8Array(2))).toEqual(expected);
     });
+
+    test('Int8Array across realms', () => {
+      const arr = runInNewContext('new Int8Array(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Int8Array');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (UINT8ARRAY_EXISTS) {
     test('Uint8Array', () => {
@@ -55,6 +68,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         constructor: Uint8Array,
       };
       expect(typeInfo(new Uint8Array(2))).toEqual(expected);
+    });
+
+    test('Uint8Array across realms', () => {
+      const arr = runInNewContext('new Uint8Array(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Uint8Array');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
   if (UINT8CLAMPEDARRAY_EXISTS) {
@@ -70,6 +95,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
       };
       expect(typeInfo(new Uint8ClampedArray(2))).toEqual(expected);
     });
+
+    test('Uint8ClampedArray across realms', () => {
+      const arr = runInNewContext('new Uint8ClampedArray(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Uint8ClampedArray');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (INT16ARRAY_EXISTS) {
     test('Int16Array', () => {
@@ -83,6 +120,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         constructor: Int16Array,
       };
       expect(typeInfo(new Int16Array(2))).toEqual(expected);
+    });
+
+    test('Int16Array across realms', () => {
+      const arr = runInNewContext('new Int16Array(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Int16Array');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
   if (UINT16ARRAY_EXISTS) {
@@ -98,6 +147,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
       };
       expect(typeInfo(new Uint16Array(2))).toEqual(expected);
     });
+
+    test('Uint16Array across realms', () => {
+      const arr = runInNewContext('new Uint16Array(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Uint16Array');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (INT32ARRAY_EXISTS) {
     test('Int32Array', () => {
@@ -111,6 +172,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         constructor: Int32Array,
       };
       expect(typeInfo(new Int32Array(2))).toEqual(expected);
+    });
+
+    test('Int32Array across realms', () => {
+      const arr = runInNewContext('new Int32Array(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Int32Array');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
   if (UINT32ARRAY_EXISTS) {
@@ -126,6 +199,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
       };
       expect(typeInfo(new Uint32Array(2))).toEqual(expected);
     });
+
+    test('Uint32Array across realms', () => {
+      const arr = runInNewContext('new Uint32Array(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Uint32Array');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (BIGINT64ARRAY_EXISTS) {
     test('BigInt64Array', () => {
@@ -139,6 +224,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         constructor: BigInt64Array,
       };
       expect(typeInfo(new BigInt64Array(2))).toEqual(expected);
+    });
+
+    test('BigInt64Array across realms', () => {
+      const arr = runInNewContext('new BigInt64Array(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('BigInt64Array');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
   if (BIGUINT64ARRAY_EXISTS) {
@@ -154,6 +251,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
       };
       expect(typeInfo(new BigUint64Array(2))).toEqual(expected);
     });
+
+    test('BigUint64Array across realms', () => {
+      const arr = runInNewContext('new BigUint64Array(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('BigUint64Array');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (FLOAT32ARRAY_EXISTS) {
     test('Float32Array', () => {
@@ -168,6 +277,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
       };
       expect(typeInfo(new Float32Array(2))).toEqual(expected);
     });
+
+    test('Float32Array across realms', () => {
+      const arr = runInNewContext('new Float32Array(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Float32Array');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (FLOAT64ARRAY_EXISTS) {
     test('Float64Array', () => {
@@ -181,6 +302,18 @@ describe('Test the `typeInfo()` function for typed array objects', () => {
         constructor: Float64Array,
       };
       expect(typeInfo(new Float64Array(2))).toEqual(expected);
+    });
+
+    test('Float64Array across realms', () => {
+      const arr = runInNewContext('new Float64Array(2)');
+      const result = typeInfo(arr);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Float64Array');
+      expect(result.category).toBe('typed-array');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
 });

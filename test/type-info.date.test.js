@@ -6,6 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
+import { runInNewContext } from 'node:vm';
 import typeInfo from '../src';
 
 /**
@@ -25,5 +26,17 @@ describe('Test the `typeInfo()` function for `Date` object', () => {
       constructor: Date,
     };
     expect(typeInfo(new Date())).toEqual(expected);
+  });
+
+  test('Date across realms', () => {
+    const date = runInNewContext('new Date()');
+    const result = typeInfo(date);
+    expect(result.type).toBe('object');
+    expect(result.subtype).toBe('Date');
+    expect(result.category).toBe('date');
+    expect(result.isPrimitive).toBe(false);
+    expect(result.isBuiltIn).toBe(true);
+    expect(result.isWebApi).toBe(false);
+    expect(result.constructor).toBeDefined();
   });
 });

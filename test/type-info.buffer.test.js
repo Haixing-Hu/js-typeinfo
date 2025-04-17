@@ -6,10 +6,11 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
+import { runInNewContext } from 'node:vm';
 import {
   ARRAYBUFFER_EXISTS,
   SHAREDARRAYBUFFER_EXISTS,
-} from '@qubit-ltd/type-detect';
+} from '@qubit-ltd/type-detect/src/feature-detect';
 import typeInfo from '../src';
 
 /* eslint-disable no-undef */
@@ -33,6 +34,18 @@ describe('Test the `typeInfo()` function for buffer objects', () => {
       };
       expect(typeInfo(new ArrayBuffer(2))).toEqual(expected);
     });
+
+    test('ArrayBuffer across realms', () => {
+      const buffer = runInNewContext('new ArrayBuffer(2)');
+      const result = typeInfo(buffer);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('ArrayBuffer');
+      expect(result.category).toBe('buffer');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (SHAREDARRAYBUFFER_EXISTS) {
     test('SharedArrayBuffer', () => {
@@ -46,6 +59,18 @@ describe('Test the `typeInfo()` function for buffer objects', () => {
         constructor: SharedArrayBuffer,
       };
       expect(typeInfo(new SharedArrayBuffer(2))).toEqual(expected);
+    });
+
+    test('SharedArrayBuffer across realms', () => {
+      const buffer = runInNewContext('new SharedArrayBuffer(2)');
+      const result = typeInfo(buffer);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('SharedArrayBuffer');
+      expect(result.category).toBe('buffer');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
 });

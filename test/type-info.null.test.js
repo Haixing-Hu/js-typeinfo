@@ -6,6 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
+import { runInNewContext } from 'node:vm';
 import typeInfo from '../src';
 
 /**
@@ -22,5 +23,15 @@ describe('Test the `typeInfo()` function for `null` value', () => {
       isBuiltIn: true,
       isWebApi: false,
     });
+  });
+
+  test('null across realms', () => {
+    const nullValue = runInNewContext('null');
+    const result = typeInfo(nullValue);
+    expect(result.type).toBe('null');
+    expect(result.category).toBe('null');
+    expect(result.isPrimitive).toBe(true);
+    expect(result.isBuiltIn).toBe(true);
+    expect(result.isWebApi).toBe(false);
   });
 });

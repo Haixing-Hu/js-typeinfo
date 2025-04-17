@@ -6,6 +6,7 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
+import { runInNewContext } from 'node:vm';
 import typeInfo from '../src';
 
 /* eslint-disable no-undef */
@@ -28,6 +29,19 @@ describe('Test the `typeInfo()` function for arguments object', () => {
     };
     expect(typeInfo(arguments)).toEqual(expected);
   });
+
+  test('arguments across realms', () => {
+    const argsObj = runInNewContext('(function() { return arguments; })(1, 2, 3)');
+    const result = typeInfo(argsObj);
+    expect(result.type).toBe('object');
+    expect(result.subtype).toBe('Arguments');
+    expect(result.category).toBe('arguments');
+    expect(result.isPrimitive).toBe(false);
+    expect(result.isBuiltIn).toBe(true);
+    expect(result.isWebApi).toBe(false);
+    expect(result.constructor).toBeDefined();
+  });
+
   test('invalid arguments', () => {
     const expected = {
       type: 'object',
@@ -73,6 +87,19 @@ describe('Test the `typeInfo()` function for arguments object', () => {
     };
     expect(typeInfo(obj4)).toEqual(expected4);
   });
+
+  test('invalid arguments across realms', () => {
+    const fakeObj = runInNewContext('({ "0": "x", "length": 1, [Symbol.toStringTag]: "Arguments", [Symbol.iterator]: () => {} })');
+    const result = typeInfo(fakeObj);
+    expect(result.type).toBe('object');
+    expect(result.subtype).toBe('Arguments');
+    expect(result.category).toBe('object');
+    expect(result.isPrimitive).toBe(false);
+    expect(result.isBuiltIn).toBe(false);
+    expect(result.isWebApi).toBe(false);
+    expect(result.constructor).toBeDefined();
+  });
+
   test('fake arguments', () => {
     const expected = {
       type: 'object',
@@ -91,5 +118,17 @@ describe('Test the `typeInfo()` function for arguments object', () => {
       [Symbol.iterator]: () => {},
     };
     expect(typeInfo(fake)).toEqual(expected);
+  });
+
+  test('fake arguments across realms', () => {
+    const fakeArgsObj = runInNewContext('({ "0": "x", "length": 1, "callee": () => {}, [Symbol.toStringTag]: "Arguments", [Symbol.iterator]: () => {} })');
+    const result = typeInfo(fakeArgsObj);
+    expect(result.type).toBe('object');
+    expect(result.subtype).toBe('Arguments');
+    expect(result.category).toBe('arguments');
+    expect(result.isPrimitive).toBe(false);
+    expect(result.isBuiltIn).toBe(true);
+    expect(result.isWebApi).toBe(false);
+    expect(result.constructor).toBeDefined();
   });
 });

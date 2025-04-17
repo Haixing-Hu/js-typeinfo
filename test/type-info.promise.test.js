@@ -6,7 +6,8 @@
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-import { PROMISE_EXISTS } from '@qubit-ltd/type-detect';
+import { PROMISE_EXISTS } from '@qubit-ltd/type-detect/src/feature-detect';
+import vm from 'node:vm';
 import typeInfo from '../src';
 
 /**
@@ -32,6 +33,22 @@ describe('Test the `typeInfo()` function for promise object', () => {
         }, 300);
       });
       expect(typeInfo(myPromise)).toEqual(expected);
+    });
+
+    test('Promise across realms', () => {
+      const context = {
+        setTimeout,  // 显式传入 setTimeout
+        Promise,     // 显式传入 Promise（Node 14+ 其实已默认有）
+      };
+      const promise = vm.runInNewContext('new Promise((resolve) => { setTimeout(() => { resolve("foo"); }, 300); })', context);
+      const result = typeInfo(promise);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Promise');
+      expect(result.category).toBe('promise');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
 });

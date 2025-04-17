@@ -14,7 +14,8 @@ import {
   REGEXP_ITERATOR_EXISTS,
   SET_ITERATOR_EXISTS,
   STRING_ITERATOR_EXISTS,
-} from '@qubit-ltd/type-detect';
+} from '@qubit-ltd/type-detect/src/feature-detect';
+import { runInNewContext } from 'node:vm';
 import typeInfo from '../src';
 
 /**
@@ -40,6 +41,18 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
       expect(typeInfo(map.values())).toEqual(expected);
       expect(typeInfo(map[Symbol.iterator]())).toEqual(expected);
     });
+
+    test('MapIterator across realms', () => {
+      const mapIterator = runInNewContext('new Map().entries()');
+      const result = typeInfo(mapIterator);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('MapIterator');
+      expect(result.category).toBe('iterator');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (SET_ITERATOR_EXISTS) {
     test('SetIterator', () => {
@@ -57,6 +70,18 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
       expect(typeInfo(set.values())).toEqual(expected);
       expect(typeInfo(set.keys())).toEqual(expected);
       expect(typeInfo(set[Symbol.iterator]())).toEqual(expected);
+    });
+
+    test('SetIterator across realms', () => {
+      const setIterator = runInNewContext('new Set().entries()');
+      const result = typeInfo(setIterator);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('SetIterator');
+      expect(result.category).toBe('iterator');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
   if (ARRAY_ITERATOR_EXISTS) {
@@ -76,6 +101,19 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
       expect(typeInfo(array.entries())).toEqual(expected);
       expect(typeInfo(array[Symbol.iterator]())).toEqual(expected);
     });
+
+    test('ArrayIterator across realms', () => {
+      const arrayIterator = runInNewContext('[1, 2, 3].values()');
+      const result = typeInfo(arrayIterator);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('ArrayIterator');
+      expect(result.category).toBe('iterator');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
+
     if (INT8ARRAY_EXISTS) {
       test('TypedArrayIterator', () => {
         const expected = {
@@ -93,6 +131,18 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
         expect(typeInfo(int8array.entries())).toEqual(expected);
         expect(typeInfo(int8array[Symbol.iterator]())).toEqual(expected);
       });
+
+      test('TypedArrayIterator across realms', () => {
+        const typedArrayIterator = runInNewContext('new Int8Array(2).values()');
+        const result = typeInfo(typedArrayIterator);
+        expect(result.type).toBe('object');
+        expect(result.subtype).toBe('ArrayIterator');
+        expect(result.category).toBe('iterator');
+        expect(result.isPrimitive).toBe(false);
+        expect(result.isBuiltIn).toBe(true);
+        expect(result.isWebApi).toBe(false);
+        expect(result.constructor).toBeDefined();
+      });
     }
   }
   if (STRING_ITERATOR_EXISTS) {
@@ -109,6 +159,18 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
       const str = 'hello world';
       expect(typeInfo(str[Symbol.iterator]())).toEqual(expected);
     });
+
+    test('StringIterator across realms', () => {
+      const stringIterator = runInNewContext('"hello world"[Symbol.iterator]()');
+      const result = typeInfo(stringIterator);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('StringIterator');
+      expect(result.category).toBe('iterator');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (REGEXP_ITERATOR_EXISTS) {
     test('RegExpStringIterator', () => {
@@ -123,6 +185,18 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
       };
       const regexp = /^[a-z]+/;
       expect(typeInfo(regexp[Symbol.matchAll]())).toEqual(expected);
+    });
+
+    test('RegExpStringIterator across realms', () => {
+      const regexpIterator = runInNewContext('/^[a-z]+/[Symbol.matchAll]()');
+      const result = typeInfo(regexpIterator);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('RegExpStringIterator');
+      expect(result.category).toBe('iterator');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
   if (INTL_SEGMENTER_ITERATOR_EXISTS) {
@@ -142,6 +216,18 @@ describe('Test the `typeInfo()` function for iterator objects', () => {
         constructor: graphemeSegments[Symbol.iterator]().constructor,
       };
       expect(typeInfo(graphemeSegments[Symbol.iterator]())).toEqual(expected);
+    });
+
+    test('SegmenterStringIterator across realms', () => {
+      const segmenterIterator = runInNewContext('const string = "Que ma joie demeure"; const segmenter = new Intl.Segmenter("fr", { granularity: "grapheme" }); const segments = segmenter.segment(string); segments[Symbol.iterator]()');
+      const result = typeInfo(segmenterIterator);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('SegmenterStringIterator');
+      expect(result.category).toBe('iterator');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
 });

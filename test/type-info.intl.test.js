@@ -17,7 +17,8 @@ import {
   INTL_PLURALRULES_EXISTS,
   INTL_RELATIVETIMEFORMAT_EXISTS,
   INTL_SEGMENTER_EXISTS,
-} from '@qubit-ltd/type-detect';
+} from '@qubit-ltd/type-detect/src/feature-detect';
+import { runInNewContext } from 'node:vm';
 import typeInfo from '../src';
 
 /**
@@ -39,6 +40,18 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
       };
       expect(typeInfo(new Intl.Collator('zh'))).toEqual(expected);
     });
+
+    test('Intl.Collator across realms', () => {
+      const collator = runInNewContext('new Intl.Collator("zh")');
+      const result = typeInfo(collator);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Intl.Collator');
+      expect(result.category).toBe('intl');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (INTL_DATETIMEFORMAT_EXISTS) {
     test('Intl.DateTimeFormat', () => {
@@ -52,6 +65,18 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         constructor: Intl.DateTimeFormat,
       };
       expect(typeInfo(new Intl.DateTimeFormat('zh'))).toEqual(expected);
+    });
+
+    test('Intl.DateTimeFormat across realms', () => {
+      const dateTimeFormat = runInNewContext('new Intl.DateTimeFormat("zh")');
+      const result = typeInfo(dateTimeFormat);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Intl.DateTimeFormat');
+      expect(result.category).toBe('intl');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
   if (INTL_DISPLAYNAMES_EXISTS) {
@@ -68,6 +93,18 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
       expect(typeInfo(new Intl.DisplayNames('zh', { type: 'region' })))
         .toEqual(expected);
     });
+
+    test('Intl.DisplayNames across realms', () => {
+      const displayNames = runInNewContext('new Intl.DisplayNames("zh", { type: "region" })');
+      const result = typeInfo(displayNames);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Intl.DisplayNames');
+      expect(result.category).toBe('intl');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (INTL_DURATIONFORMAT_EXISTS) {
     test('Intl.DurationFormat', () => {
@@ -83,6 +120,18 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
       expect(typeInfo(new Intl.DurationFormat('zh', { style: 'long' })))
         .toEqual(expected);
     });
+
+    test('Intl.DurationFormat across realms', () => {
+      const durationFormat = runInNewContext('new Intl.DurationFormat("zh", { style: "long" })');
+      const result = typeInfo(durationFormat);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Intl.DurationFormat');
+      expect(result.category).toBe('intl');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (INTL_LISTFORMAT_EXISTS) {
     test('Intl.ListFormat', () => {
@@ -96,6 +145,18 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         constructor: Intl.ListFormat,
       };
       expect(typeInfo(new Intl.ListFormat('zh'))).toEqual(expected);
+    });
+
+    test('Intl.ListFormat across realms', () => {
+      const listFormat = runInNewContext('new Intl.ListFormat("zh")');
+      const result = typeInfo(listFormat);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Intl.ListFormat');
+      expect(result.category).toBe('intl');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
   if (INTL_LOCALE_EXISTS) {
@@ -111,6 +172,18 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
       };
       expect(typeInfo(new Intl.Locale('zh'))).toEqual(expected);
     });
+
+    test('Intl.Locale across realms', () => {
+      const locale = runInNewContext('new Intl.Locale("zh")');
+      const result = typeInfo(locale);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Intl.Locale');
+      expect(result.category).toBe('intl');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (INTL_NUMBERFORMAT_EXISTS) {
     test('Intl.NumberFormat', () => {
@@ -124,6 +197,18 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         constructor: Intl.NumberFormat,
       };
       expect(typeInfo(new Intl.NumberFormat('zh'))).toEqual(expected);
+    });
+
+    test('Intl.NumberFormat across realms', () => {
+      const numberFormat = runInNewContext('new Intl.NumberFormat("zh")');
+      const result = typeInfo(numberFormat);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Intl.NumberFormat');
+      expect(result.category).toBe('intl');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
   if (INTL_PLURALRULES_EXISTS) {
@@ -139,6 +224,18 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
       };
       expect(typeInfo(new Intl.PluralRules('zh'))).toEqual(expected);
     });
+
+    test('Intl.PluralRules across realms', () => {
+      const pluralRules = runInNewContext('new Intl.PluralRules("zh")');
+      const result = typeInfo(pluralRules);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Intl.PluralRules');
+      expect(result.category).toBe('intl');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (INTL_RELATIVETIMEFORMAT_EXISTS) {
     test('Intl.RelativeTimeFormat', () => {
@@ -153,6 +250,18 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
       };
       expect(typeInfo(new Intl.RelativeTimeFormat('zh'))).toEqual(expected);
     });
+
+    test('Intl.RelativeTimeFormat across realms', () => {
+      const relativeTimeFormat = runInNewContext('new Intl.RelativeTimeFormat("zh")');
+      const result = typeInfo(relativeTimeFormat);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Intl.RelativeTimeFormat');
+      expect(result.category).toBe('intl');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
+    });
   }
   if (INTL_SEGMENTER_EXISTS) {
     test('Intl.Segmenter', () => {
@@ -166,6 +275,18 @@ describe('Test the `typeInfo()` function for objects under the Intl namespace', 
         constructor: Intl.Segmenter,
       };
       expect(typeInfo(new Intl.Segmenter('zh'))).toEqual(expected);
+    });
+
+    test('Intl.Segmenter across realms', () => {
+      const segmenter = runInNewContext('new Intl.Segmenter("zh")');
+      const result = typeInfo(segmenter);
+      expect(result.type).toBe('object');
+      expect(result.subtype).toBe('Intl.Segmenter');
+      expect(result.category).toBe('intl');
+      expect(result.isPrimitive).toBe(false);
+      expect(result.isBuiltIn).toBe(true);
+      expect(result.isWebApi).toBe(false);
+      expect(result.constructor).toBeDefined();
     });
   }
 });

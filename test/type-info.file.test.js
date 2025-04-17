@@ -12,7 +12,7 @@ import {
   FILE_LIST_EXISTS,
   FILE_READER_EXISTS,
   FILE_READER_SYNC_EXISTS,
-} from '@qubit-ltd/type-detect';
+} from '@qubit-ltd/type-detect/src/feature-detect';
 import typeInfo from '../src';
 
 /* eslint-disable no-undef */
@@ -36,6 +36,9 @@ describe('Test the `typeInfo()` function for the File API object', () => {
       };
       const file = new File([''], 'filename');
       expect(typeInfo(file)).toEqual(expected);
+      // 注意：不添加跨领域测试，因为File是Web API对象，
+      // 在Node.js的vm模块创建的新上下文中不可用。
+      // 这类测试需要在真实的浏览器环境中进行。
     });
   }
   if (BLOB_EXISTS) {
@@ -51,6 +54,9 @@ describe('Test the `typeInfo()` function for the File API object', () => {
       };
       const blob = new Blob([''], { type: 'text/plain' });
       expect(typeInfo(blob)).toEqual(expected);
+      // 注意：不添加跨领域测试，因为Blob是Web API对象，
+      // 在Node.js的vm模块创建的新上下文中不可用。
+      // 这类测试需要在真实的浏览器环境中进行。
     });
   }
   if (FILE_LIST_EXISTS) {
@@ -69,6 +75,9 @@ describe('Test the `typeInfo()` function for the File API object', () => {
       document.body.appendChild(fileInput);
       const list = fileInput.files;
       expect(typeInfo(list)).toEqual(expected);
+      // 注意：不添加跨领域测试，因为FileList是Web API对象，
+      // 在Node.js的vm模块创建的新上下文中不可用。
+      // 这类测试需要在真实的浏览器环境中进行。
     });
   }
   if (FILE_READER_EXISTS) {
@@ -84,6 +93,9 @@ describe('Test the `typeInfo()` function for the File API object', () => {
       };
       const reader = new FileReader();
       expect(typeInfo(reader)).toEqual(expected);
+      // 注意：不添加跨领域测试，因为FileReader是Web API对象，
+      // 在Node.js的vm模块创建的新上下文中不可用。
+      // 这类测试需要在真实的浏览器环境中进行。
     });
   }
   if (FILE_READER_SYNC_EXISTS) {
@@ -101,6 +113,9 @@ describe('Test the `typeInfo()` function for the File API object', () => {
       };
       const reader = new FileReaderSync();
       expect(typeInfo(reader)).toEqual(expected);
+      // 注意：不添加跨领域测试，因为FileReaderSync是Web API对象，
+      // 在Node.js的vm模块创建的新上下文中不可用，且仅在Web Workers中可用。
+      // 这类测试需要在真实的Web Worker环境中进行。
     });
   }
 });
