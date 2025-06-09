@@ -1,6 +1,6 @@
 {
   "name": "@qubit-ltd/typeinfo",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "A JavaScript library provides a type information detection function",
   "author": "Haixing Hu",
   "license": "Apache-2.0",
@@ -68,6 +68,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "babel-jest": "^29.7.0",
     "check-es-version": "^1.5.1",
+    "clean-jsdoc-theme": "^4.3.0",
     "core-js": "^3.41.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.1",

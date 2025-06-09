@@ -136,3 +136,5 @@ doc
 
 # IDEA configuration
 .idea
+.vscode
+.cursor

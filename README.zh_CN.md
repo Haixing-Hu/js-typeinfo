@@ -14,20 +14,27 @@ JavaScript的原生`typeof`操作符在检测复杂对象类型时有很多局�
 
 ## 目录
 
-- [特性](#features)
-- [安装](#installation)
-- [示例](#example)
-- [使用](#usage)
+- [typeinfo](#typeinfo)
+  - [目录](#目录)
+  - [特性](#特性)
+  - [安装](#安装)
+  - [示例](#示例)
+  - [使用](#使用)
     - [Type](#type)
     - [Subtype](#subtype)
     - [Category](#category)
-    - [特性检测常量](#feature-detection)
-    - [类型原型常量](#type-prototype)
-    - [类型检测函数](#type-detection)
-- [跨域类型检测](#cross-realm)
-- [为何无法识别`Proxy`类型](#why-no-proxy)
-- [贡献](#contributing)
-- [许可证](#license)
+    - [特性检测常量](#特性检测常量)
+    - [类型原型常量](#类型原型常量)
+    - [类型检测函数](#类型检测函数)
+      - [基本类型检测](#基本类型检测)
+      - [特定对象类型检测](#特定对象类型检测)
+      - [高级类型检测](#高级类型检测)
+  - [跨域类型检测](#跨域类型检测)
+  - [为何无法识别 Proxy 类型](#为何无法识别-proxy-类型)
+  - [贡献](#贡献)
+    - [开发设置](#开发设置)
+    - [编码标准](#编码标准)
+  - [许可证](#许可证)
 
 ## <span id="features">特性</span>
 
@@ -98,9 +105,9 @@ function clone(value) {
     case 'undefined':       // drop down
     case 'null':            // drop down
     case 'primitive':       // drop down
-    case 'function':       
+    case 'function':
       return value;         // don't need to clone immutable objects
-    case 'primitive-wrapper':  
+    case 'primitive-wrapper':
       return value;         // don't need to clone immutable objects
     case 'date':
       return new Date(value);
@@ -167,7 +174,7 @@ function typeInfo(value)
 - `'function'`: 如果值为函数。
 - `'object'`: 如果值为普通对象。
 
-`type` 属性的值类似于内置的 `typeof` 操作符返回的值，不同之处在于 `null` 的类型是 `'null'` 
+`type` 属性的值类似于内置的 `typeof` 操作符返回的值，不同之处在于 `null` 的类型是 `'null'`
 而不是 `'object'`。
 
 ### <span id="subtype">Subtype</span>
@@ -605,7 +612,7 @@ console.log(typeInfo(foreignArray).subtype); // 'Float32Array'
 console.log(foreignArray instanceof Float32Array); // false
 ```
 
-## <span id="why-no-proxy">为何无法识别`Proxy`类型</span>
+## <span id="why-no-proxy">为何无法识别 Proxy 类型</span>
 
 JavaScript的`Proxy`对象被设计为完全透明的，这意味着它们与它们包装的对象无法区分。根据ECMAScript规范，没有标准方法可以检测对象是否为`Proxy`。
 

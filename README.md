@@ -17,20 +17,27 @@ JavaScript's native `typeof` operator has limitations when it comes to detecting
 
 ## Table of Contents
 
-- [Features](#features)
-- [Installation](#installation)
-- [Example](#example)
-- [Usage](#usage)
+- [typeinfo](#typeinfo)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Example](#example)
+  - [Usage](#usage)
     - [Type](#type)
     - [Subtype](#subtype)
     - [Category](#category)
-    - [Feature Detection Constants](#feature-detection)
-    - [Type Prototype Constants](#type-prototype)
-    - [Type Detection Functions](#type-detection)
-- [Cross-Realm Type Detection](#cross-realm)
-- [Why `Proxy` Type Information is Unavailable](#why-no-proxy)
-- [Contributing](#contributing)
-- [License](#license)
+    - [Feature Detection Constants](#feature-detection-constants)
+    - [Type Prototype Constants](#type-prototype-constants)
+    - [Type Detection Functions](#type-detection-functions)
+      - [Basic Type Detection](#basic-type-detection)
+      - [Specific Object Type Detection](#specific-object-type-detection)
+      - [Advanced Type Detection](#advanced-type-detection)
+  - [Cross-Realm Type Detection](#cross-realm-type-detection)
+  - [Why Proxy Type Information is Unavailable](#why-proxy-type-information-is-unavailable)
+  - [Contributing](#contributing)
+    - [Development Setup](#development-setup)
+    - [Coding Standards](#coding-standards)
+  - [License](#license)
 
 ## <span id="features">Features</span>
 
@@ -89,7 +96,7 @@ function clone(value) {
         // ...handle other object types
       }
   }
-} 
+}
 ```
 or use [info.category](#category) to simplify the code logic:
 ```js
@@ -101,9 +108,9 @@ function clone(value) {
     case 'undefined':       // drop down
     case 'null':            // drop down
     case 'primitive':       // drop down
-    case 'function':       
+    case 'function':
       return value;         // don't need to clone immutable objects
-    case 'primitive-wrapper': 
+    case 'primitive-wrapper':
       return value;         // don't need to clone immutable objects
     case 'date':
       return new Date(value);
@@ -155,7 +162,7 @@ value. The returned information is an object with the following properties:
 - `subtype: string`: the name of the subtype of the specified value. This
   property is only presented when the type of the specified value is `'object'`
   or `'function'`. See [Subtype](#subtype) for more details.
-- `category: string`: the category of ths specified value. This property is 
+- `category: string`: the category of ths specified value. This property is
   present for all type of values. See [Category](#category) for more details.
 - `isPrimitive: boolean`: whether the specified value is a primitive value.
 - `isBuiltIn: boolean`: whether the specified value is a JavaScript built-in
@@ -166,7 +173,7 @@ value. The returned information is an object with the following properties:
 
 ### <span id="type">Type</span>
 
-The type information object returned by `typeInfo()` has a `type` property, 
+The type information object returned by `typeInfo()` has a `type` property,
 which has the following possible values:
 
 - `'undefined'`: if the value is `undefined`.
@@ -185,8 +192,8 @@ The `type` property value is similar to the value returned by the built-in
 
 ### <span id="subtype">Subtype</span>
 
-If the value is of the `type` is `function` or `object`, the type information 
-object returned by `typeInfo()` has a `subtype` property, which is the name of 
+If the value is of the `type` is `function` or `object`, the type information
+object returned by `typeInfo()` has a `subtype` property, which is the name of
 the detailed subtype of the specified value.
 
 The possible `subtype` names of the `'function'` type are:
@@ -254,7 +261,7 @@ The possible `subtype` names of the `'object'` type are:
 - `'Intl.Locale'`: if the value is a JavaScript built-in `Intl.Locale` object.
 - `'Intl.NumberFormat'`: if the value is a JavaScript built-in `Intl.NumberFormat` object.
 - `'Intl.PluralRules'`: if the value is a JavaScript built-in `Intl.PluralRules` object.
-- `'Intl.RelativeTimeFormat'`: if the value is a JavaScript built-in 
+- `'Intl.RelativeTimeFormat'`: if the value is a JavaScript built-in
   `Intl.RelativeTimeFormat` object.
 - `'Intl.Segmenter'`: if the value is a JavaScript built-in `Intl.Segmenter` object.
 - `'MapIterator'`: if the value is a `Map` Iterator returned by
@@ -293,7 +300,7 @@ The possible `subtype` names of the `'object'` type are:
   by a sync generator function.
 - `'AsyncGenerator'`: if the value is an async generator object, i.e., the
   object returned by an async generator function.
-- `'GlobalObject'`: if the value is the [global object]. A global object is an 
+- `'GlobalObject'`: if the value is the [global object]. A global object is an
   object that always exists in the global scope.
 - `'Object'`: if the value is a plain JavaScript object, i.e., an object defined
   by the syntax of `obj = { ... }`.
@@ -317,7 +324,7 @@ at [Standard built-in objects].
 ### <span id="category">Category</span>
 
 The type information object returned by `typeInfo()` has a `category` property,
-which is a string that describes the category of the value. The possible values 
+which is a string that describes the category of the value. The possible values
 of the `category` property are:
 
 - `'null'`: if the value is `null`.
@@ -356,15 +363,15 @@ of the `category` property are:
   `'Intl.RelativeTimeFormat'`.
 - `'iterator'`: if the value is an iterator object, including `'MapIterator'`,
   `'SetIterator'`, `'ArrayIterator'`, `'StringIterator'`, `'RegExpStringIterator'`,
-  and `'SegmenterStringIterator'`. 
+  and `'SegmenterStringIterator'`.
 - `'finalization-registry'`: if the value is an instance of the JavaScript built-in
-  `FinalizationRegistry` class. A `FinalizationRegistry` object lets you request 
+  `FinalizationRegistry` class. A `FinalizationRegistry` object lets you request
   a callback when a value is garbage-collected.
 - `'global'`: if the value is the [global object].
 - `'arguments'`: if the value is the JavaScript built-in `arguments` object.
-- `'DOM'`: if the value is a DOM object, e.g., the `'Node'`, `'Element'`, 
+- `'DOM'`: if the value is a DOM object, e.g., the `'Node'`, `'Element'`,
   `'Document'`, `'Window'`, etc.
-- `'CSSOM'`: if the value is a CSSOM object, e.g., `'CSSStyleDeclaration'`, 
+- `'CSSOM'`: if the value is a CSSOM object, e.g., `'CSSStyleDeclaration'`,
   `'CSSRule'`, `'CSSStyleSheet'`, etc.
 - `'event'`: if the value is a event object, i.e., the `'Event'` and all its subclasses.
 - `'console'`: if the value is the `'window.console'` object.
@@ -381,11 +388,11 @@ This library provides the following constants for feature detection:
 - `AGGREGATEERROR_EXISTS`: whether the JavaScript built-in class `AggregateError` exists.
 - `ARRAYBUFFER_EXISTS`: whether the JavaScript built-in class `ArrayBuffer` exists.
 - `ARRAY_ISARRAY_EXISTS`: whether the JavaScript built-in function `Array.isArray()` exists.
-- `ARRAY_ITERATOR_EXISTS`: whether the JavaScript built-in function 
+- `ARRAY_ITERATOR_EXISTS`: whether the JavaScript built-in function
   `Array.prototype[Symbol.iterator]` exists.
 - `ATOMICS_EXISTS`: whether the JavaScript built-in object `Atomics` exists.
 - `BIGINT64ARRAY_EXISTS`: whether the JavaScript built-in class `BigInt64Array` exists.
-- `BIGINT_EXISTS`: whether the JavaScript built-in primitive `bigint` and 
+- `BIGINT_EXISTS`: whether the JavaScript built-in primitive `bigint` and
   built-in function `BigInt` exists.
 - `BIGUINT64ARRAY_EXISTS`: whether the JavaScript built-in class `BigUint64Array` exists.
 - `DATAVIEW_EXISTS`: whether the JavaScript built-in class `DataView` exists.
@@ -410,7 +417,7 @@ This library provides the following constants for feature detection:
 - `INTL_LOCALE_EXISTS`: whether the JavaScript built-in class `Intl.Locale` exists.
 - `INTL_NUMBERFORMAT_EXISTS`: whether the JavaScript built-in class `Intl.NumberFormat` exists.
 - `INTL_PLURALRULES_EXISTS`: whether the JavaScript built-in class `Intl.PluralRules` exists.
-- `INTL_RELATIVETIMEFORMAT_EXISTS`: whether the JavaScript built-in class 
+- `INTL_RELATIVETIMEFORMAT_EXISTS`: whether the JavaScript built-in class
   `Intl.RelativeTimeFormat` exists.
 - `INTL_SEGMENTER_EXISTS`: whether the JavaScript built-in class `Intl.Segmenter` exists.
 - `INTL_SEGMENTER_ITERATOR_EXISTS`: whether the JavaScript built-in function
@@ -770,7 +777,7 @@ console.log(typeInfo(foreignArray).subtype); // 'Float32Array'
 console.log(foreignArray instanceof Float32Array); // false
 ```
 
-## <span id="why-no-proxy">Why `Proxy` Type Information is Unavailable</span>
+## <span id="why-no-proxy">Why Proxy Type Information is Unavailable</span>
 
 JavaScript's `Proxy` objects are designed to be completely transparent, meaning they are indistinguishable from the objects they wrap. According to the ECMAScript specification, there is no standard way to detect if an object is a `Proxy`.
 
